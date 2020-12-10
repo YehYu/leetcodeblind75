@@ -1,6 +1,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 #include <math.h>
 using namespace std;
 
@@ -53,6 +54,35 @@ public:
         return s.substr(front, length);
     }
 
+    static int maxArea(vector<int> &height)
+    {
+        int length = height.size();
+        int i = 0;
+        int r = 0;
+        while (i < length)
+        {
+            int h = height[i];
+            int div = 0;
+            if (h != 0)
+                div = r / h;
+            for (int tset_i = length - 1; tset_i >= i + div; tset_i--)
+            {
+                int tempR = (tset_i - i) * h;
+                if (height[tset_i] >= h && tempR >= r)
+                {
+                    r = tempR;
+                    div = tset_i - i;
+                }
+            }
 
-
+              for (int tset_i = 0; tset_i <= i - div; tset_i++)
+            {
+                int tempR = (i - tset_i) * h;
+                if (height[tset_i] >= h && tempR >= r)
+                    r = tempR;
+            }
+            i++;
+        }
+        return r;
+    }
 };
