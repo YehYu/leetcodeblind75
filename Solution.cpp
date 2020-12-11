@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include <math.h>
+#include <algorithm>
 using namespace std;
 
 class Solution
@@ -75,13 +76,50 @@ public:
                 }
             }
 
-              for (int tset_i = 0; tset_i <= i - div; tset_i++)
+            for (int tset_i = 0; tset_i <= i - div; tset_i++)
             {
                 int tempR = (i - tset_i) * h;
                 if (height[tset_i] >= h && tempR >= r)
                     r = tempR;
             }
             i++;
+        }
+        return r;
+    }
+
+    static vector<vector<int>> threeSum(vector<int> &nums)
+    {
+        vector<vector<int>> r;
+        if (nums.size() < 3)
+            return r;
+        sort(nums.begin(), nums.end());
+        if (nums.front() > 0 || nums.back() < 0)
+            return r;
+
+        for (int i = 0; i < nums.size() && nums[i] <= 0; i++)
+        {
+            if (i != 0 && nums[i - 1] == nums[i])
+                continue;
+
+            int target = -1 * nums[i];
+            int left = i + 1;
+            int right = nums.size() - 1;
+            while (left < right)
+            {
+                int sum = nums[left] + nums[right];
+                if (sum == target)
+                {
+                    r.push_back({nums[i], nums[left], nums[right]});
+                    do
+                    {
+                        left++;
+                    } while (left < right && nums[left] == nums[left - 1]);
+                }
+                else if (sum > target)
+                    right--;
+                else
+                    left++;
+            }
         }
         return r;
     }
