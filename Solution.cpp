@@ -9,6 +9,18 @@ using namespace std;
 class Solution
 {
 public:
+    static vector<int> twoSum(vector<int> &nums, int target)
+    {
+        map<int, int> tempMap;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (tempMap.find(target - nums[i]) != tempMap.end())
+                return {tempMap[target - nums[i]], i};
+            tempMap[nums[i]] = i;
+        }
+        return vector<int>();
+    }
+
     static int lengthOfLongestSubstring(string s)
     {
         int r = 0;
