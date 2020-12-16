@@ -2,15 +2,17 @@
 #include <stdio.h>
 #include <iostream>
 using namespace std;
+typedef Solution::ListNode ListNode;
 
 int main()
 {
-    vector<int> v = {-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0};
-    for (vector<int> vr : Solution::threeSum(v))
+    ListNode *head = new ListNode(1, new ListNode(2));
+
+    ListNode *r = Solution::removeNthFromEnd(head, 2);
+    while (r)
     {
-        cout << " threeSum : " << endl;
-        for (int r : vr)
-            cout << r << endl;
+        cout << r->val << endl;
+        r = r->next;
     }
     return 0;
 }

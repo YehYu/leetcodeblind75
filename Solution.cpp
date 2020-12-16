@@ -135,4 +135,28 @@ public:
         }
         return r;
     }
+
+    // Definition for singly-linked list.
+    struct ListNode
+    {
+        int val;
+        ListNode *next;
+        ListNode() : val(0), next(nullptr) {}
+        ListNode(int x) : val(x), next(nullptr) {}
+        ListNode(int x, ListNode *next) : val(x), next(next) {}
+    };
+
+    static ListNode *removeNthFromEnd(ListNode *head, int n)
+    {
+        vector<ListNode *> templist;
+        templist.push_back(head);
+        while (templist.back()->next)
+            templist.push_back(templist.back()->next);
+        int removeTarget = templist.size() - n;
+        if (removeTarget == 0)
+            head = head->next;
+        else
+            templist[removeTarget - 1]->next = templist[removeTarget]->next;
+        return head;
+    }
 };
