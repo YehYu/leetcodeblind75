@@ -145,7 +145,6 @@ public:
         ListNode(int x) : val(x), next(nullptr) {}
         ListNode(int x, ListNode *next) : val(x), next(next) {}
     };
-
     static ListNode *removeNthFromEnd(ListNode *head, int n)
     {
         vector<ListNode *> templist;
@@ -158,5 +157,23 @@ public:
         else
             templist[removeTarget - 1]->next = templist[removeTarget]->next;
         return head;
+    }
+
+    static bool isValid(string s)
+    {
+        if (s.length() % 2)
+            return false;
+        vector<char> temp;
+        map<char, char> parenthesesMap = {{'(', ')'}, {'{', '}'}, {'[', ']'}};
+        for (char c : s)
+        {
+            if (parenthesesMap.find(c) != parenthesesMap.end())
+                temp.push_back(c);
+            else if (temp.size() != 0 && parenthesesMap[temp.back()] == c)
+                temp.pop_back();
+            else
+                return false;
+        }
+        return temp.size() == 0 ? true : false;
     }
 };

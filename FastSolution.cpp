@@ -147,4 +147,82 @@ public:
         prev->next = prev->next->next;
         return k->next;
     }
+    static bool isValid(string s)
+    {
+        int indexOfLastOpen = -1;
+        for (int i = 0; i < s.length(); ++i)
+        {
+            switch (s[i])
+            {
+            case '(':
+            {
+                indexOfLastOpen++;
+                s[indexOfLastOpen] = '(';
+                break;
+            }
+            case '{':
+            {
+                indexOfLastOpen++;
+                s[indexOfLastOpen] = '{';
+                break;
+            }
+            case '[':
+            {
+                indexOfLastOpen++;
+                s[indexOfLastOpen] = '[';
+                break;
+            }
+            case ')':
+            {
+                if (indexOfLastOpen >= 0)
+                {
+                    if (s[indexOfLastOpen] != '(')
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                indexOfLastOpen--;
+                break;
+            }
+            case '}':
+            {
+                if (indexOfLastOpen >= 0)
+                {
+                    if (s[indexOfLastOpen] != '{')
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                indexOfLastOpen--;
+                break;
+            }
+            case ']':
+            {
+                if (indexOfLastOpen >= 0)
+                {
+                    if (s[indexOfLastOpen] != '[')
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                indexOfLastOpen--;
+                break;
+            }
+            }
+        }
+
+        return indexOfLastOpen >= 0 ? false : true;
+    }
 };
