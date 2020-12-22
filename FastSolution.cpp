@@ -147,6 +147,7 @@ public:
         prev->next = prev->next->next;
         return k->next;
     }
+
     static bool isValid(string s)
     {
         int indexOfLastOpen = -1;
@@ -224,5 +225,25 @@ public:
         }
 
         return indexOfLastOpen >= 0 ? false : true;
+    }
+
+    static ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
+    {  
+        // most Discuss ""recursion"
+        if (l1 == nullptr)
+            return l2;
+        if (l2 == nullptr)
+            return l1;
+        if (l1->val < l2->val)
+        {
+            l1->next = mergeTwoLists(l1->next, l2);
+            return l1;
+        }
+        else
+        {
+            l2->next = mergeTwoLists(l1, l2->next);
+            return l2;
+        }
+        
     }
 };

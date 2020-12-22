@@ -176,4 +176,22 @@ public:
         }
         return temp.size() == 0 ? true : false;
     }
+
+    static ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
+    {
+        if (l1 == nullptr || l2 == nullptr)
+            return (l1 == nullptr) ? l2 : l1;
+
+        ListNode *currl = new ListNode(0);
+        ListNode *currl1 = l1;
+        ListNode *currl2 = l2;
+        while (currl1 && currl2)
+        {
+            currl->next = (currl1->val <= currl2->val) ? currl1 : currl2;
+            (currl1->val <= currl2->val) ? currl1 = currl1->next : currl2 = currl2->next;
+            currl = currl->next;
+        }
+        currl->next = (currl2 == nullptr) ? currl1 : currl2;
+        return (l1->val <= l2->val) ? l1 : l2;
+    }
 };
