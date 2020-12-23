@@ -194,4 +194,15 @@ public:
         currl->next = (currl2 == nullptr) ? currl1 : currl2;
         return (l1->val <= l2->val) ? l1 : l2;
     }
+
+    static ListNode *mergeKLists(vector<ListNode *> &lists)
+    {
+        ListNode *result = nullptr;
+        while (!lists.empty())
+        {
+            result = mergeTwoLists(result, lists.back());
+            lists.pop_back();
+        }
+        return result;
+    }
 };

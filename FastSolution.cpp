@@ -228,8 +228,8 @@ public:
     }
 
     static ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
-    {  
-        // most Discuss ""recursion"
+    {
+        // most Discuss "recursion"
         if (l1 == nullptr)
             return l2;
         if (l2 == nullptr)
@@ -244,6 +244,22 @@ public:
             l2->next = mergeTwoLists(l1, l2->next);
             return l2;
         }
-        
+    }
+
+    static ListNode *mergeKLists(vector<ListNode *> &lists)
+    {
+        if (lists.empty())
+            return NULL;
+        int len = lists.size();
+        while (len > 1)
+        {
+            for (int i = 0; i < len / 2; ++i)
+            {
+                lists[i] = mergeTwoLists(lists[i], lists[len - 1 - i]);
+            }
+            len = (len + 1) / 2;
+        }
+
+        return lists.front();
     }
 };
