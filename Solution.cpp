@@ -205,4 +205,21 @@ public:
         }
         return result;
     }
+
+    static int search(vector<int> &nums, int target)
+    {
+        int start = 0;
+        int end = nums.size() - 1;
+        while (start <= end)
+        {
+            int mid = (end + start) * 0.5;
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] > target)
+                (nums[mid] >= nums[end] && target < nums[start]) ? start = mid + 1 : end = mid - 1;
+            else if (nums[mid] < target)
+                (nums[mid] <= nums[start] && target > nums[end]) ? end = mid - 1 : start = mid + 1;
+        }
+        return -1;
+    }
 };

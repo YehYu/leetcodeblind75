@@ -6,6 +6,7 @@ typedef Solution::ListNode ListNode;
 
 int main()
 {
+    /*
     ListNode *l1 = new ListNode(1, new ListNode(4, new ListNode(5)));
     ListNode *l2 = new ListNode(1, new ListNode(3, new ListNode(4)));
     ListNode *l3 = new ListNode(2, new ListNode(6));
@@ -19,6 +20,9 @@ int main()
         cout << A->val << endl;
         A = A->next;
     }
+    */
+    vector<int> v = {4, 5, 6, 7, 0, 1, 2};
+    cout << Solution::search(v, 0) << endl;
 
     return 0;
 }
