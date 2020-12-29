@@ -222,4 +222,30 @@ public:
         }
         return -1;
     }
+
+    static void comp(const vector<int> &candidates, int target, vector<vector<int>> &result, vector<int> &temp, int start);
+    static vector<vector<int>> combinationSum(vector<int> &candidates, int target)
+    {
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> r;
+        vector<int> temp;
+        comp(candidates, target, r, temp, 0);
+        return r;
+    }
+
+    static void comp(const vector<int> &candidates, int target, vector<vector<int>> &result, vector<int> &temp, int start)
+    {
+        for (int i = start; i < candidates.size(); i++)
+        {
+            int newTarget = target - candidates[i];
+            if (newTarget < 0)
+                break;
+            else
+            {
+                temp.push_back(candidates[i]);
+                (newTarget == 0) ? result.push_back(temp) : comp(candidates, newTarget, result, temp, i);
+                temp.pop_back();
+            }
+        }
+    }
 };
