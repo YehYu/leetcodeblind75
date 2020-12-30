@@ -223,16 +223,6 @@ public:
         return -1;
     }
 
-    static void comp(const vector<int> &candidates, int target, vector<vector<int>> &result, vector<int> &temp, int start);
-    static vector<vector<int>> combinationSum(vector<int> &candidates, int target)
-    {
-        sort(candidates.begin(), candidates.end());
-        vector<vector<int>> r;
-        vector<int> temp;
-        comp(candidates, target, r, temp, 0);
-        return r;
-    }
-
     static void comp(const vector<int> &candidates, int target, vector<vector<int>> &result, vector<int> &temp, int start)
     {
         for (int i = start; i < candidates.size(); i++)
@@ -245,6 +235,40 @@ public:
                 temp.push_back(candidates[i]);
                 (newTarget == 0) ? result.push_back(temp) : comp(candidates, newTarget, result, temp, i);
                 temp.pop_back();
+            }
+        }
+    }
+    static vector<vector<int>> combinationSum(vector<int> &candidates, int target)
+    {
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> r;
+        vector<int> temp;
+        comp(candidates, target, r, temp, 0);
+        return r;
+    }
+
+    static void rotate(vector<vector<int>> &matrix)
+    {
+        for (int i = 0; i < matrix.size(); i++)
+        {
+            for (int j = i; j < matrix[i].size(); j++)
+            {
+                if (i != j)
+                {
+                    matrix[i][j] = matrix[i][j] ^ matrix[j][i];
+                    matrix[j][i] = matrix[i][j] ^ matrix[j][i];
+                    matrix[i][j] = matrix[i][j] ^ matrix[j][i];
+                }
+            }
+        }
+
+        for (int i = 0; i < matrix.size(); i++)
+        {
+            for (int j = 0; j < matrix[i].size() / 2; j++)
+            {
+                matrix[i][j] = matrix[i][j] ^ matrix[i][matrix[i].size() - 1 - j];
+                matrix[i][matrix[i].size() - 1 - j] = matrix[i][j] ^ matrix[i][matrix[i].size() - 1 - j];
+                matrix[i][j] = matrix[i][j] ^ matrix[i][matrix[i].size() - 1 - j];
             }
         }
     }

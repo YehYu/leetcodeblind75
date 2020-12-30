@@ -299,27 +299,46 @@ public:
         return -1;
     }
 
-
-//combinationSum
-    static vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    //combinationSum
+    static vector<vector<int>> combinationSum(vector<int> &candidates, int target)
+    {
         vector<int> cur;
         vector<vector<int>> ans;
         sort(candidates.begin(), candidates.end());
         dfs(candidates, target, 0, cur, ans);
         return ans;
     }
-    static void dfs(vector<int>& candidates, int target, int s, vector<int>& cur, vector<vector<int>>& ans){
-        if(target==0){
+    static void dfs(vector<int> &candidates, int target, int s, vector<int> &cur, vector<vector<int>> &ans)
+    {
+        if (target == 0)
+        {
             ans.push_back(cur);
             return;
         }
-        for(int i=s; i<candidates.size();i++){
-            if(candidates[i] > target) break;
+        for (int i = s; i < candidates.size(); i++)
+        {
+            if (candidates[i] > target)
+                break;
             cur.push_back(candidates[i]);
-            dfs(candidates, target-candidates[i], i , cur, ans);
+            dfs(candidates, target - candidates[i], i, cur, ans);
             cur.pop_back();
         }
     }
     ////
 
+    static void rotate(vector<vector<int>> &matrix)
+    {
+        unsigned int N = matrix.size();
+        for (int i = 0; i < (N + 1) / 2; ++i)
+        {
+            for (int j = 0; j < N / 2; ++j)
+            {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[N - 1-j][i];
+                matrix[N - 1-j][i] = matrix[N - 1 - i][N - 1 - j];
+                matrix[N - 1 - i][N - 1 - j] = matrix[j][N - 1 - i];
+                matrix[j][N - 1 - i] = temp;
+            }
+        }
+    }
 };

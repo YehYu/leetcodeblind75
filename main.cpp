@@ -23,7 +23,7 @@ int main()
     */
     //vector<int> v = {4, 5, 6, 7, 0, 1, 2};
     //cout << Solution::search(v, 0) << endl;
-
+    /*
     vector<int> v = {2, 3, 5};
     for (vector<int> a : Solution::combinationSum(v, 8))
     {
@@ -31,6 +31,14 @@ int main()
         for (int i : a)
             cout << i << endl;
     }
-
+*/
+    vector<vector<int>> v = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
+     Solution::rotate(v);
+    for (vector<int> a : v)
+    {
+        for (int i : a)
+            cout << i << " ";
+        cout << endl;
+    }
     return 0;
 }
