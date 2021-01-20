@@ -32,7 +32,8 @@ int main()
             cout << i << endl;
     }
 */
-    vector<vector<int>> v = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
+    /*  
+  vector<vector<int>> v = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
      Solution::rotate(v);
     for (vector<int> a : v)
     {
@@ -40,5 +41,15 @@ int main()
             cout << i << " ";
         cout << endl;
     }
+    */
+
+    vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+    for (vector<string> a : Solution::groupAnagrams(strs))
+    {
+        for (string i : a)
+            cout << i;
+        cout << endl;
+    }
+
     return 0;
 }

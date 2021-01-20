@@ -272,4 +272,23 @@ public:
             }
         }
     }
+
+    static vector<vector<string>> groupAnagrams(vector<string> &strs)
+    {
+        vector<vector<string>> result;
+        map<string, int> stringMap;
+        for (int i = 0; i < strs.size(); i++)
+        {
+            string a = strs[i];
+            sort(a.begin(), a.end());
+            if (stringMap.find(a) == stringMap.end())
+            {
+                stringMap.insert(pair<string, int>(a, result.size()));
+                result.push_back({{strs[i]}});
+                continue;
+            }
+            result[stringMap[a]].push_back(strs[i]);
+        }
+        return result;
+    }
 };
