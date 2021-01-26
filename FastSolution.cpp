@@ -334,11 +334,55 @@ public:
             for (int j = 0; j < N / 2; ++j)
             {
                 int temp = matrix[i][j];
-                matrix[i][j] = matrix[N - 1-j][i];
-                matrix[N - 1-j][i] = matrix[N - 1 - i][N - 1 - j];
+                matrix[i][j] = matrix[N - 1 - j][i];
+                matrix[N - 1 - j][i] = matrix[N - 1 - i][N - 1 - j];
                 matrix[N - 1 - i][N - 1 - j] = matrix[j][N - 1 - i];
                 matrix[j][N - 1 - i] = temp;
             }
         }
+    }
+
+    static int maxSubArray(vector<int> &nums)
+    {
+        int result = nums[0];
+        int tempR = 0;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            tempR += nums[i];
+            tempR = (nums[i] > tempR) ? nums[i] : tempR;
+            result = (result > tempR) ? result : tempR;
+        }
+        return result;
+    }
+
+    //Using Divide and Conquer method
+    static int maxSubArrayUsingDivideAndConquer(vector<int> &nums)
+    {
+        return maxSubArrayHelperFunction(nums, 0, nums.size() - 1);
+    }
+    static int maxSubArrayHelperFunction(vector<int> &nums, int left, int right)
+    {
+        if (right == left)
+            return nums[left];
+        int middle = (left + right) / 2;
+        int leftans = maxSubArrayHelperFunction(nums, left, middle);
+        int rightans = maxSubArrayHelperFunction(nums, middle + 1, right);
+        int leftmax = nums[middle];
+        int rightmax = nums[middle + 1];
+        int temp = 0;
+        for (int i = middle; i >= left; i--)
+        {
+            temp += nums[i];
+            if (temp > leftmax)
+                leftmax = temp;
+        }
+        temp = 0;
+        for (int i = middle + 1; i <= right; i++)
+        {
+            temp += nums[i];
+            if (temp > rightmax)
+                rightmax = temp;
+        }
+        return max(max(leftans, rightans), leftmax + rightmax);
     }
 };

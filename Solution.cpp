@@ -291,4 +291,20 @@ public:
         }
         return result;
     }
+
+    static int maxSubArray(vector<int> &nums)
+    {
+        int result = nums[0];
+        int tempR = nums[0];
+        for (int i = 1; i < nums.size(); i++)
+        {
+            if (tempR <= 0)
+                tempR = nums[i] >= 0 ? nums[i] : max(tempR, nums[i]);
+            else
+                tempR += nums[i];
+
+            result = max(tempR, result);
+        }
+        return result;
+    }
 };

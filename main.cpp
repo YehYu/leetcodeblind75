@@ -43,13 +43,16 @@ int main()
     }
     */
 
-    vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
-    for (vector<string> a : Solution::groupAnagrams(strs))
-    {
-        for (string i : a)
-            cout << i;
-        cout << endl;
-    }
+    // vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+    // for (vector<string> a : Solution::groupAnagrams(strs))
+    // {
+    //     for (string i : a)
+    //         cout << i;
+    //     cout << endl;
+    // }
+
+    vector<int> nums = {-2,1,-3,4,-1,2,1,-5,4};
+    cout << Solution::maxSubArray(nums) << endl;
 
     return 0;
 }
