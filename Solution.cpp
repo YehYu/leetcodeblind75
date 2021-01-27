@@ -307,4 +307,41 @@ public:
         }
         return result;
     }
+    static vector<int> spiralOrder(vector<vector<int>> &matrix)
+    {
+        vector<int> result;
+        vector<vector<bool>> haveValue(matrix.size(), vector<bool>(matrix[0].size(), false));
+        int start_i = 0;
+        int start_j = 0;
+        int step_i = 0;
+        int step_j = 1;
+        for (int i = 0; i < matrix.size() * matrix[0].size(); i++)
+        {
+            result.push_back(matrix[start_i][start_j]);
+            haveValue[start_i][start_j] = true;
+            start_i += step_i;
+            start_j += step_j;
+            if (step_i != 0)
+            {
+                if (start_i < 0 || start_i >= matrix.size() || haveValue[start_i][start_j])
+                {
+                    start_i -= step_i;
+                    step_j = step_i * -1;
+                    step_i = 0;
+                    start_j += step_j;
+                }
+            }
+            else if (step_j != 0)
+            {
+                if (start_j < 0 || start_j >= matrix[0].size() || haveValue[start_i][start_j])
+                {
+                    start_j -= step_j;
+                    step_i = step_j;
+                    step_j = 0;
+                    start_i += step_i;
+                }
+            }
+        }
+        return result;
+    }
 };

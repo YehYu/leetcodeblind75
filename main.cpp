@@ -1,4 +1,5 @@
 #include "Solution.cpp"
+#include "FastSolution.cpp"
 #include <stdio.h>
 #include <iostream>
 using namespace std;
@@ -51,8 +52,13 @@ int main()
     //     cout << endl;
     // }
 
-    vector<int> nums = {-2,1,-3,4,-1,2,1,-5,4};
-    cout << Solution::maxSubArray(nums) << endl;
+    // vector<int> nums = {-2,1,-3,4,-1,2,1,-5,4};
+    // cout << Solution::maxSubArray(nums) << endl;
+
+    vector<vector<int>> order = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    for (int a : Solution::spiralOrder(order))
+        cout << a;
+    cout << endl;
 
     return 0;
 }
