@@ -55,10 +55,13 @@ int main()
     // vector<int> nums = {-2,1,-3,4,-1,2,1,-5,4};
     // cout << Solution::maxSubArray(nums) << endl;
 
-    vector<vector<int>> order = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-    for (int a : Solution::spiralOrder(order))
-        cout << a;
-    cout << endl;
+    // vector<vector<int>> order = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    // for (int a : Solution::spiralOrder(order))
+    //     cout << a;
+    // cout << endl;
+
+    vector<int> nums = {3,2,1,0,4};
+    cout << Solution::canJump(nums);
 
     return 0;
 }

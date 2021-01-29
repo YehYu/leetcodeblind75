@@ -307,6 +307,7 @@ public:
         }
         return result;
     }
+
     static vector<int> spiralOrder(vector<vector<int>> &matrix)
     {
         vector<int> result;
@@ -343,5 +344,17 @@ public:
             }
         }
         return result;
+    }
+
+    //55. Jump Game
+    static bool canJump(vector<int> &nums)
+    {
+        int Good_index = nums.size() - 1;
+        for (int i = nums.size() - 2; i >= 0; i--)
+        {
+            if ((i + nums[i]) >= Good_index)
+                Good_index = i;
+        }
+        return Good_index == 0;
     }
 };
