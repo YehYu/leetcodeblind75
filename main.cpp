@@ -60,8 +60,12 @@ int main()
     //     cout << a;
     // cout << endl;
 
-    vector<int> nums = {3,2,1,0,4};
-    cout << Solution::canJump(nums);
+    // vector<int> nums = {3,2,1,0,4};
+    // cout << Solution::canJump(nums);
+
+    vector<vector<int>> intervals  = {{1, 4}, {4, 5}};
+    for (vector<int> interval: FastSolution::merge(intervals))
+        cout << interval[0]<<", "<<interval[1]<<endl;
 
     return 0;
 }

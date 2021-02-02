@@ -357,4 +357,25 @@ public:
         }
         return Good_index == 0;
     }
+
+    //56. Merge Intervals
+    static vector<vector<int>> merge(vector<vector<int>> &intervals)
+    {
+        map<int, int> tempMap;
+        vector<vector<int>> result;
+        for (vector<int> interval : intervals)
+            tempMap[interval[0]] = (tempMap.find(interval[0]) == tempMap.end()) ? interval[1] : max(interval[1], tempMap[interval[0]]);
+
+        map<int, int>::iterator iter = tempMap.begin();
+        while (iter != tempMap.end())
+        {
+            if (result.empty() || iter->first > result.back()[1])
+                result.push_back({iter->first, iter->second});
+            else
+                result.back()[1] = result.back()[1] > iter->second ? result.back()[1] : iter->second;
+
+            iter++;
+        }
+        return result;
+    }
 };

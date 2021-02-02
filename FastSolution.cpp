@@ -429,4 +429,25 @@ public:
         }
         return false;
     }
+
+    //56. Merge Intervals
+    static vector<vector<int>> merge(vector<vector<int>> &intervals)
+    {
+        vector<vector<int>> res;
+
+        // sort based on start
+        sort(intervals.begin(), intervals.end(),
+             [](const vector<int> &A, const vector<int> &B) { return A[0] < B[0]; });
+
+        // check and merge
+        for (const vector<int> &i : intervals)
+        {
+            if (!res.empty() && i[0] <= res.back()[1])
+                res.back()[1] = max(res.back()[1], i[1]);
+            else
+                res.emplace_back(i);
+        }
+
+        return res;
+    };
 };
