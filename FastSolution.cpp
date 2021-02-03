@@ -450,4 +450,31 @@ public:
 
         return res;
     };
+
+    //57. Insert Interval
+    static vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval)
+    {
+        if (intervals.empty())
+            return {newInterval};
+
+        vector<vector<int>> result;
+        int insertIndex = 0;
+        for (const vector<int> &interval : intervals)
+        {
+            if (interval[1] < newInterval[0])
+            {
+                insertIndex++;
+                result.emplace_back(interval);
+            }
+            else if (interval[0] > newInterval[1])
+                result.emplace_back(interval);
+            else
+            {
+                newInterval[0] = interval[0] < newInterval[0] ?interval[0] :newInterval[0];
+                newInterval[1] = interval[1] > newInterval[1] ?interval[1] :newInterval[1];
+            }
+        }
+        result.insert(result.begin() + insertIndex, newInterval);
+        return result;
+    }
 };

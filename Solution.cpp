@@ -378,4 +378,34 @@ public:
         }
         return result;
     }
+
+    //57. Insert Interval
+    static vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval)
+    {
+        if (intervals.empty())
+            return {newInterval};
+
+        vector<vector<int>> result;
+        auto checkInterval = [&result](const vector<int> &interval) {
+            if (result.empty() || interval[0] > result.back()[1])
+                result.push_back({interval[0], interval[1]});
+            else
+                result.back()[1] = result.back()[1] > interval[1] ? result.back()[1] : interval[1];
+        };
+        bool checkNew = false;
+        for (const vector<int> &interval : intervals)
+        {
+            if (!checkNew && newInterval[0] <= interval[0])
+            {
+                checkNew = true;
+                checkInterval(newInterval);
+            }
+            checkInterval(interval);
+        }
+        
+        if (!checkNew)
+            checkInterval(newInterval);
+
+        return result;
+    }
 };

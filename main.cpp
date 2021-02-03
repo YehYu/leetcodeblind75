@@ -63,8 +63,14 @@ int main()
     // vector<int> nums = {3,2,1,0,4};
     // cout << Solution::canJump(nums);
 
-    vector<vector<int>> intervals  = {{1, 4}, {4, 5}};
-    for (vector<int> interval: FastSolution::merge(intervals))
+    // vector<vector<int>> intervals  = {{1, 4}, {4, 5}};
+    // for (vector<int> interval: FastSolution::merge(intervals))
+    //     cout << interval[0]<<", "<<interval[1]<<endl;
+
+    //57. Insert Interval
+    vector<vector<int>> intervals  = {{1,5}};
+    vector<int> newInterval = {2, 7};
+    for (vector<int> interval: Solution::insert(intervals, newInterval))
         cout << interval[0]<<", "<<interval[1]<<endl;
 
     return 0;
