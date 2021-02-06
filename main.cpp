@@ -68,10 +68,14 @@ int main()
     //     cout << interval[0]<<", "<<interval[1]<<endl;
 
     //57. Insert Interval
-    vector<vector<int>> intervals  = {{1,5}};
-    vector<int> newInterval = {2, 7};
-    for (vector<int> interval: Solution::insert(intervals, newInterval))
-        cout << interval[0]<<", "<<interval[1]<<endl;
+    // vector<vector<int>> intervals  = {{1,5}};
+    // vector<int> newInterval = {2, 7};
+    // for (vector<int> interval: Solution::insert(intervals, newInterval))
+    //     cout << interval[0]<<", "<<interval[1]<<endl;
+
+    //62. Unique 
+    cout << FastSolution::uniquePaths(3,7);
+
 
     return 0;
 }

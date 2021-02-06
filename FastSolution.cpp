@@ -4,6 +4,7 @@
 #include <vector>
 #include <math.h>
 #include <algorithm>
+#include <limits.h>
 using namespace std;
 
 class FastSolution
@@ -470,11 +471,22 @@ public:
                 result.emplace_back(interval);
             else
             {
-                newInterval[0] = interval[0] < newInterval[0] ?interval[0] :newInterval[0];
-                newInterval[1] = interval[1] > newInterval[1] ?interval[1] :newInterval[1];
+                newInterval[0] = interval[0] < newInterval[0] ? interval[0] : newInterval[0];
+                newInterval[1] = interval[1] > newInterval[1] ? interval[1] : newInterval[1];
             }
         }
         result.insert(result.begin() + insertIndex, newInterval);
         return result;
+    }
+
+    //62. Unique Paths
+    static int uniquePaths(int m, int n)
+    {
+        vector<vector<int>> dp(m,vector<int>(n,0));
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+             dp[i][j] = (i == 0 || j == 0) ? 1:(dp[i-1][j]+dp[i][j-1]);
+
+        return dp[m-1][n-1];
     }
 };

@@ -408,4 +408,36 @@ public:
 
         return result;
     }
+
+    //62. Unique Paths
+    static int computePaths(int m, int n, vector<vector<int>> &matrix)
+    {
+        if (matrix[m][n] != -1)
+            return matrix[m][n];
+
+        if (m == 0)
+        {
+            matrix[m][n] = 1;
+            return 1;
+        }
+
+        int result = 0;
+        for (int j = 0; j <= n; j++)
+            result += computePaths(m - 1, n - j, matrix);
+
+        matrix[m][n] = result;
+        return result;
+    }
+    static int uniquePaths(int m, int n)
+    {
+        if (m > n)
+        {
+            m = m ^ n;
+            n = m ^ n;
+            m = m ^ n;
+        }
+        vector<vector<int>> matrix(m, vector<int>(n, -1));
+        return computePaths(m - 1, n-1, matrix);
+    }
+
 };
