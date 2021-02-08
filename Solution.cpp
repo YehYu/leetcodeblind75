@@ -402,7 +402,7 @@ public:
             }
             checkInterval(interval);
         }
-        
+
         if (!checkNew)
             checkInterval(newInterval);
 
@@ -437,7 +437,21 @@ public:
             m = m ^ n;
         }
         vector<vector<int>> matrix(m, vector<int>(n, -1));
-        return computePaths(m - 1, n-1, matrix);
+        return computePaths(m - 1, n - 1, matrix);
     }
 
+    //70. Climbing Stairs
+    static int climbStairs(int n)
+    {
+        if (n == 1)
+            return 1;
+        //因為一次可走一階或是兩階
+        vector<int> dp(n, 0);
+        dp[0] = 1; //走道第一皆的走法=1
+        dp[1] = 2; //走道第二皆的走法=2,(1+1)or2
+        for (int i = 2; i < n; i++)
+            dp[i] = dp[i - 1] + dp[i - 2];
+
+        return dp[n - 1];
+    }
 };

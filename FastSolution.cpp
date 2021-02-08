@@ -482,11 +482,25 @@ public:
     //62. Unique Paths
     static int uniquePaths(int m, int n)
     {
-        vector<vector<int>> dp(m,vector<int>(n,0));
+        vector<vector<int>> dp(m, vector<int>(n, 0));
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++)
-             dp[i][j] = (i == 0 || j == 0) ? 1:(dp[i-1][j]+dp[i][j-1]);
+                dp[i][j] = (i == 0 || j == 0) ? 1 : (dp[i - 1][j] + dp[i][j - 1]);
 
-        return dp[m-1][n-1];
+        return dp[m - 1][n - 1];
+    }
+
+    //70. Climbing Stairs
+    static int climbStairs(int n)
+    {
+        if (n == 1)
+            return 1;
+        //因為一次可走一階或是兩階
+        vector<int> dp(n, 0);
+        dp[0] = 1; //走道第一皆的走法=1
+        dp[1] = 2; //走道第二皆的走法=2,(1+1)or2
+        for (int i = 2; i < n; i++)
+            dp[i] = dp[i - 1] + dp[i - 2];
+        return dp[n - 1];
     }
 };

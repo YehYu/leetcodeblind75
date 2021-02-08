@@ -74,8 +74,9 @@ int main()
     //     cout << interval[0]<<", "<<interval[1]<<endl;
 
     //62. Unique 
-    cout << FastSolution::uniquePaths(3,7);
+    //cout << FastSolution::uniquePaths(3,7);
 
-
+    //70. Climbing Stairs
+    cout << FastSolution::climbStairs(7);
     return 0;
 }
