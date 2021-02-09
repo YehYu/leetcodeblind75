@@ -495,12 +495,43 @@ public:
     {
         if (n == 1)
             return 1;
-        //因為一次可走一階或是兩階
-        vector<int> dp(n, 0);
-        dp[0] = 1; //走道第一皆的走法=1
-        dp[1] = 2; //走道第二皆的走法=2,(1+1)or2
-        for (int i = 2; i < n; i++)
-            dp[i] = dp[i - 1] + dp[i - 2];
-        return dp[n - 1];
+
+        int first = 1;
+        int second = 2;
+        for (int i = 3; i <= n; i++)
+        {
+            int third = first + second;
+            first = second;
+            second = third;
+        }
+        return second;
+    }
+
+    //73. Set Matrix Zeroes
+    static void setZeroes(vector<vector<int>> &matrix)
+    {
+        bool col0HasZero = false;
+        int Rsize = matrix.size();
+        int Csize = matrix[0].size();
+
+        for (int row = 0; row < Rsize; row++)
+        {
+            col0HasZero = (matrix[row][0] == 0) || col0HasZero;
+            for (int col = 1; col < Csize; col++)
+            {
+                if (matrix[row][col] == 0)
+                    matrix[row][0] = matrix[0][col] = 0;
+            }
+        }
+
+        for (int row = Rsize - 1; row >= 0; row--)
+        {
+            for (int col = Csize - 1; col >= 1; col--)
+            {
+                if (matrix[row][0] == 0 || matrix[0][col] == 0)
+                    matrix[row][col] = 0;
+            }
+            matrix[row][0] = col0HasZero ? 0 : matrix[row][0];
+        }
     }
 };

@@ -73,10 +73,22 @@ int main()
     // for (vector<int> interval: Solution::insert(intervals, newInterval))
     //     cout << interval[0]<<", "<<interval[1]<<endl;
 
-    //62. Unique 
+    //62. Unique
     //cout << FastSolution::uniquePaths(3,7);
 
     //70. Climbing Stairs
-    cout << FastSolution::climbStairs(7);
+    //cout << FastSolution::climbStairs(7);
+
+    //73. Set Matrix Zeroes
+    vector<vector<int>> matrix = {{1,2,3,4},{5,0,7,8},{0,10,11,12},{13,14,15,0}};
+    Solution::setZeroes(matrix);
+    for (vector<int> m : matrix)
+    {
+        for (int i : m)
+        {
+            cout << i << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }

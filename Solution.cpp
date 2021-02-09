@@ -454,4 +454,48 @@ public:
 
         return dp[n - 1];
     }
+
+    //73. Set Matrix Zeroes
+    static void setZeroes(vector<vector<int>> &matrix)
+    {
+        int firstZeroMN = -1;
+        for (int m = 0; m < matrix.size(); m++)
+        {
+            for (int n = 0; n < matrix[0].size(); n++)
+            {
+                if (firstZeroMN != -1 && (m == firstZeroMN / matrix[0].size() || n == firstZeroMN % matrix[0].size()))
+                    continue;
+                if (matrix[m][n] == 0)
+                {
+                    if (firstZeroMN == -1)
+                    {
+                        firstZeroMN = m * matrix[0].size() + n;
+                        for (int t = 0; t < matrix.size(); t++)
+                            matrix[t][firstZeroMN % matrix[0].size()] = matrix[t][firstZeroMN % matrix[0].size()] == 0 ? 1 : 0;
+                        for (int t = 0; t < matrix[0].size(); t++)
+                            matrix[firstZeroMN / matrix[0].size()][t] = matrix[firstZeroMN / matrix[0].size()][t] == 0 ? 1 : 0;
+                        continue;
+                    }
+                    matrix[firstZeroMN / matrix[0].size()][n] = 1;
+                    matrix[m][firstZeroMN % matrix[0].size()] = 1;
+                }
+            }
+        }
+        if (firstZeroMN == -1)
+            return;
+        for (int m = 0; m < matrix.size(); m++)
+        {
+            for (int n = 0; n < matrix[0].size(); n++)
+            {
+                if (m == firstZeroMN / matrix[0].size() || n == firstZeroMN % matrix[0].size())
+                    continue;
+                if (matrix[firstZeroMN / matrix[0].size()][n] == 1 || matrix[m][firstZeroMN % matrix[0].size()] == 1)
+                    matrix[m][n] = 0;
+            }
+        }
+        for (int m = 0; m < matrix.size(); m++)
+            matrix[m][firstZeroMN % matrix[0].size()] = 0;
+        for (int n = 0; n < matrix[0].size(); n++)
+            matrix[firstZeroMN / matrix[0].size()][n] = 0;
+    }
 };
