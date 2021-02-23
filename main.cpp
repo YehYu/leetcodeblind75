@@ -80,15 +80,19 @@ int main()
     //cout << FastSolution::climbStairs(7);
 
     //73. Set Matrix Zeroes
-    vector<vector<int>> matrix = {{1,2,3,4},{5,0,7,8},{0,10,11,12},{13,14,15,0}};
-    Solution::setZeroes(matrix);
-    for (vector<int> m : matrix)
-    {
-        for (int i : m)
-        {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
+    // vector<vector<int>> matrix = {{1,2,3,4},{5,0,7,8},{0,10,11,12},{13,14,15,0}};
+    // Solution::setZeroes(matrix);
+    // for (vector<int> m : matrix)
+    // {
+    //     for (int i : m)
+    //     {
+    //         cout << i << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+    //76. Minimum Window Substring
+    string s = "ADOBECODEBANC",t = "ABC";
+    cout << Solution::minWindow(s, t);
     return 0;
 }

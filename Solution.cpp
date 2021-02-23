@@ -498,4 +498,47 @@ public:
         for (int n = 0; n < matrix[0].size(); n++)
             matrix[firstZeroMN / matrix[0].size()][n] = 0;
     }
+
+    //76. Minimum Window Substring
+    static string minWindow(string s, string t)
+    {
+        string result;
+        map<char, int> countMap;
+        map<int, char> tempMap;
+        int right, left = -1, t_length = t.length(), min_length = s.length() + 1;
+
+        for (char c : t)
+            countMap[c]++;
+
+        for (right = 0; right < s.length(); right++)
+        {
+            if (countMap.find(s[right]) == countMap.end())
+                continue;
+            tempMap[right] = s[right];
+            if (countMap[s[right]]-- > 0)
+                t_length--;
+            if (t_length == 0)
+            {
+                map<int, char>::iterator it = left != -1 ? ++tempMap.find(left) : tempMap.begin();
+                while (it != tempMap.end())
+                {
+                    if (countMap[it->second]++ == 0)
+                    {
+                        t_length++;
+                        left = it->first;
+                        int &&l = right - it->first + 1;
+                        if (min_length > l)
+                        {
+                            min_length = l;
+                            result = s.substr(it->first, l);
+                        }
+                        break;
+                    }
+                    it++;
+                }
+            }
+        }
+
+        return result;
+    }
 };
