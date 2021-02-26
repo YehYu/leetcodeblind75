@@ -538,16 +538,54 @@ public:
     //76. Minimum Window Substring
     static string minWindow(string s, string t)
     {
-        vector<int> map(128,0);
-        for(auto c: t) map[c]++;
-        int counter=t.size(), begin=0, end=0, d=INT_MAX, head=0;
-        while(end<s.size()){
-            if(map[s[end++]]-->0) counter--; //in t
-            while(counter==0){ //valid
-                if(end-begin<d)  d=end-(head=begin);
-                if(map[s[begin++]]++==0) counter++;  //make it invalid
-            }  
+        vector<int> map(128, 0);
+        for (auto c : t)
+            map[c]++;
+        int counter = t.size(), begin = 0, end = 0, d = INT_MAX, head = 0;
+        while (end < s.size())
+        {
+            if (map[s[end++]]-- > 0)
+                counter--; //in t
+            while (counter == 0)
+            { //valid
+                if (end - begin < d)
+                    d = end - (head = begin);
+                if (map[s[begin++]]++ == 0)
+                    counter++; //make it invalid
+            }
         }
-        return d==INT_MAX? "":s.substr(head, d);
+        return d == INT_MAX ? "" : s.substr(head, d);
     }
+
+    //79. Word Search
+    static bool search(vector<vector<char>> &board, string &word, int d, int i, int j)
+    {
+        int h = board.size();
+        int w = board[0].size();
+        if (i < 0 || j < 0 || i >= h || j >= w || board[i][j] != word[d])
+            return false;
+        if (d == word.size() - 1)
+            return true;
+        char cur = board[i][j];
+        board[i][j] = '0';
+        bool found = search(board, word, d + 1, i + 1, j) || search(board, word, d + 1, i - 1, j) || search(board, word, d + 1, i, j + 1) || search(board, word, d + 1, i, j - 1);
+        board[i][j] = cur;
+        return found;
+    }
+    static bool exist(vector<vector<char>> &board, string word)
+    {
+        if (board.empty())
+            return false;
+        int h = board.size();
+        int w = board[0].size();
+        for (int i = 0; i < h; ++i)
+        {
+            for (int j = 0; j < w; ++j)
+                if (search(board, word, 0, i, j))
+                    return true;
+        }
+        return false;
+    }
+
+    
 };

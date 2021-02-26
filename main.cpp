@@ -91,8 +91,15 @@ int main()
     //     cout << endl;
     // }
 
-    //76. Minimum Window Substring
-    string s = "ADOBECODEBANC",t = "ABC";
-    cout << Solution::minWindow(s, t);
+    // //76. Minimum Window Substring
+    // string s = "ADOBECODEBANC",t = "ABC"
+    // cout << Solution::minWindow(s, t);
+
+    //79. Word Search
+    vector<vector<char>> board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+    string word = "ABCCED";
+    cout << Solution::exist(board, word);
+
+
     return 0;
 }

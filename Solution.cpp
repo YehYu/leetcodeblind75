@@ -541,4 +541,29 @@ public:
 
         return result;
     }
+
+    //79. Word Search
+    static bool checkExist(vector<vector<char>> &board, const string &word, int x, int y, int strPos)
+    {
+        if (x < 0 || x >= board.size() || y < 0 || y >= board[0].size() || board[x][y] != word[strPos])  return false;
+        if (strPos == word.length()-1) return true;
+        char tempChar = board[x][y];
+        board[x][y] = '0';
+        bool exist = (checkExist(board, word, x-1, y, strPos+1) || checkExist(board, word, x+1, y, strPos+1)  || checkExist(board, word, x, y-1, strPos+1) || checkExist(board, word, x, y+1, strPos+1));
+        board[x][y] = tempChar;
+        return exist;
+    }
+    static bool exist(vector<vector<char>> &board, string word)
+    {
+        for (int i = 0; i < board.size(); i++)
+        {
+            for (int j = 0; j < board[i].size(); j++)
+            {
+                if (board[i][j] == word[0])
+                    if (checkExist(board, word, i, j, 0))
+                        return true;
+            }
+        }
+        return false;
+    }
 };
