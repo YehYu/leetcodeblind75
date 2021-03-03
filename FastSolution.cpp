@@ -590,16 +590,23 @@ public:
     //91. Decode Ways
     static int numDecodings(string s)
     {
-        if(s.size() == 1)
-            return s != "0";
-
-        int s_length = s.length();
-        vector<int> dp(s_length, 0);
-        dp[s_length - 1] = s[s_length - 1] == '0' ? 0 : 1; 
-        dp[s_length - 2] = s[s_length - 2] == '0' ? 0 : (dp[s_length - 1] + (stoi(s.substr(s_length - 2, 2)) >= 27 ? 0 : 1));
-        for (int i = s_length - 3; i >= 0; i--)
-            dp[i] = s[i] == '0' ? 0 : (dp[i+1] + (stoi(s.substr(i, 2)) >= 27 ? 0 : dp[i+2]));
-
-        return dp[0];
+        if (s[0] == '0')
+            return 0;
+        if (s.size() == 1)
+            return 1;
+        int n0 = 1;  
+        int n1 = 1; 
+        for (int i = 1; i < s.length(); i++)
+        {
+            int nc = 0;
+            if (s[i] != '0')
+                nc = n1;
+            int &&num = (s[i - 1] -'0')*10 + (s[i] -'0');
+            if(num >= 10 && num <=26)
+                nc += n0;
+            n0 = n1;
+            n1 = nc;
+        }
+        return n1;
     }
 };
