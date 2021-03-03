@@ -96,9 +96,11 @@ int main()
     // cout << Solution::minWindow(s, t);
 
     //79. Word Search
-    vector<vector<char>> board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
-    string word = "ABCCED";
-    cout << Solution::exist(board, word);
+    // vector<vector<char>> board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+    // string word = "ABCCED";
+
+    string s = "1123";
+    cout << FastSolution::numDecodings(s);
 
 
     return 0;

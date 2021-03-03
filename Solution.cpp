@@ -4,6 +4,7 @@
 #include <vector>
 #include <math.h>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 class Solution
@@ -545,11 +546,13 @@ public:
     //79. Word Search
     static bool checkExist(vector<vector<char>> &board, const string &word, int x, int y, int strPos)
     {
-        if (x < 0 || x >= board.size() || y < 0 || y >= board[0].size() || board[x][y] != word[strPos])  return false;
-        if (strPos == word.length()-1) return true;
+        if (x < 0 || x >= board.size() || y < 0 || y >= board[0].size() || board[x][y] != word[strPos])
+            return false;
+        if (strPos == word.length() - 1)
+            return true;
         char tempChar = board[x][y];
         board[x][y] = '0';
-        bool exist = (checkExist(board, word, x-1, y, strPos+1) || checkExist(board, word, x+1, y, strPos+1)  || checkExist(board, word, x, y-1, strPos+1) || checkExist(board, word, x, y+1, strPos+1));
+        bool exist = (checkExist(board, word, x - 1, y, strPos + 1) || checkExist(board, word, x + 1, y, strPos + 1) || checkExist(board, word, x, y - 1, strPos + 1) || checkExist(board, word, x, y + 1, strPos + 1));
         board[x][y] = tempChar;
         return exist;
     }
@@ -565,5 +568,36 @@ public:
             }
         }
         return false;
+    }
+
+    //91. Decode Ways
+    static int checkNumDecodings(int pos, const string &s, map<int, int> &tempMap)
+    {
+        if (tempMap.find(pos) != tempMap.end())
+            return tempMap[pos];
+        int size1 = 0, size2 = 0;
+        if (pos == s.length() - 1)
+        {
+            size1 = s[pos] == '0' ? 0 : 1;
+        }
+        else if (pos == s.length() - 2)
+        {
+            size1 = s[pos] == '0' ? 0 : checkNumDecodings(pos + 1, s, tempMap);
+            size2 = (s[pos] == '0' || stoi(s.substr(pos, 2)) >= 27) ? 0 : 1;
+        }
+        else
+        {
+            size1 = s[pos] == '0' ? 0 : checkNumDecodings(pos + 1, s, tempMap);
+            size2 = (s[pos] == '0' || stoi(s.substr(pos, 2)) >= 27) ? 0 : checkNumDecodings(pos + 2, s, tempMap);
+        }
+
+        int &&r = size1 + size2;
+        tempMap[pos] = r;
+        return r;
+    }
+    static int numDecodings(string s)
+    {
+        map<int, int> tempMap;
+        return checkNumDecodings(0, s, tempMap);
     }
 };

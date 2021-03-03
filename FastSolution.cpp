@@ -587,5 +587,19 @@ public:
         return false;
     }
 
-    
+    //91. Decode Ways
+    static int numDecodings(string s)
+    {
+        if(s.size() == 1)
+            return s != "0";
+
+        int s_length = s.length();
+        vector<int> dp(s_length, 0);
+        dp[s_length - 1] = s[s_length - 1] == '0' ? 0 : 1; 
+        dp[s_length - 2] = s[s_length - 2] == '0' ? 0 : (dp[s_length - 1] + (stoi(s.substr(s_length - 2, 2)) >= 27 ? 0 : 1));
+        for (int i = s_length - 3; i >= 0; i--)
+            dp[i] = s[i] == '0' ? 0 : (dp[i+1] + (stoi(s.substr(i, 2)) >= 27 ? 0 : dp[i+2]));
+
+        return dp[0];
+    }
 };
