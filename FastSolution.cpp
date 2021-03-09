@@ -594,19 +594,55 @@ public:
             return 0;
         if (s.size() == 1)
             return 1;
-        int n0 = 1;  
-        int n1 = 1; 
+        int n0 = 1;
+        int n1 = 1;
         for (int i = 1; i < s.length(); i++)
         {
             int nc = 0;
             if (s[i] != '0')
                 nc = n1;
-            int &&num = (s[i - 1] -'0')*10 + (s[i] -'0');
-            if(num >= 10 && num <=26)
+            int &&num = (s[i - 1] - '0') * 10 + (s[i] - '0');
+            if (num >= 10 && num <= 26)
                 nc += n0;
             n0 = n1;
             n1 = nc;
         }
         return n1;
+    }
+
+    //98. Validate Binary Search Tree
+    struct TreeNode
+    {
+        int val;
+        TreeNode *left;
+        TreeNode *right;
+        TreeNode() : val(0), left(nullptr), right(nullptr) {}
+        TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    };
+
+    static bool isValidBST(TreeNode *root)
+    {
+        //Do an in-order traversal
+        if (!root)
+            return true;
+        vector<TreeNode *> temp;
+        TreeNode *pre = nullptr;
+        while (root || !temp.empty())
+        {
+            while (root)
+            {
+                temp.push_back(root);
+                root = root->left;
+            }
+            root = temp.back();
+            temp.pop_back();
+            if (pre && pre->val >= root->val)
+                return false;
+            pre = root;
+            root = root->right;
+        }
+
+        return true;
     }
 };

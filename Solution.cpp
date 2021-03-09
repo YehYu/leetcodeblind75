@@ -600,4 +600,31 @@ public:
         map<int, int> tempMap;
         return checkNumDecodings(0, s, tempMap);
     }
+
+    //98. Validate Binary Search Tree
+    struct TreeNode
+    {
+        int val;
+        TreeNode *left;
+        TreeNode *right;
+        TreeNode() : val(0), left(nullptr), right(nullptr) {}
+        TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    };
+
+    static bool checkIsValidBST(TreeNode *root, TreeNode *max, TreeNode *min)
+    {
+        if (!root)
+            return true;
+
+        if ((max && root->val >= max->val) || (min && root->val <= min->val) )
+            return false;
+
+        return (checkIsValidBST(root->left, root, min) && checkIsValidBST(root->right, max, root));
+    }
+
+    static bool isValidBST(TreeNode *root)
+    {
+        return checkIsValidBST(root, nullptr, nullptr);
+    }
 };

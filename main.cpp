@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 typedef Solution::ListNode ListNode;
+typedef Solution::TreeNode TreeNode;
 
 int main()
 {
@@ -99,9 +100,13 @@ int main()
     // vector<vector<char>> board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
     // string word = "ABCCED";
 
-    string s = "1123";
-    cout << FastSolution::numDecodings(s);
+    //91. Decode Ways
+    // string s = "1123";
+    // cout << FastSolution::numDecodings(s);
 
+    //98. Validate Binary Search Tree
+    TreeNode *root = new TreeNode(3, new TreeNode(1, new TreeNode(0), new TreeNode(2)), new TreeNode(5, new TreeNode(4), new TreeNode(6)));
+    cout << Solution::isValidBST(root);
 
     return 0;
 }
