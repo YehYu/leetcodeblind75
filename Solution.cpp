@@ -611,20 +611,31 @@ public:
         TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
         TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
     };
-
     static bool checkIsValidBST(TreeNode *root, TreeNode *max, TreeNode *min)
     {
         if (!root)
             return true;
 
-        if ((max && root->val >= max->val) || (min && root->val <= min->val) )
+        if ((max && root->val >= max->val) || (min && root->val <= min->val))
             return false;
 
         return (checkIsValidBST(root->left, root, min) && checkIsValidBST(root->right, max, root));
     }
-
     static bool isValidBST(TreeNode *root)
     {
         return checkIsValidBST(root, nullptr, nullptr);
+    }
+
+    //100. Same Tree
+    static bool isSameTree(TreeNode *p, TreeNode *q)
+    {
+        if (!p && !q)
+            return true;
+        if(p && q && p->val != q->val)
+            return false;
+        if((p && !q )|| (!p && q))
+            return false;
+
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 };

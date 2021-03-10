@@ -105,8 +105,13 @@ int main()
     // cout << FastSolution::numDecodings(s);
 
     //98. Validate Binary Search Tree
-    TreeNode *root = new TreeNode(3, new TreeNode(1, new TreeNode(0), new TreeNode(2)), new TreeNode(5, new TreeNode(4), new TreeNode(6)));
-    cout << Solution::isValidBST(root);
+    // TreeNode *root = new TreeNode(3, new TreeNode(1, new TreeNode(0), new TreeNode(2)), new TreeNode(5, new TreeNode(4), new TreeNode(6)));
+    // cout << Solution::isValidBST(root);
+
+    //100. Same Tree
+    TreeNode *q = new TreeNode(1, new TreeNode(2), nullptr);
+    TreeNode *p = new TreeNode(1, nullptr, new TreeNode(2));
+    cout << Solution::isSameTree(q, p);
 
     return 0;
 }
