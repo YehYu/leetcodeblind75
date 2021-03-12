@@ -5,6 +5,7 @@
 #include <math.h>
 #include <algorithm>
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class Solution
@@ -631,11 +632,38 @@ public:
     {
         if (!p && !q)
             return true;
-        if(p && q && p->val != q->val)
+        if (p && q && p->val != q->val)
             return false;
-        if((p && !q )|| (!p && q))
+        if ((p && !q) || (!p && q))
             return false;
 
         return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
+
+    //102. Binary Tree Level Order Traversal
+    static vector<vector<int>> levelOrder(TreeNode *root)
+    {
+        if (!root)
+            return vector<vector<int>>();
+        vector<vector<int>> r;
+        queue<TreeNode *> traversalQueue;
+        traversalQueue.push(root);
+        while (traversalQueue.size())
+        {
+            int level_count = traversalQueue.size();
+            vector<int> temp;
+            for (int i = 0; i < level_count; i++)
+            {
+                TreeNode *node = traversalQueue.front();
+                temp.push_back(node->val);
+                if (node->left)
+                    traversalQueue.push(node->left);
+                if (node->right)
+                    traversalQueue.push(node->right);
+                traversalQueue.pop();
+            }
+            r.push_back(temp);
+        }
+        return r;
     }
 };

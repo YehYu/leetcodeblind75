@@ -657,4 +657,26 @@ public:
 
         return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
+
+    //102. Binary Tree Level Order Traversal
+    static void recursive(TreeNode *root, vector<vector<int>> *levels, int level)
+    {
+        if (root == nullptr)
+            return;
+
+
+        if (level > levels->size())
+            levels->push_back(vector<int>());
+        
+        levels->at(level - 1).push_back(root->val);
+        recursive(root->left, levels, level+1);
+        recursive(root->right, levels, level+1);
+    }
+
+    static vector<vector<int>> levelOrder(TreeNode *root)
+    {
+        vector<vector<int>> levels;
+        recursive(root, &levels, 1);
+        return levels;
+    }
 };
