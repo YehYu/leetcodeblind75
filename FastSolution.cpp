@@ -664,13 +664,12 @@ public:
         if (root == nullptr)
             return;
 
-
         if (level > levels->size())
             levels->push_back(vector<int>());
-        
+
         levels->at(level - 1).push_back(root->val);
-        recursive(root->left, levels, level+1);
-        recursive(root->right, levels, level+1);
+        recursive(root->left, levels, level + 1);
+        recursive(root->right, levels, level + 1);
     }
 
     static vector<vector<int>> levelOrder(TreeNode *root)
@@ -678,5 +677,16 @@ public:
         vector<vector<int>> levels;
         recursive(root, &levels, 1);
         return levels;
+    }
+
+    //104. Maximum Depth of Binary Tree
+    static int maxDepth(TreeNode *root)
+    {
+        if (!root)
+            return 0;
+
+        int leftd = maxDepth(root->left);
+        int rightd = maxDepth(root->right);
+        return max(leftd, rightd) + 1;
     }
 };

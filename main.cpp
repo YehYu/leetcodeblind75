@@ -114,14 +114,19 @@ int main()
     // cout << Solution::isSameTree(q, p);
 
     //102. Binary Tree Level Order Traversal
-    TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
-    for (vector<int> m : Solution::levelOrder(root))
-    {
-        for (int i : m)
-            cout << i << " ";
+    // TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
+    // for (vector<int> m : Solution::levelOrder(root))
+    // {
+    //     for (int i : m)
+    //         cout << i << " ";
 
-        cout << endl;
-    }
+    //     cout << endl;
+    // }
+
+    //104. Maximum Depth of Binary Tree
+    TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
+    cout <<Solution::maxDepth(root);
+
 
     return 0;
 }

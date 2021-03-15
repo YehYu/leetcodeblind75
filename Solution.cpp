@@ -666,4 +666,14 @@ public:
         }
         return r;
     }
+
+    //104. Maximum Depth of Binary Tree
+    static int maxDepth(TreeNode *root)
+    {
+        if (!root)
+            return 0;
+        int l_Depth = maxDepth(root->left)+1;
+        int r_Depth = maxDepth(root->right)+1;
+        return l_Depth > r_Depth ? l_Depth : r_Depth;
+    }
 };
