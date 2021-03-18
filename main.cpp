@@ -124,9 +124,20 @@ int main()
     // }
 
     //104. Maximum Depth of Binary Tree
-    TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
-    cout <<Solution::maxDepth(root);
+    // TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
+    // cout <<Solution::maxDepth(root);
 
+    //105. Construct Binary Tree from Preorder and Inorder Traversal
+    //Input: preorder = [ 3, 9, 20, 15, 7 ], inorder = [ 9, 3, 15, 20, 7 ] Output : [ 3, 9, 20, null, null, 15, 7 ]
+    vector<int> preorder = {1,2,3};
+    vector<int> inorder = {1,3,2};
+    for (vector<int> m : FastSolution::levelOrder(FastSolution::buildTree(preorder, inorder)))
+    {
+        for (int i : m)
+            cout << i << " ";
+
+        cout << endl;
+    }
 
     return 0;
 }

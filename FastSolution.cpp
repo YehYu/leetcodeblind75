@@ -689,4 +689,30 @@ public:
         int rightd = maxDepth(root->right);
         return max(leftd, rightd) + 1;
     }
+
+    //105. Construct Binary Tree from Preorder and Inorder Traversal
+    static TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder)
+    {
+        map<int, int> inorderValMapIndex;
+        for (int i = 0; i < inorder.size(); i++)
+            inorderValMapIndex[inorder[i]] = i;
+
+        return buildSubTree(preorder, 0, preorder.size() - 1, inorderValMapIndex, 0, inorder.size() - 1);
+    }
+
+    static TreeNode *buildSubTree(vector<int> &preorder, int preStart, int preEnd, map<int, int> &inorderValMapIndex, int inStart, int inEnd)
+    {
+        if (preEnd - preStart <= -1)
+            return nullptr;
+
+        TreeNode *root = new TreeNode(preorder[preStart]);
+        int inRootIndex = inorderValMapIndex[preorder[preStart]] - inStart;
+        int inLeftIndex = inStart;
+        int inRightIndex = inStart + 1 + inRootIndex;
+        int preLeftIndex = preStart + 1;
+        int preRightIndex = preStart + 1 + inRootIndex;
+        root->left = buildSubTree(preorder, preLeftIndex, preRightIndex - 1, inorderValMapIndex, inLeftIndex, inRightIndex - 2);
+        root->right = buildSubTree(preorder, preRightIndex, preEnd, inorderValMapIndex, inRightIndex, inEnd);
+        return root;
+    }
 };
