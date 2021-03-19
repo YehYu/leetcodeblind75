@@ -715,4 +715,18 @@ public:
         }
         return root;
     }
+
+    //121. Best Time to Buy and Sell Stock
+    static int maxProfit(vector<int> &prices)
+    {
+        int buy = prices[0];
+        int maxProfit = 0;
+        for (int i = 1; i < prices.size(); i++)
+        {
+            int profit = prices[i] - buy;
+            maxProfit = profit > maxProfit ? profit : maxProfit;
+            buy = prices[i] < buy ? prices[i] : buy; 
+        }
+        return maxProfit;
+    }
 };

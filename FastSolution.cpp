@@ -715,4 +715,18 @@ public:
         root->right = buildSubTree(preorder, preRightIndex, preEnd, inorderValMapIndex, inRightIndex, inEnd);
         return root;
     }
+
+    //121. Best Time to Buy and Sell Stock
+    static int maxProfit(vector<int> &prices)
+    {
+        int maxProfit = 0;
+        int profit = 0;
+        for (int i = 1; i < prices.size(); i++)
+        {
+            profit += prices[i] - prices[i - 1];
+            profit = profit > 0 ? profit : 0;
+            maxProfit = profit > maxProfit ? profit : maxProfit;
+        }
+        return maxProfit;
+    }
 };
