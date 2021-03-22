@@ -301,7 +301,7 @@ public:
         for (int i = 1; i < nums.size(); i++)
         {
             if (tempR <= 0)
-                tempR = nums[i] >= 0 ? nums[i] : max(tempR, nums[i]);
+                tempR = nums[i];
             else
                 tempR += nums[i];
 
@@ -725,8 +725,31 @@ public:
         {
             int profit = prices[i] - buy;
             maxProfit = profit > maxProfit ? profit : maxProfit;
-            buy = prices[i] < buy ? prices[i] : buy; 
+            buy = prices[i] < buy ? prices[i] : buy;
         }
         return maxProfit;
+    }
+
+    //124. Binary Tree Maximum Path Sum
+    static int getPathMaxSum(TreeNode *root, int &maxSum)
+    {
+        if (!root)
+            return 0;
+
+        int &&leftSum = getPathMaxSum(root->left, maxSum) + root->val;
+        int &&rightSum = getPathMaxSum(root->right, maxSum) + root->val;
+        int &&sum = leftSum + rightSum - root->val;
+        maxSum = max({maxSum, leftSum, rightSum, sum, root->val});
+        return max({leftSum, rightSum, root->val});
+    }
+
+    static int maxPathSum(TreeNode *root)
+    {
+        if (!root)
+            return 0;
+
+        int max = root->val;
+        getPathMaxSum(root, max);
+        return max;
     }
 };

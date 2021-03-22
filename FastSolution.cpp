@@ -729,4 +729,27 @@ public:
         }
         return maxProfit;
     }
+
+    //124. Binary Tree Maximum Path Sum
+    static int getRootPathMaxSum(TreeNode *root, int &maxSum)
+    {
+        if (!root)
+            return 0;
+
+        int leftSum = max(0, getRootPathMaxSum(root->left, maxSum));
+        int rightSum = max(0, getRootPathMaxSum(root->right, maxSum));
+        int &&sum = leftSum + rightSum + root->val;
+        maxSum = max(maxSum, sum);
+        return max(leftSum, rightSum) + root->val;
+    }
+
+    static int maxPathSum(TreeNode *root)
+    {
+        if (!root)
+            return 0;
+
+        int max = root->val;
+        getRootPathMaxSum(root, max);
+        return max;
+    }
 };

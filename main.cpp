@@ -5,6 +5,8 @@
 using namespace std;
 typedef Solution::ListNode ListNode;
 typedef Solution::TreeNode TreeNode;
+typedef FastSolution::TreeNode FTreeNode;
+
 
 int main()
 {
@@ -139,10 +141,15 @@ int main()
     //     cout << endl;
     // }
 
-    //121. Best Time to Buy and Sell Stock
-    vector<int> price = {7,1,5,3,6,4};
-    cout << Solution::maxProfit(price);
+    // //121. Best Time to Buy and Sell Stock
+    // vector<int> price = {7,1,5,3,6,4};
+    // cout << Solution::maxProfit(price);
 
+    //124. Binary Tree Maximum Path Sum
+     //-10,9,20,null,null,15,7
+    FTreeNode *root = new FTreeNode(-10, new FTreeNode(9), new FTreeNode(20, new FTreeNode(15), new FTreeNode(7)));
+    cout <<FastSolution::maxPathSum(root);
 
+   
     return 0;
 }
