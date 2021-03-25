@@ -145,10 +145,14 @@ int main()
     // vector<int> price = {7,1,5,3,6,4};
     // cout << Solution::maxProfit(price);
 
-    //124. Binary Tree Maximum Path Sum
-     //-10,9,20,null,null,15,7
-    FTreeNode *root = new FTreeNode(-10, new FTreeNode(9), new FTreeNode(20, new FTreeNode(15), new FTreeNode(7)));
-    cout <<FastSolution::maxPathSum(root);
+    // //124. Binary Tree Maximum Path Sum
+    // FTreeNode *root = new FTreeNode(-10, new FTreeNode(9), new FTreeNode(20, new FTreeNode(15), new FTreeNode(7)));
+    // cout <<FastSolution::maxPathSum(root);
+
+    //125. Valid Palindrome
+    string s = "race a car";
+    cout <<Solution::isPalindrome(s);
+
 
    
     return 0;

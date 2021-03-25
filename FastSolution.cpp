@@ -742,7 +742,6 @@ public:
         maxSum = max(maxSum, sum);
         return max(leftSum, rightSum) + root->val;
     }
-
     static int maxPathSum(TreeNode *root)
     {
         if (!root)
@@ -751,5 +750,20 @@ public:
         int max = root->val;
         getRootPathMaxSum(root, max);
         return max;
+    }
+
+    //125. Valid Palindrome
+    static bool isPalindrome(string s)
+    {
+        for (int start = 0, end = s.size() - 1; start < end;)
+        {
+            if (!isalnum(s[start]))
+                start++;
+            else if (!isalnum(s[end]))
+                end--;
+            else if (tolower(s[start++]) != tolower(s[end--]))
+                return false;
+        }
+        return true;
     }
 };
