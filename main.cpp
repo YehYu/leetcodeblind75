@@ -149,11 +149,13 @@ int main()
     // FTreeNode *root = new FTreeNode(-10, new FTreeNode(9), new FTreeNode(20, new FTreeNode(15), new FTreeNode(7)));
     // cout <<FastSolution::maxPathSum(root);
 
-    //125. Valid Palindrome
-    string s = "race a car";
-    cout <<Solution::isPalindrome(s);
+    // //125. Valid Palindrome
+    // string s = "race a car";
+    // cout <<Solution::isPalindrome(s);
 
-
+    //128. Longest Consecutive Sequence
+    vector<int>nums = {4,0,-4,-2,2,5,2,0,-8,-8,-8,-8,-1,7,4,5,5,-4,6,6,-3};
+    cout <<FastSolution::longestConsecutive(nums);
    
     return 0;
 }

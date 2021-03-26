@@ -1,10 +1,12 @@
 
 #include <string>
 #include <map>
+#include <unordered_map>
 #include <vector>
 #include <math.h>
 #include <algorithm>
 #include <limits.h>
+
 using namespace std;
 
 class FastSolution
@@ -765,5 +767,26 @@ public:
                 return false;
         }
         return true;
+    }
+
+    //128. Longest Consecutive Sequence
+    static int longestConsecutive(vector<int> &nums)
+    {
+        if (nums.empty())
+            return 0;
+        unordered_map<int, int> numsMap;
+        int longestCount = 0;
+        for (int num : nums)
+        {
+            if (numsMap.find(num) == numsMap.end())
+            {
+                int leftcount = numsMap.find(num - 1) == numsMap.end() ? 0 : numsMap[num - 1];
+                int rightcount = numsMap.find(num + 1) == numsMap.end() ? 0 : numsMap[num + 1];
+                int &&count = leftcount + 1 + rightcount;
+                numsMap[num - leftcount] = numsMap[num + rightcount] = numsMap[num] = count;
+                longestCount = longestCount > count ? longestCount : count;
+            }
+        }
+        return longestCount;
     }
 };

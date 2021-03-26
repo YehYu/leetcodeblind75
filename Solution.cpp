@@ -777,4 +777,23 @@ public:
         }
         return true;
     }
+
+    //128. Longest Consecutive Sequence
+    static int longestConsecutive(vector<int> &nums)
+    {
+        if (nums.empty())
+            return 0;
+        sort(nums.begin(), nums.end());
+        int longestCount = 1;
+        int count = 1;
+        for (int i = 1; i < nums.size(); i++)
+        {
+            if (nums[i] != nums[i - 1])
+            {
+                count = (nums[i] - nums[i - 1] == 1) ? count + 1 : 1;
+                longestCount = longestCount > count ? longestCount : count;
+            }
+        }
+        return longestCount;
+    }
 };
