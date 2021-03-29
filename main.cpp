@@ -7,7 +7,6 @@ typedef Solution::ListNode ListNode;
 typedef Solution::TreeNode TreeNode;
 typedef FastSolution::TreeNode FTreeNode;
 
-
 int main()
 {
     /*
@@ -153,9 +152,22 @@ int main()
     // string s = "race a car";
     // cout <<Solution::isPalindrome(s);
 
-    //128. Longest Consecutive Sequence
-    vector<int>nums = {4,0,-4,-2,2,5,2,0,-8,-8,-8,-8,-1,7,4,5,5,-4,6,6,-3};
-    cout <<FastSolution::longestConsecutive(nums);
-   
+    // //128. Longest Consecutive Sequence
+    // vector<int>nums = {4,0,-4,-2,2,5,2,0,-8,-8,-8,-8,-1,7,4,5,5,-4,6,6,-3};
+    // cout <<FastSolution::longestConsecutive(nums);
+
+
+    //133. Clone Graph
+    typedef Solution::Node Node;
+    Node *node1 = new Node(1);
+    // Node *node2 = new Node(2);
+    // Node *node3 = new Node(3);
+    // Node *node4 = new Node(4);
+    // node1->neighbors = {node2, node4};
+    // node2->neighbors = {node1, node3};
+    // node3->neighbors = {node2, node4};
+    // node4->neighbors = {node1, node3};
+    Node *cloneNode =  Solution::cloneGraph(node1);
+
     return 0;
 }

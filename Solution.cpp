@@ -1,6 +1,7 @@
 
 #include <string>
 #include <map>
+#include <unordered_map>
 #include <vector>
 #include <math.h>
 #include <algorithm>
@@ -795,5 +796,50 @@ public:
             }
         }
         return longestCount;
+    }
+
+    //133. Clone Graph
+    // Definition for a Node.
+    class Node
+    {
+    public:
+        int val;
+        vector<Node *> neighbors;
+        Node()
+        {
+            val = 0;
+            neighbors = vector<Node *>();
+        }
+        Node(int _val)
+        {
+            val = _val;
+            neighbors = vector<Node *>();
+        }
+        Node(int _val, vector<Node *> _neighbors)
+        {
+            val = _val;
+            neighbors = _neighbors;
+        }
+    };
+    static Node *cloneSubGraph(Node *node, unordered_map<int, Node *> &map)
+    {
+        if (map.find(node->val) != map.end())
+            return map[node->val];
+
+        Node *cloneNode = new Node(node->val);
+        map[node->val] = cloneNode;
+        for (Node *neighborNode : node->neighbors)
+            cloneNode->neighbors.push_back(cloneSubGraph(neighborNode, map));
+
+        return cloneNode;
+    }
+
+    static Node *cloneGraph(Node *node)
+    {
+        if (!node)
+            return nullptr;
+
+        unordered_map<int, Node *> nodeMap;
+        return cloneSubGraph(node, nodeMap);
     }
 };
