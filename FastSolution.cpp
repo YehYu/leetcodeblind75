@@ -837,17 +837,17 @@ public:
     //139. Word Break
     static bool wordBreak(string s, vector<string> &wordDict)
     {
-        vector<int> dp(s.size() + 1, false);
+		vector<int> dp(s.size() + 1, false);
         dp[0] = true;
-        for (int i = 0; i <= s.size(); i++)
+        for (int i = 0; i < s.size(); i++)
         {
             if (dp[i])
             {
-                for (auto c : wordDict)
+                for (string word : wordDict)
                 {
-                    if (s.substr(i, c.size()).compare(c) == 0)
+                    if (s.compare(i, word.size(), word) == 0)
                     {
-                        dp[i + c.size()] = true;
+                        dp[i + word.size()] = true;
                     }
                 }
             }
