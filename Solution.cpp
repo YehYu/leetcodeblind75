@@ -833,7 +833,6 @@ public:
 
         return cloneNode;
     }
-
     static Node *cloneGraph(Node *node)
     {
         if (!node)
@@ -841,5 +840,32 @@ public:
 
         unordered_map<int, Node *> nodeMap;
         return cloneSubGraph(node, nodeMap);
+    }
+
+    //139. Word Break
+    static bool checkWordBreak(const string &s, int start, vector<string> &wordDict, unordered_map<int, bool> &checkmap)
+    {
+        if (s.size() == start)
+            return true;
+        if (checkmap.find(start) != checkmap.end())
+            return checkmap[start];
+
+        for (const string &word : wordDict)
+        {
+            int wordSize = word.size();
+            if (s.compare(start, wordSize, word) == 0)
+            {
+                if (checkWordBreak(s, start + wordSize, wordDict, checkmap))
+                    return true;
+            }
+        }
+        checkmap[start] = false;
+        return false;
+    }
+
+    static bool wordBreak(string s, vector<string> &wordDict)
+    {
+        unordered_map<int, bool> checkmap;
+        return checkWordBreak(s, 0, wordDict, checkmap);
     }
 };

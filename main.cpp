@@ -157,9 +157,9 @@ int main()
     // cout <<FastSolution::longestConsecutive(nums);
 
 
-    //133. Clone Graph
-    typedef Solution::Node Node;
-    Node *node1 = new Node(1);
+    // //133. Clone Graph
+    // typedef Solution::Node Node;
+    // Node *node1 = new Node(1);
     // Node *node2 = new Node(2);
     // Node *node3 = new Node(3);
     // Node *node4 = new Node(4);
@@ -167,7 +167,12 @@ int main()
     // node2->neighbors = {node1, node3};
     // node3->neighbors = {node2, node4};
     // node4->neighbors = {node1, node3};
-    Node *cloneNode =  Solution::cloneGraph(node1);
+    // Node *cloneNode =  Solution::cloneGraph(node1);
+
+    //139. Word Break
+    string s = "applepenapple";
+    vector<string> wordDict = {"apple","pen"};
+    cout<<Solution::wordBreak(s, wordDict);
 
     return 0;
 }
