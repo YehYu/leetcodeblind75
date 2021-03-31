@@ -837,7 +837,7 @@ public:
     //139. Word Break
     static bool wordBreak(string s, vector<string> &wordDict)
     {
-		vector<int> dp(s.size() + 1, false);
+        vector<int> dp(s.size() + 1, false);
         dp[0] = true;
         for (int i = 0; i < s.size(); i++)
         {
@@ -853,5 +853,21 @@ public:
             }
         }
         return dp.back();
+    }
+
+    //141. Linked List Cycle
+    static bool hasCycle(ListNode *head)
+    {
+        ListNode *slowNode  = head;
+        ListNode *fastNode  = head;
+        while(fastNode && fastNode->next)
+        {
+            slowNode = slowNode->next;
+            fastNode = fastNode->next->next;
+            if(fastNode == slowNode)
+                return true;
+
+        }
+        return false;
     }
 };

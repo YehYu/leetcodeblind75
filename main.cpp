@@ -169,10 +169,17 @@ int main()
     // node4->neighbors = {node1, node3};
     // Node *cloneNode =  Solution::cloneGraph(node1);
 
-    //139. Word Break
-    string s = "applepenapple";
-    vector<string> wordDict = {"apple","pen"};
-    cout<<Solution::wordBreak(s, wordDict);
+    // //139. Word Break
+    // string s = "applepenapple";
+    // vector<string> wordDict = {"apple","pen"};
+    // cout<<Solution::wordBreak(s, wordDict);
+
+    //141. Linked List Cycle
+    //[3,2,0,-4], , pos = 1
+    ListNode *temp, *temp2;
+    ListNode* node = new ListNode(3, (temp = new ListNode(2,new ListNode(0, (temp2 = new ListNode(-4))))));
+    temp2->next = temp;
+    cout<<Solution::hasCycle(node);
 
     return 0;
 }

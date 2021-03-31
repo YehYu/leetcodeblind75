@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 #include <math.h>
 #include <algorithm>
@@ -862,10 +863,22 @@ public:
         checkmap[start] = false;
         return false;
     }
-
     static bool wordBreak(string s, vector<string> &wordDict)
     {
         unordered_map<int, bool> checkmap;
         return checkWordBreak(s, 0, wordDict, checkmap);
+    }
+
+    //141. Linked List Cycle
+    static bool hasCycle(ListNode *head) {
+        unordered_set<ListNode*> nodeSet;
+        while(head)
+        {
+            if(nodeSet.find(head) != nodeSet.end())
+                return true;
+            nodeSet.insert(head);
+            head = head->next;
+        }
+        return false;
     }
 };
