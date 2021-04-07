@@ -870,15 +870,38 @@ public:
     }
 
     //141. Linked List Cycle
-    static bool hasCycle(ListNode *head) {
-        unordered_set<ListNode*> nodeSet;
-        while(head)
+    static bool hasCycle(ListNode *head)
+    {
+        unordered_set<ListNode *> nodeSet;
+        while (head)
         {
-            if(nodeSet.find(head) != nodeSet.end())
+            if (nodeSet.find(head) != nodeSet.end())
                 return true;
             nodeSet.insert(head);
             head = head->next;
         }
         return false;
+    }
+
+    //143. Reorder List
+    static void reorderList(ListNode *head)
+    {
+        if (head == nullptr || head->next == nullptr)
+            return;
+        vector<ListNode *> nodeList;
+        while (head)
+        {
+            nodeList.push_back(head);
+            head = head->next;
+        }
+        int s=0, e = nodeList.size() - 1;
+        while(e - s > 1)
+        {
+            nodeList[e]->next = nodeList[s]->next;
+            nodeList[s]->next = nodeList[e];
+            s++;
+            e--;
+        }
+        nodeList[e]->next = nullptr;
     }
 };

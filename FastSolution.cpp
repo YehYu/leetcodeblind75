@@ -858,16 +858,56 @@ public:
     //141. Linked List Cycle
     static bool hasCycle(ListNode *head)
     {
-        ListNode *slowNode  = head;
-        ListNode *fastNode  = head;
-        while(fastNode && fastNode->next)
+        ListNode *slowNode = head;
+        ListNode *fastNode = head;
+        while (fastNode && fastNode->next)
         {
             slowNode = slowNode->next;
             fastNode = fastNode->next->next;
-            if(fastNode == slowNode)
+            if (fastNode == slowNode)
                 return true;
-
         }
         return false;
+    }
+
+    //143. Reorder List
+    static void reorderList(ListNode *head)
+    {
+        //need reorder only if has three more nodes
+        if (head == nullptr || head->next == nullptr)
+            return;
+
+        //Find the middle node of the list
+        ListNode *oneStep = head;
+        ListNode *twoStep = head;
+        while (twoStep->next && twoStep->next->next)
+        {
+            oneStep = oneStep->next;
+            twoStep = twoStep->next->next;
+        }
+
+        //Reverse the half after middle  1->2->3->4->5->6 to 1->2->3->6->5->4
+        ListNode *midNode = oneStep;
+        ListNode *newLastNode = oneStep->next;
+        ListNode *reverseNode;
+        while (newLastNode->next)
+        {
+            reverseNode = newLastNode->next;
+            newLastNode->next = reverseNode->next;
+            reverseNode->next = midNode->next;
+            midNode->next = reverseNode;
+        }
+
+        //Start reorder one by one  1->2->3->6->5->4 to 1->6->2->5->3->4
+        ListNode *forwardNode = head;
+        ListNode *reorderNode;
+        while (forwardNode != midNode)
+        {
+            reorderNode = midNode->next;
+            midNode->next = reorderNode->next;
+            reorderNode->next = forwardNode->next;
+            forwardNode->next = reorderNode;
+            forwardNode = reorderNode->next;
+        }
     }
 };

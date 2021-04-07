@@ -174,12 +174,16 @@ int main()
     // vector<string> wordDict = {"apple","pen"};
     // cout<<Solution::wordBreak(s, wordDict);
 
-    //141. Linked List Cycle
-    //[3,2,0,-4], , pos = 1
-    ListNode *temp, *temp2;
-    ListNode* node = new ListNode(3, (temp = new ListNode(2,new ListNode(0, (temp2 = new ListNode(-4))))));
-    temp2->next = temp;
-    cout<<Solution::hasCycle(node);
+    // //141. Linked List Cycle
+    // //[3,2,0,-4], , pos = 1
+    // ListNode *temp, *temp2;
+    // ListNode* node = new ListNode(3, (temp = new ListNode(2,new ListNode(0, (temp2 = new ListNode(-4))))));
+    // temp2->next = temp;
+    // cout<<Solution::hasCycle(node);
+
+    //143. Reorder List
+    ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
+    Solution::reorderList(head);
 
     return 0;
 }
