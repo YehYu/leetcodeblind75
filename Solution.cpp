@@ -894,8 +894,8 @@ public:
             nodeList.push_back(head);
             head = head->next;
         }
-        int s=0, e = nodeList.size() - 1;
-        while(e - s > 1)
+        int s = 0, e = nodeList.size() - 1;
+        while (e - s > 1)
         {
             nodeList[e]->next = nodeList[s]->next;
             nodeList[s]->next = nodeList[e];
@@ -903,5 +903,22 @@ public:
             e--;
         }
         nodeList[e]->next = nullptr;
+    }
+
+    //152. Maximum Product Subarray
+    static int maxProduct(vector<int> &nums)
+    {
+        int result = nums[0];
+        int tempMax = 1;
+        int tempMin = 1;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            int&& temp1 = tempMax * nums[i];
+            int&& temp2 = tempMin * nums[i];
+            tempMax = max(nums[i], max(temp1, temp2));
+            tempMin = min(nums[i], min(temp1, temp2));
+            result = (result > tempMax) ? result : tempMax;
+        }
+        return result;
     }
 };

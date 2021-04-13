@@ -181,9 +181,12 @@ int main()
     // temp2->next = temp;
     // cout<<Solution::hasCycle(node);
 
-    //143. Reorder List
-    ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
-    Solution::reorderList(head);
+    // //143. Reorder List
+    // ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
+    // Solution::reorderList(head);
 
+    //152. Maximum Product Subarray
+    vector<int>nums{2,-5,-2,-4,3};
+    cout<<Solution::maxProduct(nums);
     return 0;
 }
