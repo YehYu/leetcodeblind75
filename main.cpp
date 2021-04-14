@@ -185,8 +185,13 @@ int main()
     // ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
     // Solution::reorderList(head);
 
-    //152. Maximum Product Subarray
-    vector<int>nums{2,-5,-2,-4,3};
-    cout<<Solution::maxProduct(nums);
+    // //152. Maximum Product Subarray
+    // vector<int>nums{2,-5,-2,-4,3};
+    // cout<<Solution::maxProduct(nums);
+    
+    //153. Find Minimum in Rotated Sorted Array
+    vector<int>nums{3,4,5,1,2};
+    cout<<Solution::findMin(nums);
+    
     return 0;
 }

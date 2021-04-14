@@ -915,11 +915,25 @@ public:
     static int maxProduct(vector<int> &nums)
     {
         int n = nums.size(), res = nums[0], l = 0, r = 0;
-        for (int i = 0; i < n; i++) {
-            l =  (l ? l : 1) * nums[i];
-            r =  (r ? r : 1) * nums[n - 1 - i];
+        for (int i = 0; i < n; i++)
+        {
+            l = (l ? l : 1) * nums[i];
+            r = (r ? r : 1) * nums[n - 1 - i];
             res = max(res, max(l, r));
         }
         return res;
+    }
+
+    //153. Find Minimum in Rotated Sorted Array
+    static int findMin(vector<int> &nums)
+    {
+        int right = nums.size() - 1;
+        int left = 0;
+        while (nums[left] > nums[right])
+        {
+            int mid = (left + right) / 2;
+            (nums[mid] >= nums[left]) ? (left = mid + 1) : (right = mid);
+        }
+        return nums[left];
     }
 };
