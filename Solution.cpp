@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iostream>
 #include <queue>
+#include <bitset>
 using namespace std;
 
 class Solution
@@ -913,8 +914,8 @@ public:
         int tempMin = 1;
         for (int i = 0; i < nums.size(); i++)
         {
-            int&& temp1 = tempMax * nums[i];
-            int&& temp2 = tempMin * nums[i];
+            int &&temp1 = tempMax * nums[i];
+            int &&temp2 = tempMin * nums[i];
             tempMax = max(nums[i], max(temp1, temp2));
             tempMin = min(nums[i], min(temp1, temp2));
             result = (result > tempMax) ? result : tempMax;
@@ -923,13 +924,31 @@ public:
     }
 
     //153. Find Minimum in Rotated Sorted Array
-    static int findMin(vector<int>& nums) 
+    static int findMin(vector<int> &nums)
     {
         int min = nums[0];
-        for(int num : nums){
-            if(num < min)
+        for (int num : nums)
+        {
+            if (num < min)
                 min = num;
         }
-        return min; 
+        return min;
+    }
+
+    //190. Reverse Bits
+    static uint32_t reverseBits(uint32_t n)
+    {
+        uint32_t r = 0;
+
+        for (int i = 0; i < 32; i++)
+        {
+            bitset<32> bs(r);
+            bitset<32> bs2(n);
+            cout << bs << ", " << bs2 << endl;
+            r <<= 1;
+            r |= (n & 1);
+            n >>= 1;
+        }
+        return r;
     }
 };

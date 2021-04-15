@@ -189,9 +189,12 @@ int main()
     // vector<int>nums{2,-5,-2,-4,3};
     // cout<<Solution::maxProduct(nums);
     
-    //153. Find Minimum in Rotated Sorted Array
-    vector<int>nums{3,4,5,1,2};
-    cout<<Solution::findMin(nums);
+    // //153. Find Minimum in Rotated Sorted Array
+    // vector<int>nums{3,4,5,1,2};
+    // cout<<Solution::findMin(nums);
     
+    //190. Reverse Bits
+    cout<<Solution::reverseBits(43261596);
+
     return 0;
 }
