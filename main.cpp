@@ -193,8 +193,12 @@ int main()
     // vector<int>nums{3,4,5,1,2};
     // cout<<Solution::findMin(nums);
     
-    //190. Reverse Bits
-    cout<<Solution::reverseBits(43261596);
+    // //190. Reverse Bits
+    // cout<<Solution::reverseBits(43261596);
+
+    //191. Number of 1 Bits
+    uint32_t num = 0x0000000b;
+    cout<<Solution::hammingWeight(num);
 
     return 0;
 }

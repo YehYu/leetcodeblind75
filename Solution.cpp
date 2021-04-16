@@ -939,14 +939,23 @@ public:
     static uint32_t reverseBits(uint32_t n)
     {
         uint32_t r = 0;
-
-        for (int i = 0; i < 32; i++)
+        int moveBit = 31;
+        while (n)
         {
-            bitset<32> bs(r);
-            bitset<32> bs2(n);
-            cout << bs << ", " << bs2 << endl;
-            r <<= 1;
-            r |= (n & 1);
+            r |= ((n & 1) << moveBit);
+            n >>= 1;
+            moveBit--;
+        }
+        return r;
+    }
+
+    //191. Number of 1 Bits
+    static int hammingWeight(uint32_t n)
+    {
+        int r = 0;
+        while (n)
+        {
+            r += (n & 1);
             n >>= 1;
         }
         return r;
