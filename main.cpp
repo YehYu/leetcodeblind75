@@ -196,9 +196,13 @@ int main()
     // //190. Reverse Bits
     // cout<<Solution::reverseBits(43261596);
 
-    //191. Number of 1 Bits
-    uint32_t num = 0x0000000b;
-    cout<<Solution::hammingWeight(num);
+    // //191. Number of 1 Bits
+    // uint32_t num = 0x0000000b;
+    // cout<<Solution::hammingWeight(num);
+
+    //198. House Robber
+    vector<int>nums = {2,7,9,3,1};
+    cout<<FastSolution::rob(nums);
 
     return 0;
 }

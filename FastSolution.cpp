@@ -960,4 +960,15 @@ public:
         n = (n & 0x0000ffff) + ((n & 0xffff0000)>>16);
         return n;
     }
+
+    //198. House Robber
+    static int rob(vector<int> &nums)
+    {
+        for (int i = 1; i < nums.size(); i++)
+        {
+            nums[i] += i == 1 ? 0 : nums[i-2];
+            nums[i] = (nums[i] > nums[i-1]) ? nums[i] : nums[i-1];
+        }
+        return nums.back();
+    }
 };

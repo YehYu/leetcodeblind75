@@ -960,4 +960,18 @@ public:
         }
         return r;
     }
+
+    //198. House Robber
+    static int rob(vector<int> &nums)
+    {
+        int r = nums[0];
+        for (int i = 1; i < nums.size(); i++)
+        {
+            int pre2 = i >= 2 ? nums[i - 2] : 0;
+            int pre3 = i >= 3 ? nums[i - 3] : 0;
+            nums[i] += (pre2 > pre3) ? pre2 : pre3;
+            r = r > nums[i] ? r : nums[i];
+        }
+        return r;
+    }
 };
