@@ -3,6 +3,7 @@
 #include <map>
 #include <unordered_map>
 #include <vector>
+#include <queue>
 #include <math.h>
 #include <algorithm>
 #include <limits.h>
@@ -953,11 +954,11 @@ public:
     //僅適用 32 位元無號整數
     static int hammingWeight(uint32_t n)
     {
-        n = (n & 0x55555555) + ((n & 0xaaaaaaaa)>>1);
-        n = (n & 0x33333333) + ((n & 0xcccccccc)>>2);
-        n = (n & 0x0f0f0f0f) + ((n & 0xf0f0f0f0)>>4);
-        n = (n & 0x00ff00ff) + ((n & 0xff00ff00)>>8);
-        n = (n & 0x0000ffff) + ((n & 0xffff0000)>>16);
+        n = (n & 0x55555555) + ((n & 0xaaaaaaaa) >> 1);
+        n = (n & 0x33333333) + ((n & 0xcccccccc) >> 2);
+        n = (n & 0x0f0f0f0f) + ((n & 0xf0f0f0f0) >> 4);
+        n = (n & 0x00ff00ff) + ((n & 0xff00ff00) >> 8);
+        n = (n & 0x0000ffff) + ((n & 0xffff0000) >> 16);
         return n;
     }
 
@@ -966,9 +967,45 @@ public:
     {
         for (int i = 1; i < nums.size(); i++)
         {
-            nums[i] += i == 1 ? 0 : nums[i-2];
-            nums[i] = (nums[i] > nums[i-1]) ? nums[i] : nums[i-1];
+            nums[i] += i == 1 ? 0 : nums[i - 2];
+            nums[i] = (nums[i] > nums[i - 1]) ? nums[i] : nums[i - 1];
         }
         return nums.back();
+    }
+
+    //200. Number of Islands
+    static int numIslands(vector<vector<char>> &grid)
+    {
+        int r = 0;
+        vector<pair<int, int>> search_dir{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        queue<pair<int, int>> grid_queue;
+        for (int m = 0; m < grid.size(); m++)
+        {
+            for (int n = 0; n < grid[m].size(); n++)
+            {
+                if (grid[m][n] == '1')
+                {
+                    r++;
+                    grid_queue.push({m, n});
+                    while (!grid_queue.empty())
+                    {
+                        int i = grid_queue.front().first;
+                        int j = grid_queue.front().second;
+                        grid_queue.pop();
+                        grid[i][j] = '0';
+                        for (const pair<int, int> &dir : search_dir)
+                        {
+                            int &&x = i + dir.first;
+                            int &&y = j + dir.second;
+                            if (x < 0 || x >= grid.size() || y < 0 || y >= grid[0].size() || grid[x][y] != '1')
+                                continue;
+                            grid[x][y] = '0';
+                            grid_queue.push({x, y});
+                        }
+                    }
+                }
+            }
+        }
+        return r;
     }
 };

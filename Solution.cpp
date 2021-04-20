@@ -974,4 +974,33 @@ public:
         }
         return r;
     }
+
+    //200. Number of Islands
+    static void searchIslands(vector<vector<char>> &grid, int x, int y)
+    {
+        if (x < 0 || x >= grid.size() || y < 0 || y >= grid[0].size() || grid[x][y] != '1')
+            return;
+        grid[x][y] = '0';
+        searchIslands(grid, x - 1, y);
+        searchIslands(grid, x + 1, y);
+        searchIslands(grid, x, y - 1);
+        searchIslands(grid, x, y + 1);
+        return;
+    }
+
+    static int numIslands(vector<vector<char>> &grid)
+    {
+        int r =0;
+        for (int m = 0; m < grid.size(); m++)
+        {
+            for (int n = 0; n < grid[m].size(); n++)
+            {
+                if(grid[m][n] == '1'){
+                    r++;
+                    searchIslands(grid, m, n);
+                }
+            }
+        }
+        return r;
+    }
 };

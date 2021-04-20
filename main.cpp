@@ -156,7 +156,6 @@ int main()
     // vector<int>nums = {4,0,-4,-2,2,5,2,0,-8,-8,-8,-8,-1,7,4,5,5,-4,6,6,-3};
     // cout <<FastSolution::longestConsecutive(nums);
 
-
     // //133. Clone Graph
     // typedef Solution::Node Node;
     // Node *node1 = new Node(1);
@@ -188,11 +187,11 @@ int main()
     // //152. Maximum Product Subarray
     // vector<int>nums{2,-5,-2,-4,3};
     // cout<<Solution::maxProduct(nums);
-    
+
     // //153. Find Minimum in Rotated Sorted Array
     // vector<int>nums{3,4,5,1,2};
     // cout<<Solution::findMin(nums);
-    
+
     // //190. Reverse Bits
     // cout<<Solution::reverseBits(43261596);
 
@@ -200,9 +199,18 @@ int main()
     // uint32_t num = 0x0000000b;
     // cout<<Solution::hammingWeight(num);
 
-    //198. House Robber
-    vector<int>nums = {2,7,9,3,1};
-    cout<<FastSolution::rob(nums);
+    // //198. House Robber
+    // vector<int>nums = {2,7,9,3,1};
+    // cout<<FastSolution::rob(nums);
+
+    //200. Number of Islands
+    vector<vector<char>> grid = {
+        {'1', '1', '0', '0', '0'},
+        { '1', '1', '0', '0', '0' },
+        { '0', '0', '1', '0', '0' },
+        { '0', '0', '0', '1', '1' }
+    };
+    cout<<FastSolution::numIslands(grid);
 
     return 0;
 }
