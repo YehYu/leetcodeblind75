@@ -1008,4 +1008,16 @@ public:
         }
         return r;
     }
+
+    //206. Reverse Linked List
+    //Recursive
+    static ListNode* reverseList(ListNode* head) {
+        if(!head || !head->next)
+            return head;
+
+        ListNode* r = reverseList(head->next)
+        head->next->next = head;
+        head->next = nullptr;
+        return r;
+    }
 };

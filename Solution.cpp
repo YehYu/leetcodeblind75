@@ -1003,4 +1003,19 @@ public:
         }
         return r;
     }
+
+    //206. Reverse Linked List
+    //Iterative
+    static ListNode* reverseList(ListNode* head) {
+        ListNode *preNode = nullptr;
+        ListNode *curNode = head;
+        while (curNode)
+        {
+            ListNode* nextNode = curNode->next;
+            curNode->next = preNode;
+            preNode = curNode;
+            curNode = nextNode;
+        }
+        return preNode;
+    }
 };

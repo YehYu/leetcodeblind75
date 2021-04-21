@@ -203,14 +203,18 @@ int main()
     // vector<int>nums = {2,7,9,3,1};
     // cout<<FastSolution::rob(nums);
 
-    //200. Number of Islands
-    vector<vector<char>> grid = {
-        {'1', '1', '0', '0', '0'},
-        { '1', '1', '0', '0', '0' },
-        { '0', '0', '1', '0', '0' },
-        { '0', '0', '0', '1', '1' }
-    };
-    cout<<FastSolution::numIslands(grid);
+    // //200. Number of Islands
+    // vector<vector<char>> grid = {
+    //     {'1', '1', '0', '0', '0'},
+    //     { '1', '1', '0', '0', '0' },
+    //     { '0', '0', '1', '0', '0' },
+    //     { '0', '0', '0', '1', '1' }
+    // };
+    // cout<<FastSolution::numIslands(grid);
+
+    //206. Reverse Linked List
+    ListNode *head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+    head = Solution::reverseList(head);
 
     return 0;
 }
