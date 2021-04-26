@@ -990,12 +990,13 @@ public:
 
     static int numIslands(vector<vector<char>> &grid)
     {
-        int r =0;
+        int r = 0;
         for (int m = 0; m < grid.size(); m++)
         {
             for (int n = 0; n < grid[m].size(); n++)
             {
-                if(grid[m][n] == '1'){
+                if (grid[m][n] == '1')
+                {
                     r++;
                     searchIslands(grid, m, n);
                 }
@@ -1006,16 +1007,55 @@ public:
 
     //206. Reverse Linked List
     //Iterative
-    static ListNode* reverseList(ListNode* head) {
+    static ListNode *reverseList(ListNode *head)
+    {
         ListNode *preNode = nullptr;
         ListNode *curNode = head;
         while (curNode)
         {
-            ListNode* nextNode = curNode->next;
+            ListNode *nextNode = curNode->next;
             curNode->next = preNode;
             preNode = curNode;
             curNode = nextNode;
         }
         return preNode;
+    }
+
+    //207. Course Schedule
+    //DFS
+    static bool checkCycle(int course, vector<int> &coursesChecked, vector<vector<int>> &graph)
+    {
+        if (coursesChecked[course] == 1) //visting
+            return true;
+
+        if (coursesChecked[course] == -1) //visted
+            return false;
+
+        coursesChecked[course] = 1;
+        for (int c : graph[course])
+        {
+            if (checkCycle(c, coursesChecked, graph))
+                return true;
+        }
+        coursesChecked[course] = -1;
+        return false;
+    }
+
+    static bool canFinish(int numCourses, vector<vector<int>> &prerequisites)
+    {
+        if (prerequisites.empty() || numCourses <= 1)
+            return true;
+
+        vector<int> coursesChecked(numCourses, 0); //0: unvisted 1: visting -1:visted
+        vector<vector<int>> graph(numCourses, vector<int>());
+        for (vector<int> pair : prerequisites)
+            graph[pair[0]].push_back(pair[1]);
+
+        for (int course = 0; course < numCourses; course++)
+        {
+            if (checkCycle(course, coursesChecked, graph))
+                return false;
+        }
+        return true;
     }
 };

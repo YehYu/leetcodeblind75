@@ -1011,13 +1011,50 @@ public:
 
     //206. Reverse Linked List
     //Recursive
-    static ListNode* reverseList(ListNode* head) {
-        if(!head || !head->next)
+    static ListNode *reverseList(ListNode *head)
+    {
+        if (!head || !head->next)
             return head;
 
-        ListNode* r = reverseList(head->next)
+        ListNode *r = reverseList(head->next);
         head->next->next = head;
         head->next = nullptr;
         return r;
+    }
+
+    //207. Course Schedule
+    //BFS
+    static bool canFinish(int numCourses, vector<vector<int>> &prerequisites)
+    {
+        if (prerequisites.empty() || numCourses < 2)
+            return true;
+
+        vector<int> courseIncount(numCourses, 0);
+        vector<vector<int>> graph(numCourses, vector<int>());
+        for (vector<int> pair : prerequisites)
+        {
+            graph[pair[0]].push_back(pair[1]);
+            courseIncount[pair[1]]++;
+        }
+
+        queue<int> checkqueue;
+        for (int i = 0; i < numCourses; i++)
+        {
+            if (courseIncount[i] == 0)
+                checkqueue.push(i);
+        }
+        while (!checkqueue.empty())
+        {
+            int c = checkqueue.front();
+            checkqueue.pop();
+            numCourses--;
+            for (int nextC : graph[c])
+            {
+                courseIncount[nextC]--;
+                if (courseIncount[nextC] == 0)
+                    checkqueue.push(nextC);
+            }
+        }
+        return numCourses==0;
     }
 };
