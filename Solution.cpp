@@ -1,4 +1,5 @@
 
+#include "data.h"
 #include <string>
 #include <map>
 #include <unordered_map>
@@ -9,7 +10,7 @@
 #include <iostream>
 #include <queue>
 #include <bitset>
-#include "data.h"
+
 using namespace std;
 
 class Solution
@@ -194,7 +195,7 @@ public:
         currl->next = (currl2 == nullptr) ? currl1 : currl2;
         return (l1->val <= l2->val) ? l1 : l2;
     }
-    
+
     //23. Merge k Sorted Lists
     static ListNode *mergeKLists(vector<ListNode *> &lists)
     {
@@ -1045,5 +1046,17 @@ public:
         }
         return true;
     }
-    
+
+    //208. Implement Trie (Prefix Tree)
+    static void testTrie()
+    {
+        Trie* trie = new Trie();
+        trie->insert("apple");
+        cout<<trie->search("apple");   // return True
+        cout<<trie->search("app");     // return False
+        cout<<trie->startsWith("app"); // return True
+        trie->insert("app");
+        cout<<trie->search("app"); // return True
+        delete trie;
+    }
 };

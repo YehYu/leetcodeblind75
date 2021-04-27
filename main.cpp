@@ -213,9 +213,13 @@ int main()
     // ListNode *head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
     // head = Solution::reverseList(head);
 
-    //207. Course Schedule
-    int numCourses = 8;
-    vector<vector<int>> prerequisites = {{1,0},{2,6},{1,7},{6,4},{7,0},{0,5}};
-    cout<<Solution::canFinish(numCourses, prerequisites);
+    // //207. Course Schedule
+    // int numCourses = 8;
+    // vector<vector<int>> prerequisites = {{1,0},{2,6},{1,7},{6,4},{7,0},{0,5}};
+    // cout<<Solution::canFinish(numCourses, prerequisites);
+
+    //208. Implement Trie (Prefix Tree)
+    Solution::testTrie(); 
+
     return 0;
 }

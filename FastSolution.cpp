@@ -1,4 +1,5 @@
 
+#include "data.h"
 #include <string>
 #include <map>
 #include <unordered_map>
@@ -7,7 +8,7 @@
 #include <math.h>
 #include <algorithm>
 #include <limits.h>
-#include "data.h"
+#include <iostream>
 using namespace std;
 
 class FastSolution
@@ -1041,5 +1042,17 @@ public:
             }
         }
         return numCourses==0;
+    }
+
+    //208. Implement Trie (Prefix Tree)
+    static void testTrie()
+    {
+        TrieS trie;
+        trie.insert("apple");
+        cout<<trie.search("apple");   // return True
+        cout<<trie.search("app");     // return False
+        cout<<trie.startsWith("app"); // return True
+        trie.insert("app");
+        cout<<trie.search("app"); // return True
     }
 };
