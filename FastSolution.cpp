@@ -7,7 +7,7 @@
 #include <math.h>
 #include <algorithm>
 #include <limits.h>
-
+#include "data.h"
 using namespace std;
 
 class FastSolution
@@ -123,16 +123,7 @@ public:
         return v;
     }
 
-    // Definition for singly-linked list.
-    struct ListNode
-    {
-        int val;
-        ListNode *next;
-        ListNode() : val(0), next(nullptr) {}
-        ListNode(int x) : val(x), next(nullptr) {}
-        ListNode(int x, ListNode *next) : val(x), next(next) {}
-    };
-
+    //19. Remove Nth Node From End of List
     static ListNode *removeNthFromEnd(ListNode *head, int n)
     {
         ListNode *prev = new ListNode(0);
@@ -152,6 +143,7 @@ public:
         return k->next;
     }
 
+    //20. Valid Parentheses
     static bool isValid(string s)
     {
         int indexOfLastOpen = -1;
@@ -231,6 +223,7 @@ public:
         return indexOfLastOpen >= 0 ? false : true;
     }
 
+    //21. Merge Two Sorted Lists
     static ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
     {
         // most Discuss "recursion"
@@ -250,6 +243,7 @@ public:
         }
     }
 
+    //23. Merge k Sorted Lists
     static ListNode *mergeKLists(vector<ListNode *> &lists)
     {
         if (lists.empty())
@@ -614,15 +608,6 @@ public:
     }
 
     //98. Validate Binary Search Tree
-    struct TreeNode
-    {
-        int val;
-        TreeNode *left;
-        TreeNode *right;
-        TreeNode() : val(0), left(nullptr), right(nullptr) {}
-        TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-        TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-    };
     static bool isValidBST(TreeNode *root)
     {
         //Do an in-order traversal

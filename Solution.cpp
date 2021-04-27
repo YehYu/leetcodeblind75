@@ -9,6 +9,7 @@
 #include <iostream>
 #include <queue>
 #include <bitset>
+#include "data.h"
 using namespace std;
 
 class Solution
@@ -141,15 +142,7 @@ public:
         return r;
     }
 
-    // Definition for singly-linked list.
-    struct ListNode
-    {
-        int val;
-        ListNode *next;
-        ListNode() : val(0), next(nullptr) {}
-        ListNode(int x) : val(x), next(nullptr) {}
-        ListNode(int x, ListNode *next) : val(x), next(next) {}
-    };
+    //19. Remove Nth Node From End of List
     static ListNode *removeNthFromEnd(ListNode *head, int n)
     {
         vector<ListNode *> templist;
@@ -164,6 +157,7 @@ public:
         return head;
     }
 
+    //20. Valid Parentheses
     static bool isValid(string s)
     {
         if (s.length() % 2)
@@ -182,6 +176,7 @@ public:
         return temp.size() == 0 ? true : false;
     }
 
+    //21. Merge Two Sorted Lists
     static ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
     {
         if (l1 == nullptr || l2 == nullptr)
@@ -199,7 +194,8 @@ public:
         currl->next = (currl2 == nullptr) ? currl1 : currl2;
         return (l1->val <= l2->val) ? l1 : l2;
     }
-
+    
+    //23. Merge k Sorted Lists
     static ListNode *mergeKLists(vector<ListNode *> &lists)
     {
         ListNode *result = nullptr;
@@ -606,15 +602,6 @@ public:
     }
 
     //98. Validate Binary Search Tree
-    struct TreeNode
-    {
-        int val;
-        TreeNode *left;
-        TreeNode *right;
-        TreeNode() : val(0), left(nullptr), right(nullptr) {}
-        TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-        TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-    };
     static bool checkIsValidBST(TreeNode *root, TreeNode *max, TreeNode *min)
     {
         if (!root)
@@ -1058,4 +1045,5 @@ public:
         }
         return true;
     }
+    
 };

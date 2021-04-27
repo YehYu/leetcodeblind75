@@ -3,9 +3,6 @@
 #include <stdio.h>
 #include <iostream>
 using namespace std;
-typedef Solution::ListNode ListNode;
-typedef Solution::TreeNode TreeNode;
-typedef FastSolution::TreeNode FTreeNode;
 
 int main()
 {
