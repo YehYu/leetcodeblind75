@@ -218,8 +218,11 @@ int main()
     // vector<vector<int>> prerequisites = {{1,0},{2,6},{1,7},{6,4},{7,0},{0,5}};
     // cout<<Solution::canFinish(numCourses, prerequisites);
 
-    //208. Implement Trie (Prefix Tree)
-    Solution::testTrie(); 
+    // //208. Implement Trie (Prefix Tree)
+    // Solution::testTrie(); 
+
+    //211. Design Add and Search Words Data Structure
+    Solution::testWordDictionary(); 
 
     return 0;
 }

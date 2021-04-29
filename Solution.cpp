@@ -1050,13 +1050,27 @@ public:
     //208. Implement Trie (Prefix Tree)
     static void testTrie()
     {
-        Trie* trie = new Trie();
+        Trie *trie = new Trie();
         trie->insert("apple");
-        cout<<trie->search("apple");   // return True
-        cout<<trie->search("app");     // return False
-        cout<<trie->startsWith("app"); // return True
+        cout << trie->search("apple");   // return True
+        cout << trie->search("app");     // return False
+        cout << trie->startsWith("app"); // return True
         trie->insert("app");
-        cout<<trie->search("app"); // return True
+        cout << trie->search("app"); // return True
         delete trie;
+    }
+
+    //211. Design Add and Search Words Data Structure
+    static void testWordDictionary()
+    {
+        WordDictionary* wordDictionary = new WordDictionary();
+        wordDictionary->addWord("bad");
+        wordDictionary->addWord("dad");
+        wordDictionary->addWord("mad");
+        cout <<wordDictionary->search("pad"); // return False
+        cout <<wordDictionary->search("bad"); // return True
+        cout <<wordDictionary->search(".ad"); // return True
+        cout <<wordDictionary->search("b.."); // return True
+        delete wordDictionary;
     }
 };

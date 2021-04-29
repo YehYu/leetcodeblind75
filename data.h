@@ -3,6 +3,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <queue>
 using namespace std;
 struct ListNode
 {
@@ -23,109 +24,116 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+//TrieNode
+struct TrieNode
+{
+    unordered_map<char, TrieNode *> childMap;
+    bool isComplete;
+    TrieNode() : isComplete(false){}
+};
+
 //208. Implement Trie (Prefix Tree)
 class Trie
 {
-    unordered_map<char, Trie*> childMap;
-    bool isWord;
+    TrieNode* node;
+
+    TrieNode *getEndTrie(string word)
+    {
+        TrieNode *root = node;
+        for (const char &c : word)
+        {
+            if (root->childMap.find(c) == root->childMap.end())
+                return nullptr;
+            root = root->childMap[c];
+        }
+        return root;
+    }
 
 public:
     /** Initialize your data structure here. */
-    Trie() : isWord(false)
+    Trie() : node(new TrieNode())
     {
-
+    }
+    ~Trie()
+    {
+        for (unordered_map<char, TrieNode *>::iterator it = node->childMap.begin(); it != node->childMap.end(); it++)
+            delete it->second;
+        node->childMap.clear();
     }
 
     /** Inserts a word into the trie. */
     void insert(string word)
     {
-        Trie *root = this;
+        TrieNode *root = node;
         for (const char &c : word)
         {
             if (root->childMap.find(c) == root->childMap.end())
-                root->childMap[c] = new Trie();
+                root->childMap[c] = new TrieNode();
             root = root->childMap[c];
         }
-        root->isWord = true;
+        root->isComplete = true;
     }
 
     /** Returns if the word is in the trie. */
     bool search(string word)
     {
-        Trie *root = this;
-        for (const char &c : word)
-        {
-            if (root->childMap.find(c) == root->childMap.end())
-                return false;
-            root = root->childMap[c];
-        }
-        return root->isWord;
+        TrieNode *root = getEndTrie(word);
+        return (root && root->isComplete);
     }
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix)
     {
-        Trie *root = this;
-        for (const char &c : prefix)
-        {
-            if (root->childMap.find(c) == root->childMap.end())
-                return false;
-            root = root->childMap[c];
-        }
-        return true;
+        TrieNode *root = getEndTrie(prefix);
+        return root;
     }
 };
 
-class TrieS
+//211. Design Add and Search Words Data Structure
+class WordDictionary
 {
-    TrieS *childrenArray[26];
-    bool isWord;
+    TrieNode* node;
 
 public:
     /** Initialize your data structure here. */
-    TrieS() : isWord(false)
+    WordDictionary() : node(new TrieNode())
     {
-        for (int i = 0; i < 26; i++)
-            childrenArray[i] = nullptr;
     }
 
-    /** Inserts a word into the trie. */
-    void insert(string word)
+    void addWord(string word)
     {
-        TrieS *root = this;
+        TrieNode *root = node;
         for (const char &c : word)
         {
-            if (!root->childrenArray[c - 'a'])
-                root->childrenArray[c - 'a'] = new TrieS();
-            root = root->childrenArray[c-'a'];
+            if (root->childMap.find(c) == root->childMap.end())
+                root->childMap[c] = new TrieNode();
+            root = root->childMap[c];
         }
-        root->isWord = true;
+        root->isComplete = true;
     }
 
-    /** Returns if the word is in the trie. */
     bool search(string word)
     {
-        TrieS *root = this;
-        for (const char &c : word)
-        {
-            if (!root->childrenArray[c - 'a'])
-                return false;
-            root = root->childrenArray[c - 'a'];
-        }
-        return root->isWord;
+        return searchBypos(word, 0, node);
     }
 
-    /** Returns if there is any word in the trie that starts with the given prefix. */
-    bool startsWith(string prefix)
+    bool searchBypos(const string &word, int pos, TrieNode *dict)
     {
-        TrieS *root = this;
-        for (const char &c : prefix)
+        if (pos >= word.size())
+            return dict->isComplete;
+
+        const char &c = word[pos];
+        if (c == '.')
         {
-            if (!root->childrenArray[c - 'a'])
-                return false;
-            root = root->childrenArray[c - 'a'];
+            for (unordered_map<char, TrieNode *>::iterator it = dict->childMap.begin(); it != dict->childMap.end(); it++)
+                if (searchBypos(word, pos + 1, it->second))
+                    return true;
         }
-        return true;
+        else if (dict->childMap.find(c) != dict->childMap.end())
+        {
+            return searchBypos(word, pos + 1, dict->childMap[c]);
+        }
+        return false;
     }
 };
 
