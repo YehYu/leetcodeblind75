@@ -219,10 +219,17 @@ int main()
     // cout<<Solution::canFinish(numCourses, prerequisites);
 
     // //208. Implement Trie (Prefix Tree)
-    // Solution::testTrie(); 
+    // Solution::testTrie();
 
-    //211. Design Add and Search Words Data Structure
-    Solution::testWordDictionary(); 
+    // //211. Design Add and Search Words Data Structure
+    // Solution::testWordDictionary();
+
+    //212. Word Search II
+    //Output: ["eat","oath"]
+    vector<vector<char>> board = {{'o', 'a', 'a', 'n'}, {'e', 't', 'a', 'e'}, {'i', 'h', 'k', 'r'}, {'i', 'f', 'l', 'v'}};
+    vector<string> words = {"oath", "pea", "eat", "rain"};
+    for (string s : Solution::findWords(board, words))
+        cout << s << endl;
 
     return 0;
 }

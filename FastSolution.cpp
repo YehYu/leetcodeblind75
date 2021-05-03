@@ -556,7 +556,7 @@ public:
     }
 
     //79. Word Search
-    static bool search(vector<vector<char>> &board, string &word, int d, int i, int j)
+    static bool search(vector<vector<char>> &board,const string &word, int d, int i, int j)
     {
         int h = board.size();
         int w = board[0].size();
@@ -564,10 +564,9 @@ public:
             return false;
         if (d == word.size() - 1)
             return true;
-        char cur = board[i][j];
-        board[i][j] = '0';
+        board[i][j] = '.';
         bool found = search(board, word, d + 1, i + 1, j) || search(board, word, d + 1, i - 1, j) || search(board, word, d + 1, i, j + 1) || search(board, word, d + 1, i, j - 1);
-        board[i][j] = cur;
+        board[i][j] = word[d];
         return found;
     }
     static bool exist(vector<vector<char>> &board, string word)
@@ -1041,7 +1040,7 @@ public:
                     checkqueue.push(nextC);
             }
         }
-        return numCourses==0;
+        return numCourses == 0;
     }
 
     //208. Implement Trie (Prefix Tree)
@@ -1049,24 +1048,49 @@ public:
     {
         Trie trie;
         trie.insert("apple");
-        cout<<trie.search("apple");   // return True
-        cout<<trie.search("app");     // return False
-        cout<<trie.startsWith("app"); // return True
+        cout << trie.search("apple");   // return True
+        cout << trie.search("app");     // return False
+        cout << trie.startsWith("app"); // return True
         trie.insert("app");
-        cout<<trie.search("app"); // return True
+        cout << trie.search("app"); // return True
     }
 
-        //211. Design Add and Search Words Data Structure
+    //211. Design Add and Search Words Data Structure
     static void testWordDictionary()
     {
-        WordDictionary* wordDictionary = new WordDictionary();
+        WordDictionary *wordDictionary = new WordDictionary();
         wordDictionary->addWord("bad");
         wordDictionary->addWord("dad");
         wordDictionary->addWord("mad");
-        cout <<wordDictionary->search("pad"); // return False
-        cout <<wordDictionary->search("bad"); // return True
-        cout <<wordDictionary->search(".ad"); // return True
-        cout <<wordDictionary->search("b.."); // return True
+        cout << wordDictionary->search("pad"); // return False
+        cout << wordDictionary->search("bad"); // return True
+        cout << wordDictionary->search(".ad"); // return True
+        cout << wordDictionary->search("b.."); // return True
         delete wordDictionary;
+    }
+
+    //212. Word Search II
+    //DFS + backtracking + 79. Word Search
+    static vector<string> findWords(vector<vector<char>> &board, vector<string> &words)
+    {
+        vector<string> result;
+        vector<pair<int, int>> charPosVec[26];
+        for (int i = 0; i < board.size(); i++)
+            for (int j = 0; j < board[i].size(); j++)
+                charPosVec[board[i][j] - 'a'].push_back({i, j});
+
+        for (const string &word : words)
+        {
+            int &&c = word[0] - 'a';
+            for (pair<int, int> pos : charPosVec[c])
+            {
+                if (search(board, word, 0, pos.first, pos.second))
+                {
+                    result.push_back(word);
+                    break;
+                }
+            }
+        }
+        return result;
     }
 };

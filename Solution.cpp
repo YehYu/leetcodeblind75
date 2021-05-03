@@ -1063,14 +1063,54 @@ public:
     //211. Design Add and Search Words Data Structure
     static void testWordDictionary()
     {
-        WordDictionary* wordDictionary = new WordDictionary();
+        WordDictionary *wordDictionary = new WordDictionary();
         wordDictionary->addWord("bad");
         wordDictionary->addWord("dad");
         wordDictionary->addWord("mad");
-        cout <<wordDictionary->search("pad"); // return False
-        cout <<wordDictionary->search("bad"); // return True
-        cout <<wordDictionary->search(".ad"); // return True
-        cout <<wordDictionary->search("b.."); // return True
+        cout << wordDictionary->search("pad"); // return False
+        cout << wordDictionary->search("bad"); // return True
+        cout << wordDictionary->search(".ad"); // return True
+        cout << wordDictionary->search("b.."); // return True
         delete wordDictionary;
+    }
+
+    //212. Word Search II
+    static void searchword(vector<vector<char>> &board, vector<string> &result, int i, int j, TrieWordSearchNode *trieNode)
+    {
+        if (i < 0 || j < 0 || i >= board.size() || j >= board[0].size() || board[i][j] == '.')
+            return;
+
+
+        TrieWordSearchNode *node = trieNode->childVec[board[i][j] - 'a'];
+        if (node)
+        {
+            if (!node->word.empty())
+            {
+                result.push_back(node->word);
+                node->word.clear(); //prevent result duplicates psuh
+            }
+
+            char c = board[i][j];
+            board[i][j] = '.';
+            searchword(board, result, i + 1, j, node);
+            searchword(board, result, i - 1, j, node);
+            searchword(board, result, i, j + 1, node);
+            searchword(board, result, i, j - 1, node);
+            board[i][j] = c;
+        }
+    }
+    static vector<string> findWords(vector<vector<char>> &board, vector<string> &words)
+    {
+        vector<string> result;
+        TrieWordSearchNode *trieNode = new TrieWordSearchNode();
+        for (const string &word : words)
+            trieNode->addNode(word);
+
+        for (int i = 0; i < board.size(); i++)
+            for (int j = 0; j < board[0].size(); j++)
+                searchword(board, result, i, j, trieNode);
+
+        delete trieNode;
+        return result;
     }
 };

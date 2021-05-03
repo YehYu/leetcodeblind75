@@ -29,13 +29,13 @@ struct TrieNode
 {
     unordered_map<char, TrieNode *> childMap;
     bool isComplete;
-    TrieNode() : isComplete(false){}
+    TrieNode() : isComplete(false) {}
 };
 
 //208. Implement Trie (Prefix Tree)
 class Trie
 {
-    TrieNode* node;
+    TrieNode *node;
 
     TrieNode *getEndTrie(string word)
     {
@@ -92,7 +92,7 @@ public:
 //211. Design Add and Search Words Data Structure
 class WordDictionary
 {
-    TrieNode* node;
+    TrieNode *node;
 
 public:
     /** Initialize your data structure here. */
@@ -134,6 +134,32 @@ public:
             return searchBypos(word, pos + 1, dict->childMap[c]);
         }
         return false;
+    }
+};
+
+//212. Word Search II
+struct TrieWordSearchNode
+{
+    vector<TrieWordSearchNode *> childVec;
+    string word;
+    TrieWordSearchNode() : word(""), childVec(26, nullptr) {}
+    ~TrieWordSearchNode()
+    {
+        for (TrieWordSearchNode * node : childVec)
+            delete node;
+        childVec.clear();
+    }
+    void addNode(const string &word)
+    {
+        TrieWordSearchNode *root = this;
+        for (const char &i : word)
+        {
+            int&& c = i - 'a';
+            if (!root->childVec[c])
+                root->childVec[c] = new TrieWordSearchNode();
+            root = root->childVec[c];
+        }
+        root->word = word;
     }
 };
 
