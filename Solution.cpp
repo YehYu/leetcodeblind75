@@ -1080,7 +1080,6 @@ public:
         if (i < 0 || j < 0 || i >= board.size() || j >= board[0].size() || board[i][j] == '.')
             return;
 
-
         TrieWordSearchNode *node = trieNode->childVec[board[i][j] - 'a'];
         if (node)
         {
@@ -1112,5 +1111,18 @@ public:
 
         delete trieNode;
         return result;
+    }
+
+    //213. House Robber II
+    static int rob2(vector<int> &nums)
+    {
+        if(nums.size()==1)
+            return nums[0];
+
+        vector<int> v1 = vector<int>(nums.begin(), nums.end()-1);
+        vector<int> v2 = vector<int>(nums.begin()+1, nums.end());
+        int&& r1 = rob(v1) ;
+        int&& r2 = rob(v2) ;
+        return r2>r1?r2:r1;
     }
 };

@@ -556,7 +556,7 @@ public:
     }
 
     //79. Word Search
-    static bool search(vector<vector<char>> &board,const string &word, int d, int i, int j)
+    static bool search(vector<vector<char>> &board, const string &word, int d, int i, int j)
     {
         int h = board.size();
         int w = board[0].size();
@@ -1092,5 +1092,30 @@ public:
             }
         }
         return result;
+    }
+
+    //213. House Robber II
+    //modify 198. House Robber
+    static int robBySEPos(vector<int> &nums, int start, int end)
+    {
+        int pre2 = 0, pre1 = 0;
+        for (int i = start; i < end; i++)
+        {
+            int &&tempCur = nums[i] + pre2;
+            tempCur = tempCur > pre1 ? tempCur : pre1;
+            pre2 = pre1;
+            pre1 = tempCur;
+        }
+        return pre1;
+    }
+
+    static int rob2(vector<int> &nums)
+    {
+        if (nums.size() == 1)
+            return nums[0];
+
+        int &&r1 = robBySEPos(nums, 0, nums.size() - 1);
+        int &&r2 = robBySEPos(nums, 1, nums.size());
+        return r2 > r1 ? r2 : r1;
     }
 };
