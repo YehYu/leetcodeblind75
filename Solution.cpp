@@ -1116,13 +1116,25 @@ public:
     //213. House Robber II
     static int rob2(vector<int> &nums)
     {
-        if(nums.size()==1)
+        if (nums.size() == 1)
             return nums[0];
 
-        vector<int> v1 = vector<int>(nums.begin(), nums.end()-1);
-        vector<int> v2 = vector<int>(nums.begin()+1, nums.end());
-        int&& r1 = rob(v1) ;
-        int&& r2 = rob(v2) ;
-        return r2>r1?r2:r1;
+        vector<int> v1 = vector<int>(nums.begin(), nums.end() - 1);
+        vector<int> v2 = vector<int>(nums.begin() + 1, nums.end());
+        int &&r1 = rob(v1);
+        int &&r2 = rob(v2);
+        return r2 > r1 ? r2 : r1;
+    }
+
+    //217. Contains Duplicate
+    static bool containsDuplicate(vector<int> &nums)
+    {
+        sort(nums.begin(), nums.end());
+        for (int i = 1; i < nums.size(); i++)
+        {
+            if (nums[i] == nums[i - 1])
+                return true;
+        }
+        return false;
     }
 };

@@ -231,9 +231,13 @@ int main()
     // for (string s : Solution::findWords(board, words))
     //     cout << s << endl;
 
-    //213. House Robber II
-    vector<int>nums = {1,2,3,0};
-    cout<<FastSolution::rob2(nums);
+    // //213. House Robber II
+    // vector<int>nums = {1,2,3,0};
+    // cout<<FastSolution::rob2(nums);
+
+    //217. Contains Duplicate
+    vector<int>nums = {1,2,3,1};
+    cout<<Solution::containsDuplicate(nums);
 
     return 0;
 }

@@ -1108,7 +1108,6 @@ public:
         }
         return pre1;
     }
-
     static int rob2(vector<int> &nums)
     {
         if (nums.size() == 1)
@@ -1117,5 +1116,18 @@ public:
         int &&r1 = robBySEPos(nums, 0, nums.size() - 1);
         int &&r2 = robBySEPos(nums, 1, nums.size());
         return r2 > r1 ? r2 : r1;
+    }
+
+    //217. Contains Duplicate
+    static bool containsDuplicate(vector<int> &nums)
+    {
+        unordered_set<int> numSet;
+        for (int num : nums)
+        {
+            if (numSet.find(num) != numSet.end())
+                return true;
+            numSet.insert(num);
+        }
+        return false;
     }
 };
