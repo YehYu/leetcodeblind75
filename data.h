@@ -4,6 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include <queue>
+#include <iostream>
 using namespace std;
 struct ListNode
 {
@@ -22,7 +23,31 @@ struct TreeNode
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    friend ostream &operator<<(ostream &ostr, TreeNode *rhs);
 };
+ostream &operator<<(ostream &ostr, TreeNode *rhs)
+{
+    if (!rhs)
+        return ostr;
+
+    ostr <<"[";
+    queue<TreeNode *> nodeQueue;
+    nodeQueue.push(rhs);
+    while (nodeQueue.size())
+    {
+        TreeNode *cur = nodeQueue.front();
+        ostr << (cur->val)<<", ";
+        TreeNode *left = cur->left;
+        TreeNode *right = cur->right;
+        if (left)
+            nodeQueue.push(left);
+        if (right)
+            nodeQueue.push(right);
+        nodeQueue.pop();
+    }
+     ostr <<"]";
+    return ostr;
+}
 
 //TrieNode
 struct TrieNode
@@ -145,7 +170,7 @@ struct TrieWordSearchNode
     TrieWordSearchNode() : word(""), childVec(26, nullptr) {}
     ~TrieWordSearchNode()
     {
-        for (TrieWordSearchNode * node : childVec)
+        for (TrieWordSearchNode *node : childVec)
             delete node;
         childVec.clear();
     }
@@ -154,7 +179,7 @@ struct TrieWordSearchNode
         TrieWordSearchNode *root = this;
         for (const char &i : word)
         {
-            int&& c = i - 'a';
+            int &&c = i - 'a';
             if (!root->childVec[c])
                 root->childVec[c] = new TrieWordSearchNode();
             root = root->childVec[c];

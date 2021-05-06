@@ -142,7 +142,7 @@ int main()
     // cout << Solution::maxProfit(price);
 
     // //124. Binary Tree Maximum Path Sum
-    // FTreeNode *root = new FTreeNode(-10, new FTreeNode(9), new FTreeNode(20, new FTreeNode(15), new FTreeNode(7)));
+    // TreeNode *root = new TreeNode(-10, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
     // cout <<FastSolution::maxPathSum(root);
 
     // //125. Valid Palindrome
@@ -235,9 +235,15 @@ int main()
     // vector<int>nums = {1,2,3,0};
     // cout<<FastSolution::rob2(nums);
 
-    //217. Contains Duplicate
-    vector<int>nums = {1,2,3,1};
-    cout<<Solution::containsDuplicate(nums);
+    // //217. Contains Duplicate
+    // vector<int>nums = {1,2,3,1};
+    // cout<<Solution::containsDuplicate(nums);
+
+    //226. Invert Binary Tree
+    //In [4,2,7,1,3,6,9], out[4,7,2,9,6,3,1]
+    TreeNode *root = new TreeNode(4, new TreeNode(2, new TreeNode(1), new TreeNode(3)), new TreeNode(7, new TreeNode(6), new TreeNode(9)));
+    cout<<root<<endl;;
+    cout<<Solution::invertTree(root);
 
     return 0;
 }

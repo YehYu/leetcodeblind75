@@ -1137,4 +1137,28 @@ public:
         }
         return false;
     }
+
+    //226. Invert Binary Tree
+    //BFS
+    static TreeNode *invertTree(TreeNode *root)
+    {
+        if (!root)
+            return root;
+
+        queue<TreeNode *> nodeQueue;
+        nodeQueue.push(root);
+        while (!nodeQueue.empty())
+        {
+            TreeNode *cur = nodeQueue.front();
+            TreeNode *temp = cur->left;
+            cur->left = cur->right;
+            cur->right = temp;
+            if (cur->left)
+                nodeQueue.push(cur->left);
+            if ( cur->right)
+                nodeQueue.push( cur->right);
+            nodeQueue.pop();
+        }
+        return root; 
+    }
 };
