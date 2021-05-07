@@ -239,11 +239,18 @@ int main()
     // vector<int>nums = {1,2,3,1};
     // cout<<Solution::containsDuplicate(nums);
 
-    //226. Invert Binary Tree
-    //In [4,2,7,1,3,6,9], out[4,7,2,9,6,3,1]
-    TreeNode *root = new TreeNode(4, new TreeNode(2, new TreeNode(1), new TreeNode(3)), new TreeNode(7, new TreeNode(6), new TreeNode(9)));
+    // //226. Invert Binary Tree
+    // //In [4,2,7,1,3,6,9], out[4,7,2,9,6,3,1]
+    // TreeNode *root = new TreeNode(4, new TreeNode(2, new TreeNode(1), new TreeNode(3)), new TreeNode(7, new TreeNode(6), new TreeNode(9)));
+    // cout<<root<<endl;;
+    // cout<<Solution::invertTree(root);
+
+    //230. Kth Smallest Element in a BST
+    //Input: root = [ 5, 3, 6, 2, 4, null, null, 1 ], k = 3 Output : 3
+    TreeNode *root = new TreeNode(5, new TreeNode(3, new TreeNode(2, new TreeNode(1), nullptr), new TreeNode(4)), new TreeNode(6));
+    int k = 3;
     cout<<root<<endl;;
-    cout<<Solution::invertTree(root);
+    cout<<Solution::kthSmallest(root, k);
 
     return 0;
 }

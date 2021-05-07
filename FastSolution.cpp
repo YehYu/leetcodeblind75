@@ -1145,4 +1145,24 @@ public:
         root->right = temp;
         return root;
     }
+
+    //230. Kth Smallest Element in a BST
+    //Solution2:Recursive
+    static int kthSmallest(TreeNode *root, int k)
+    {
+        return findKthSmallest(root, k);
+    }
+    static int findKthSmallest(TreeNode *root, int &k)
+    {
+        if (root)
+        {
+            int val = findKthSmallest(root->left, k);
+            if (k == 0)
+                return val;
+            if (--k == 0)
+                return root->val;
+            return findKthSmallest(root->right, k);
+        }
+        return -1;
+    }
 };

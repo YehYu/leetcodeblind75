@@ -30,22 +30,27 @@ ostream &operator<<(ostream &ostr, TreeNode *rhs)
     if (!rhs)
         return ostr;
 
-    ostr <<"[";
+    ostr << "[";
     queue<TreeNode *> nodeQueue;
     nodeQueue.push(rhs);
     while (nodeQueue.size())
     {
         TreeNode *cur = nodeQueue.front();
-        ostr << (cur->val)<<", ";
-        TreeNode *left = cur->left;
-        TreeNode *right = cur->right;
-        if (left)
+        if (cur)
+        {
+            ostr << (cur->val) << ", ";
+            TreeNode *left = cur->left;
+            TreeNode *right = cur->right;
             nodeQueue.push(left);
-        if (right)
             nodeQueue.push(right);
+        }
+        else
+        {
+            ostr <<"nullptr, ";
+        }
         nodeQueue.pop();
     }
-     ostr <<"]";
+    ostr << "]";
     return ostr;
 }
 

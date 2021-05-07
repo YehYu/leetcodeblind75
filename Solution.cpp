@@ -1155,10 +1155,31 @@ public:
             cur->right = temp;
             if (cur->left)
                 nodeQueue.push(cur->left);
-            if ( cur->right)
-                nodeQueue.push( cur->right);
+            if (cur->right)
+                nodeQueue.push(cur->right);
             nodeQueue.pop();
         }
-        return root; 
+        return root;
+    }
+
+    //230. Kth Smallest Element in a BST
+    //Solution1: Iterative
+    static int kthSmallest(TreeNode *root, int k)
+    {
+        vector<TreeNode *> nodeVector;
+        while (root || !nodeVector.empty())
+        {
+            while (root)
+            {
+                nodeVector.push_back(root);
+                root = root->left;
+            }
+            root = nodeVector.back();
+            nodeVector.pop_back();
+            if (--k == 0)
+                return root->val;
+            root = root->right;
+        }
+        return -1;
     }
 };
