@@ -245,12 +245,21 @@ int main()
     // cout<<root<<endl;;
     // cout<<Solution::invertTree(root);
 
-    //230. Kth Smallest Element in a BST
-    //Input: root = [ 5, 3, 6, 2, 4, null, null, 1 ], k = 3 Output : 3
-    TreeNode *root = new TreeNode(5, new TreeNode(3, new TreeNode(2, new TreeNode(1), nullptr), new TreeNode(4)), new TreeNode(6));
-    int k = 3;
-    cout<<root<<endl;;
-    cout<<Solution::kthSmallest(root, k);
+    // //230. Kth Smallest Element in a BST
+    // //Input: root = [ 5, 3, 6, 2, 4, null, null, 1 ], k = 3 Output : 3
+    // TreeNode *root = new TreeNode(5, new TreeNode(3, new TreeNode(2, new TreeNode(1), nullptr), new TreeNode(4)), new TreeNode(6));
+    // int k = 3;
+    // cout<<root<<endl;;
+    // cout<<Solution::kthSmallest(root, k);
+
+    //235. Lowest Common Ancestor of a Binary Search Tree
+    //Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4 Output: 2
+    TreeNode *root = new TreeNode(6, new TreeNode(2, new TreeNode(0), new TreeNode(4, new TreeNode(3), new TreeNode(5))), new TreeNode(8, new TreeNode(7), new TreeNode(9)));
+    TreeNode *p = new TreeNode(2);
+    TreeNode *q = new TreeNode(4);
+    cout << root << endl;
+    
+    cout << Solution::lowestCommonAncestor(root, p, q);
 
     return 0;
 }

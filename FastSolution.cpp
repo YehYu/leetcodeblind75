@@ -1165,4 +1165,20 @@ public:
         }
         return -1;
     }
+
+    // 235. Lowest Common Ancestor of a Binary Search Tree
+    // Iterative Approach
+    static TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
+    {
+        while (root)
+        {
+            if (p->val < root->val && q->val < root->val)
+                root = root->left;
+            else if (p->val > root->val && q->val > root->val)
+                root = root->right;
+            else
+               break;    
+        }
+        return root;
+    }
 };
