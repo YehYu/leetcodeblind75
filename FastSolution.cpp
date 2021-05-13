@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 #include <queue>
 #include <math.h>
@@ -1180,5 +1181,21 @@ public:
                break;    
         }
         return root;
+    }
+
+    //238. Product of Array Except Self
+    //space O(1), time O(n)
+    static vector<int> productExceptSelf(vector<int> &nums)
+    {
+        int n = nums.size();
+        vector<int> r(n, 1);
+        for (int i = 1; i < n; i++)
+            r[i] = nums[i - 1] * r[i - 1];
+        int temp = 1;
+        for(int i = n-2; i >=0; i--){
+            temp *= nums[i + 1];
+            r[i] *= temp;
+        }
+        return r;
     }
 };

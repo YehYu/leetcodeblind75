@@ -388,7 +388,8 @@ public:
             return {newInterval};
 
         vector<vector<int>> result;
-        auto checkInterval = [&result](const vector<int> &interval) {
+        auto checkInterval = [&result](const vector<int> &interval)
+        {
             if (result.empty() || interval[0] > result.back()[1])
                 result.push_back({interval[0], interval[1]});
             else
@@ -1193,5 +1194,22 @@ public:
             return lowestCommonAncestor(root->right, p, q);
         else
             return root;
+    }
+
+    //238. Product of Array Except Self
+    //time O(n)
+    static vector<int> productExceptSelf(vector<int> &nums)
+    {
+        vector<int> r(nums.size(), 1);
+        vector<int> rf(nums.size(), 1);
+        vector<int> rb(nums.size(), 1);
+        for (int i = 1; i < nums.size(); i++)
+        {
+            rf[i] = nums[i - 1] * rf[i - 1];
+            rb[nums.size() - 1 - i] = nums[nums.size() - i] * rb[nums.size() - i];
+            r[i] = rf[i] * rb[i];
+            r[nums.size() - 1 - i] = rf[nums.size() - 1 - i] * rb[nums.size() - 1 - i];
+        }
+        return r;
     }
 };

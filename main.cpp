@@ -252,14 +252,21 @@ int main()
     // cout<<root<<endl;;
     // cout<<Solution::kthSmallest(root, k);
 
-    //235. Lowest Common Ancestor of a Binary Search Tree
-    //Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4 Output: 2
-    TreeNode *root = new TreeNode(6, new TreeNode(2, new TreeNode(0), new TreeNode(4, new TreeNode(3), new TreeNode(5))), new TreeNode(8, new TreeNode(7), new TreeNode(9)));
-    TreeNode *p = new TreeNode(2);
-    TreeNode *q = new TreeNode(4);
-    cout << root << endl;
+    // //235. Lowest Common Ancestor of a Binary Search Tree
+    // //Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4 Output: 2
+    // TreeNode *root = new TreeNode(6, new TreeNode(2, new TreeNode(0), new TreeNode(4, new TreeNode(3), new TreeNode(5))), new TreeNode(8, new TreeNode(7), new TreeNode(9)));
+    // TreeNode *p = new TreeNode(2);
+    // TreeNode *q = new TreeNode(4);
+    // cout << root << endl;
+    // cout << Solution::lowestCommonAncestor(root, p, q);
+
+    //238. Product of Array Except Self
+    //Input: nums = [1,2,3,4], Output: [24,12,8,6]
+    vector<int> nums={1, 2, 3, 4};
+    for (int i : Solution::productExceptSelf(nums))
+        cout<<i<<" ";
+
     
-    cout << Solution::lowestCommonAncestor(root, p, q);
 
     return 0;
 }
