@@ -260,13 +260,16 @@ int main()
     // cout << root << endl;
     // cout << Solution::lowestCommonAncestor(root, p, q);
 
-    //238. Product of Array Except Self
-    //Input: nums = [1,2,3,4], Output: [24,12,8,6]
-    vector<int> nums={1, 2, 3, 4};
-    for (int i : Solution::productExceptSelf(nums))
-        cout<<i<<" ";
+    // //238. Product of Array Except Self
+    // //Input: nums = [1,2,3,4], Output: [24,12,8,6]
+    // vector<int> nums={1, 2, 3, 4};
+    // for (int i : Solution::productExceptSelf(nums))
+    //     cout<<i<<" ";
 
-    
+    //242. Valid Anagram
+    //Input: s = "anagram", t = "nagaram"  Output: true
+    string s = "anagram", t = "nagaram";
+    cout<<Solution::isAnagram(s, t);
 
     return 0;
 }

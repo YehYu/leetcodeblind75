@@ -1198,4 +1198,21 @@ public:
         }
         return r;
     }
+    
+    //242. Valid Anagram
+    //hash map
+    static bool isAnagram(string s, string t) {
+        if(s.size() != t.size())
+            return false;
+        unordered_map<char, int> temp;
+        for(int i = 0; i<t.size(); i++){
+            temp[s[i]]++;
+            temp[t[i]]--;
+        }
+        for(unordered_map<char, int> ::iterator it = temp.begin();it != temp.end();it++)
+            if(it->second != 0)
+                return false;
+        return true;
+    }
+
 };
