@@ -266,10 +266,15 @@ int main()
     // for (int i : Solution::productExceptSelf(nums))
     //     cout<<i<<" ";
 
-    //242. Valid Anagram
-    //Input: s = "anagram", t = "nagaram"  Output: true
-    string s = "anagram", t = "nagaram";
-    cout<<Solution::isAnagram(s, t);
+    // //242. Valid Anagram
+    // //Input: s = "anagram", t = "nagaram"  Output: true
+    // string s = "anagram", t = "nagaram";
+    // cout<<Solution::isAnagram(s, t);
+
+    //252. Meeting Rooms
+    //[[0,30],[5,10],[15,20]] Output: false
+    vector<vector<int>> intervals = {{0, 30}, {5, 10}, {15, 20}};
+    cout << Solution::canAttendMeetings(intervals);
 
     return 0;
 }
