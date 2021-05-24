@@ -2,6 +2,7 @@
 #include "data.h"
 #include <string>
 #include <map>
+#include <set>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -1227,10 +1228,28 @@ public:
     //252. Meeting Rooms
     static bool canAttendMeetings(vector<vector<int>> &intervals)
     {
-        sort(intervals.begin(), intervals.end(), [](const vector<int>&a,const vector<int>&b)->bool{return b[0] > a[0];});
+        sort(intervals.begin(), intervals.end(), [](const vector<int> &a, const vector<int> &b) -> bool
+             { return b[0] > a[0]; });
         for (int i = 1; i < intervals.size(); i++)
-        if(intervals[i][0] < intervals[i-1][1])
-            return false;
+            if (intervals[i][0] < intervals[i - 1][1])
+                return false;
         return true;
+    }
+
+    //253. Meeting Rooms II
+    static int minMeetingRooms(vector<vector<int>> &intervals)
+    {
+        set<int> temp;
+        sort(intervals.begin(), intervals.end(), [](const vector<int> &a, const vector<int> &b) -> bool
+             { return b[0] > a[0]; });
+        for (int i = 0; i < intervals.size(); i++)
+        { 
+            if (!temp.empty() && intervals[i][0] >= (*temp.begin()))
+            {
+                temp.erase((*temp.begin()));
+            }
+            temp.insert(intervals[i][1]);
+        }
+        return temp.size();
     }
 };

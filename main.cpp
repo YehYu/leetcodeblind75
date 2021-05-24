@@ -271,10 +271,15 @@ int main()
     // string s = "anagram", t = "nagaram";
     // cout<<Solution::isAnagram(s, t);
 
-    //252. Meeting Rooms
-    //[[0,30],[5,10],[15,20]] Output: false
+    // //252. Meeting Rooms
+    // //[[0,30],[5,10],[15,20]] Output: false
+    // vector<vector<int>> intervals = {{0, 30}, {5, 10}, {15, 20}};
+    // cout << Solution::canAttendMeetings(intervals);
+
+    //253. Meeting Rooms II
+    //[[0,30],[5,10],[15,20]] Output: 2
     vector<vector<int>> intervals = {{0, 30}, {5, 10}, {15, 20}};
-    cout << Solution::canAttendMeetings(intervals);
+    cout << FastSolution::minMeetingRooms(intervals);
 
     return 0;
 }

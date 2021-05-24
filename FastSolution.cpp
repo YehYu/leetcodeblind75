@@ -1225,4 +1225,19 @@ public:
         return true;
     }
 
+    //253. Meeting Rooms II
+    static int minMeetingRooms(vector<vector<int>> &intervals)
+    {
+        map<int, int> temp;
+        int result = 0, room = 0;
+        for(const vector<int>& interval : intervals){
+            temp[interval[0]]++;
+            temp[interval[1]]--;
+        }
+        for(map<int, int>::iterator it = temp.begin(); it != temp.end(); it++){
+            room += it->second;
+            result = result > room ? result : room;
+        }
+        return result;
+    }
 };
