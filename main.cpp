@@ -276,10 +276,15 @@ int main()
     // vector<vector<int>> intervals = {{0, 30}, {5, 10}, {15, 20}};
     // cout << Solution::canAttendMeetings(intervals);
 
-    //253. Meeting Rooms II
-    //[[0,30],[5,10],[15,20]] Output: 2
-    vector<vector<int>> intervals = {{0, 30}, {5, 10}, {15, 20}};
-    cout << FastSolution::minMeetingRooms(intervals);
+    // //253. Meeting Rooms II
+    // //[[0,30],[5,10],[15,20]] Output: 2
+    // vector<vector<int>> intervals = {{0, 30}, {5, 10}, {15, 20}};
+    // cout << FastSolution::minMeetingRooms(intervals);
+
+    //261. Graph Valid Tree
+    int n = 5;
+    vector<vector<int>> andedges  = {{0,1},{1,2},{2,3},{1,3},{1,4}};
+    cout<<FastSolution::validTree(n, andedges);
 
     return 0;
 }

@@ -1243,7 +1243,7 @@ public:
         sort(intervals.begin(), intervals.end(), [](const vector<int> &a, const vector<int> &b) -> bool
              { return b[0] > a[0]; });
         for (int i = 0; i < intervals.size(); i++)
-        { 
+        {
             if (!temp.empty() && intervals[i][0] >= (*temp.begin()))
             {
                 temp.erase((*temp.begin()));
@@ -1251,5 +1251,60 @@ public:
             temp.insert(intervals[i][1]);
         }
         return temp.size();
+    }
+
+    //261. Graph Valid Tree
+    //DFS and //BFS
+    static bool checkCycle2(const int &cur, const int &pre, vector<bool> &checked, vector<vector<int>> &graph)
+    {
+        if (checked[cur]) //visting
+            return true;
+
+        checked[cur] = true;
+        for (int c : graph[cur])
+        {
+            if (c != pre && checkCycle2(c,cur, checked, graph))
+                return true;
+        }
+        return false;
+    }
+    static bool validTree(int n, vector<vector<int>> &edges)
+    {
+        vector<bool> checked(n, false); //unvisited:0  visited:1
+        vector<vector<int>> graph(n, vector<int>());
+        for (vector<int> pair : edges)
+        {
+            graph[pair[0]].push_back(pair[1]);
+            graph[pair[1]].push_back(pair[0]);
+        }
+        /////////DFS
+        if (checkCycle2(0, 0, checked, graph))
+            return false;
+        for (int i = 1; i < n; i++)
+        {
+            if (!checked[i])
+                return false;
+        }
+        return true;
+
+        /////////BFS
+        // queue<int> checkqueue;
+        // checkqueue.push(0);
+        // checked[0] = true;
+        // while (!checkqueue.empty())
+        // {
+        //     n--;
+        //     int cur = checkqueue.front();
+        //     checkqueue.pop();
+        //     for (int c : graph[cur])
+        //     {
+        //         if (checked[c])
+        //             return false;
+        //         checked[c] = true;
+        //         checkqueue.push(c);
+        //         graph[c].erase(cur);
+        //     }
+        // }
+        // return n == 0;
     }
 };

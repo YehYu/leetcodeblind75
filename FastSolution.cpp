@@ -437,7 +437,8 @@ public:
 
         // sort based on start
         sort(intervals.begin(), intervals.end(),
-             [](const vector<int> &A, const vector<int> &B) { return A[0] < B[0]; });
+             [](const vector<int> &A, const vector<int> &B)
+             { return A[0] < B[0]; });
 
         // check and merge
         for (const vector<int> &i : intervals)
@@ -1178,7 +1179,7 @@ public:
             else if (p->val > root->val && q->val > root->val)
                 root = root->right;
             else
-               break;    
+                break;
         }
         return root;
     }
@@ -1192,25 +1193,28 @@ public:
         for (int i = 1; i < n; i++)
             r[i] = nums[i - 1] * r[i - 1];
         int temp = 1;
-        for(int i = n-2; i >=0; i--){
+        for (int i = n - 2; i >= 0; i--)
+        {
             temp *= nums[i + 1];
             r[i] *= temp;
         }
         return r;
     }
-    
+
     //242. Valid Anagram
     //hash map
-    static bool isAnagram(string s, string t) {
-        if(s.size() != t.size())
+    static bool isAnagram(string s, string t)
+    {
+        if (s.size() != t.size())
             return false;
         unordered_map<char, int> temp;
-        for(int i = 0; i<t.size(); i++){
+        for (int i = 0; i < t.size(); i++)
+        {
             temp[s[i]]++;
             temp[t[i]]--;
         }
-        for(unordered_map<char, int> ::iterator it = temp.begin();it != temp.end();it++)
-            if(it->second != 0)
+        for (unordered_map<char, int>::iterator it = temp.begin(); it != temp.end(); it++)
+            if (it->second != 0)
                 return false;
         return true;
     }
@@ -1218,10 +1222,11 @@ public:
     //252. Meeting Rooms
     static bool canAttendMeetings(vector<vector<int>> &intervals)
     {
-        sort(intervals.begin(), intervals.end(), [](const vector<int>&a,const vector<int>&b)->bool{return b[0] > a[0];});
+        sort(intervals.begin(), intervals.end(), [](const vector<int> &a, const vector<int> &b) -> bool
+             { return b[0] > a[0]; });
         for (int i = 1; i < intervals.size(); i++)
-        if(intervals[i][0] < intervals[i-1][1])
-            return false;
+            if (intervals[i][0] < intervals[i - 1][1])
+                return false;
         return true;
     }
 
@@ -1230,14 +1235,42 @@ public:
     {
         map<int, int> temp;
         int result = 0, room = 0;
-        for(const vector<int>& interval : intervals){
+        for (const vector<int> &interval : intervals)
+        {
             temp[interval[0]]++;
             temp[interval[1]]--;
         }
-        for(map<int, int>::iterator it = temp.begin(); it != temp.end(); it++){
+        for (map<int, int>::iterator it = temp.begin(); it != temp.end(); it++)
+        {
             room += it->second;
             result = result > room ? result : room;
         }
         return result;
+    }
+
+    //261. Graph Valid Tree
+    //Union Find
+    static int findRoot(vector<int> &roots, int i)
+    {
+        while (roots[i] != -1)
+        {
+            i = roots[i];
+        }
+        return i;
+    }
+
+    static bool validTree(int n, vector<vector<int>> &edges)
+    {
+        if (n == 0 || edges.size() != n - 1)
+            return false;
+        vector<int> roots(n, -1);
+        for (const vector<int> &edge : edges)
+        {
+            int root1 = findRoot(roots, edge[0]), root2 = findRoot(roots, edge[1]);
+            if (root1 == root2)
+                return false;
+            roots[root1] = root2;
+        }
+        return true;
     }
 };
