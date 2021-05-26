@@ -1273,4 +1273,14 @@ public:
         }
         return true;
     }
+
+    //268. Missing Number
+    // Bit Manipulation
+    static int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+        for(int i = 0; i < nums.size(); i++)
+            n ^= i ^ nums[i];
+
+        return n;
+    }
 };

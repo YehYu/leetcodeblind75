@@ -1307,4 +1307,13 @@ public:
         // }
         // return n == 0;
     }
+
+    //268. Missing Number
+    static int missingNumber(vector<int>& nums) {
+        int gauss = nums.size()*(nums.size()+1)/2;
+        for(int i = 1; i < nums.size(); i++)
+            nums[0] += nums[i];
+
+        return gauss - nums[0];
+    }
 };

@@ -281,10 +281,14 @@ int main()
     // vector<vector<int>> intervals = {{0, 30}, {5, 10}, {15, 20}};
     // cout << FastSolution::minMeetingRooms(intervals);
 
-    //261. Graph Valid Tree
-    int n = 5;
-    vector<vector<int>> andedges  = {{0,1},{1,2},{2,3},{1,3},{1,4}};
-    cout<<FastSolution::validTree(n, andedges);
+    // //261. Graph Valid Tree
+    // int n = 5;
+    // vector<vector<int>> andedges  = {{0,1},{1,2},{2,3},{1,3},{1,4}};
+    // cout<<FastSolution::validTree(n, andedges);
+
+    //268. Missing Number
+    vector<int> nums = {9,6,4,2,3,5,7,0,1};
+    cout<<Solution::missingNumber(nums);
 
     return 0;
 }
