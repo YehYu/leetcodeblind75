@@ -286,9 +286,13 @@ int main()
     // vector<vector<int>> andedges  = {{0,1},{1,2},{2,3},{1,3},{1,4}};
     // cout<<FastSolution::validTree(n, andedges);
 
-    //268. Missing Number
-    vector<int> nums = {9,6,4,2,3,5,7,0,1};
-    cout<<Solution::missingNumber(nums);
+    // //268. Missing Number
+    // vector<int> nums = {9,6,4,2,3,5,7,0,1};
+    // cout<<Solution::missingNumber(nums);
+
+    //269. Alien Dictionary
+    vector<string> words = {"ab","adc"};
+    cout<<FastSolution::alienOrder(words);
 
     return 0;
 }

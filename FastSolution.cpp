@@ -1276,11 +1276,69 @@ public:
 
     //268. Missing Number
     // Bit Manipulation
-    static int missingNumber(vector<int>& nums) {
+    static int missingNumber(vector<int> &nums)
+    {
         int n = nums.size();
-        for(int i = 0; i < nums.size(); i++)
+        for (int i = 0; i < nums.size(); i++)
             n ^= i ^ nums[i];
 
         return n;
+    }
+
+    //269. Alien Dictionary
+    //DFS
+    static bool checkAlienOrderWrong(unordered_map<char, unordered_set<char>> &graph, map<char, int> &checked, const char &c, string &r)
+    {
+        if (checked[c] == 1)
+            return true;
+        if (checked[c] == -1)
+            return false;
+        checked[c] = 1;
+        for (auto iter = checked.begin(); iter != checked.end(); iter++)
+        {
+            if(iter->first == c || graph[c].find(iter->first)== graph[c].end())
+                continue;
+
+            if (checkAlienOrderWrong(graph, checked, iter->first, r))
+                return true;
+        }
+        r.push_back(c);
+        checked[c] = -1;
+        return false;
+    }
+
+    static string alienOrder(vector<string> &words)
+    {
+        unordered_map<char, unordered_set<char>> graph;
+        map<char, int> checked;
+        for (string word : words)
+            for (char c : word)
+                checked[c] = 0; //0:unvisted  1: visting -1:visted
+        // create graph
+        for (int i = 1; i < words.size(); i++)
+        {
+            const char *s1 = words[i - 1].c_str();
+            const char *s2 = words[i].c_str();
+            while (*s1 && *s2)
+            {
+                if (*s1 != *s2)
+                {
+                    graph[*s2].insert(*s1);
+                    break;
+                }
+                s1++;
+                s2++;
+            }
+            if (!(*s2))
+                return string();
+        }
+
+        string r;
+        for (auto iter = checked.begin(); iter != checked.end(); iter++)
+        {
+            if (checkAlienOrderWrong(graph, checked, iter->first, r))
+                return string();
+        }
+        return r;
     }
 };

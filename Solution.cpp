@@ -1263,7 +1263,7 @@ public:
         checked[cur] = true;
         for (int c : graph[cur])
         {
-            if (c != pre && checkCycle2(c,cur, checked, graph))
+            if (c != pre && checkCycle2(c, cur, checked, graph))
                 return true;
         }
         return false;
@@ -1309,11 +1309,69 @@ public:
     }
 
     //268. Missing Number
-    static int missingNumber(vector<int>& nums) {
-        int gauss = nums.size()*(nums.size()+1)/2;
-        for(int i = 1; i < nums.size(); i++)
+    static int missingNumber(vector<int> &nums)
+    {
+        int gauss = nums.size() * (nums.size() + 1) / 2;
+        for (int i = 1; i < nums.size(); i++)
             nums[0] += nums[i];
 
         return gauss - nums[0];
+    }
+
+    //269. Alien Dictionary
+    //BFS
+    static string alienOrder(vector<string> &words)
+    {
+        unordered_map<char, unordered_set<char>> graph;
+        unordered_map<char, int> Incount;
+        unordered_set<char> total_char;
+        // get total char numbers
+        for (string word : words)
+            total_char.insert(word.begin(), word.end());
+        // create graph
+        for (int i = 1; i < words.size(); i++)
+        {
+            const char *s1 = words[i - 1].c_str();
+            const char *s2 = words[i].c_str();
+            while (*s1 && *s2)
+            {
+                if (*s1 != *s2)
+                {
+                    graph[*s1].insert(*s2);
+                    break;
+                }
+                s1++;
+                s2++;
+            }
+            if (!(*s2))
+                return string();
+        }
+        // get start char
+        for (auto iter = graph.begin(); iter != graph.end(); iter++)
+        {
+            for (const char &c : iter->second)
+                Incount[c]++;
+        }
+        priority_queue<char, vector<char>, greater<char>> checkqueue;
+        for (char i : total_char)
+        {
+            if (Incount[i] == 0)
+                checkqueue.push(i);
+        }
+
+        string r;
+        while (!checkqueue.empty())
+        {
+            char c = checkqueue.top();
+            checkqueue.pop();
+            r.push_back(c);
+            for (char nextC : graph[c])
+            {
+                Incount[nextC]--;
+                if (Incount[nextC] == 0)
+                    checkqueue.push(nextC);
+            }
+        }
+        return r.size() == total_char.size() ? r : string();
     }
 };
