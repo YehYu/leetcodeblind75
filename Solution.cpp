@@ -1374,4 +1374,55 @@ public:
         }
         return r.size() == total_char.size() ? r : string();
     }
+
+    //271. Encode and Decode Strings
+    static string encode(vector<string> &strs)
+    {
+        if (strs.empty())
+            return "";
+        char key = 'K';
+        char connect = '-';
+        string s;
+        for (int i = 0; i < strs.size(); i++)
+        {
+            for (const char &c : strs[i])
+            {
+                s.push_back(c ^ key);
+                if (c == connect)
+                    s.push_back(c ^ key);
+            }
+            s += (connect ^ key);
+        }
+        return s;
+    }
+
+    static vector<string> decode(string &str)
+    {
+        if (str.empty())
+            return vector<string>();
+        char key = 'K';
+        char connect = '-';
+        vector<string> strs;
+        string tempStr;
+        for (int i = 0; i < str.size(); i++)
+        {
+            char c = str[i] ^ key;
+            if (c != connect)
+            {
+                tempStr.push_back(c);
+            }
+            else
+            {
+                if (i + 1 < str.size() && (str[i + 1] ^ key) == connect){
+                    tempStr.push_back(c);
+                    i++;
+                }
+                else{
+                    strs.push_back(tempStr);
+                    tempStr.clear();
+                }
+            }
+        }
+        return strs;
+    }
 };

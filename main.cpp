@@ -290,9 +290,15 @@ int main()
     // vector<int> nums = {9,6,4,2,3,5,7,0,1};
     // cout<<Solution::missingNumber(nums);
 
-    //269. Alien Dictionary
-    vector<string> words = {"ab","adc"};
-    cout<<FastSolution::alienOrder(words);
+    // //269. Alien Dictionary
+    // vector<string> words = {"ab","adc"};
+    // cout<<FastSolution::alienOrder(words);
 
+    // 271. Encode and Decode Strings
+    vector<string> strs = {"lint", "code", ":", "you"};
+    string s = Solution::encode(strs);
+    cout << "s = " << s << endl;
+    for (string str : Solution::decode(s))
+        cout << "strs = " << str << endl;
     return 0;
 }
