@@ -294,11 +294,15 @@ int main()
     // vector<string> words = {"ab","adc"};
     // cout<<FastSolution::alienOrder(words);
 
-    // 271. Encode and Decode Strings
-    vector<string> strs = {"lint", "code", ":", "you"};
-    string s = Solution::encode(strs);
-    cout << "s = " << s << endl;
-    for (string str : Solution::decode(s))
-        cout << "strs = " << str << endl;
+    // // 271. Encode and Decode Strings
+    // vector<string> strs = {"lint", "code", ":", "you"};
+    // string s = Solution::encode(strs);
+    // cout << "s = " << s << endl;
+    // for (string str : Solution::decode(s))
+    //     cout << "strs = " << str << endl;
+
+    //295. Find Median from Data Stream
+    Solution::FindMedianTest();
+
     return 0;
 }

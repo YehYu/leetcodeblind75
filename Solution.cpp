@@ -1413,16 +1413,33 @@ public:
             }
             else
             {
-                if (i + 1 < str.size() && (str[i + 1] ^ key) == connect){
+                if (i + 1 < str.size() && (str[i + 1] ^ key) == connect)
+                {
                     tempStr.push_back(c);
                     i++;
                 }
-                else{
+                else
+                {
                     strs.push_back(tempStr);
                     tempStr.clear();
                 }
             }
         }
         return strs;
+    }
+
+    //295. Find Median from Data Stream
+    static void FindMedianTest()
+    {
+        MedianFinder *medianFinder = new MedianFinder();
+        medianFinder->addNum(1); // arr = [1]
+        medianFinder->addNum(2);
+        medianFinder->addNum(2);
+        medianFinder->addNum(3);            // arr = [1, 2]
+        double a = medianFinder->findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
+        medianFinder->addNum(3);
+        medianFinder->addNum(3);            // arr[1, 2, 3]
+        double b = medianFinder->findMedian(); // return 2.0
+        delete medianFinder;
     }
 };

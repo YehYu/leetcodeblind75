@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <queue>
 #include <iostream>
+
 using namespace std;
 struct ListNode
 {
@@ -46,7 +47,7 @@ ostream &operator<<(ostream &ostr, TreeNode *rhs)
         }
         else
         {
-            ostr <<"nullptr, ";
+            ostr << "nullptr, ";
         }
         nodeQueue.pop();
     }
@@ -190,6 +191,42 @@ struct TrieWordSearchNode
             root = root->childVec[c];
         }
         root->word = word;
+    }
+};
+
+//295. Find Median from Data Stream
+class MedianFinder
+{
+    //最大的優先取出
+    priority_queue<int> min_queue;
+    //最小的優先取出
+    priority_queue<int, vector<int>, greater<int>> max_queue;
+
+public:
+    /** initialize your data structure here. */
+    MedianFinder()
+    {
+    }
+
+    void addNum(int num)
+    {
+        if (min_queue.size() > max_queue.size())
+        {
+            min_queue.push(num);
+            max_queue.push(min_queue.top());
+            min_queue.pop();
+        }
+        else
+        {
+            max_queue.push(num);
+            min_queue.push(max_queue.top());
+            max_queue.pop();
+        }
+    }
+
+    double findMedian()
+    {
+        return (min_queue.size() > max_queue.size()) ? min_queue.top() : (min_queue.top() + max_queue.top()) * 0.5;
     }
 };
 
