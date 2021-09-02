@@ -1435,11 +1435,23 @@ public:
         medianFinder->addNum(1); // arr = [1]
         medianFinder->addNum(2);
         medianFinder->addNum(2);
-        medianFinder->addNum(3);            // arr = [1, 2]
+        medianFinder->addNum(3);               // arr = [1, 2]
         double a = medianFinder->findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
         medianFinder->addNum(3);
-        medianFinder->addNum(3);            // arr[1, 2, 3]
+        medianFinder->addNum(3);               // arr[1, 2, 3]
         double b = medianFinder->findMedian(); // return 2.0
         delete medianFinder;
+    }
+
+    //297. Serialize and Deserialize Binary Tree
+    static void testTreeNodeCodec()
+    {
+        // Input [6,2,8,0,4,7,9,null,null,3,5]
+        Codec ser, deser;
+        TreeNode *root = new TreeNode(6, new TreeNode(2, new TreeNode(0), new TreeNode(4, new TreeNode(3), new TreeNode(5))), new TreeNode(8, new TreeNode(7), new TreeNode(9)));
+        cout << root;
+        cout << ser.serialize(root);
+        TreeNode *ans = deser.deserialize(ser.serialize(root));
+        cout << ans;
     }
 };

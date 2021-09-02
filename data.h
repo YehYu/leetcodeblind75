@@ -230,4 +230,120 @@ public:
     }
 };
 
+ //297. Serialize and Deserialize Binary Tree
+#include <sstream>
+class Codec
+{
+public:
+    // Encodes a tree to a single string.
+    string serialize(TreeNode *root)
+    {
+        //BFS
+        //return serializeBFS(root);
+
+        //DFS
+        ostringstream os;
+        serializeDFS(os, root);
+        return os.str();
+    }
+        // Decodes your encoded data to tree.
+    TreeNode *deserialize(string data)
+    {
+        //BFS
+        //return deserializeBFS(data);
+
+        //DFS
+        istringstream is(data);
+        return deserializeDFS(is);
+    }
+
+    //DFS
+    void serializeDFS(ostringstream &os, TreeNode *root)
+    {
+        if (root)
+        {
+            os << root->val << " ";
+            serializeDFS(os, root->left);
+            serializeDFS(os, root->right);
+        }
+        else
+            os << "nullptr"
+               << " ";
+    }
+
+    TreeNode *deserializeDFS(istringstream &is)
+    {
+        string str;
+        is >> str;
+        if (str == "nullptr")
+            return nullptr;
+
+        TreeNode *root;
+        root = new TreeNode(stoi(str));
+        root->left = deserializeDFS(is);
+        root->right = deserializeDFS(is);
+
+        return root;
+    }
+
+    //BFS
+    string serializeBFS(TreeNode *root)
+    {
+        if (!root)
+            return string();
+
+        stringstream result;
+        queue<TreeNode *> nodeQueue;
+        nodeQueue.push(root);
+        while (nodeQueue.size())
+        {
+            TreeNode *cur = nodeQueue.front();
+            if (cur)
+            {
+                result << (cur->val) << " ";
+                TreeNode *left = cur->left;
+                TreeNode *right = cur->right;
+                nodeQueue.push(left);
+                nodeQueue.push(right);
+            }
+            else
+            {
+                result << "nullptr"
+                       << " ";
+            }
+            nodeQueue.pop();
+        }
+        return result.str();
+    }
+
+    TreeNode *deserializeBFS(string &data)
+    {
+        if (data.empty())
+            return nullptr;
+
+        stringstream dataStream(data);
+        queue<TreeNode *> nodeQueue;
+        string value, left_value, right_value;
+        dataStream >> value;
+        TreeNode *root = new TreeNode(stoi(value));
+        nodeQueue.push(root);
+        while (nodeQueue.size())
+        {
+            TreeNode *cur = nodeQueue.front();
+            dataStream >> left_value;
+            dataStream >> right_value;
+
+            cur->left = (left_value == "nullptr") ? nullptr : new TreeNode(stoi(left_value));
+            cur->right = (right_value == "nullptr") ? nullptr : new TreeNode(stoi(right_value));
+            if (cur->left)
+                nodeQueue.push(cur->left);
+            if (cur->right)
+                nodeQueue.push(cur->right);
+
+            nodeQueue.pop();
+        }
+        return root;
+    }
+};
+
 #endif

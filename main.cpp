@@ -301,8 +301,11 @@ int main()
     // for (string str : Solution::decode(s))
     //     cout << "strs = " << str << endl;
 
-    //295. Find Median from Data Stream
-    Solution::FindMedianTest();
+    // //295. Find Median from Data Stream
+    // Solution::FindMedianTest();
+
+    //297. Serialize and Deserialize Binary Tree
+    Solution::testTreeNodeCodec();
 
     return 0;
 }
