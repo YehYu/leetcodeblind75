@@ -1394,4 +1394,39 @@ public:
         }
         return strs;
     }
+
+    //300. Longest Increasing Subsequence
+
+    //Binary Search low bound position
+    static int BSLowBoundOfLIS(const vector<int> &dp, int target)
+    {
+        int l = -1, r = dp.size();
+        while (r-l > 1)
+        {
+            int m = (l + r) / 2;
+            if (dp[m] == target)
+                return m;
+            if (dp[m] > target)
+                r = m;
+            else
+                l = m;
+        }
+        return r;
+    }
+
+    static int lengthOfLIS(vector<int> &nums)
+    {
+        int count = nums.size();
+        int result = 0;
+        vector<int> dp;
+        dp.push_back(nums[0]);
+        for (int i = 1; i < count; ++i)
+        {
+            if (nums[i] > dp.back())
+                dp.push_back(nums[i]);
+            else
+                dp[BSLowBoundOfLIS(dp, nums[i])] = nums[i];
+        }
+        return dp.size();
+    }
 };

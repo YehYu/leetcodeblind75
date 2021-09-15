@@ -1454,4 +1454,25 @@ public:
         TreeNode *ans = deser.deserialize(ser.serialize(root));
         cout << ans;
     }
+
+    //300. Longest Increasing Subsequence
+    static int lengthOfLIS(vector<int> &nums)
+    {
+        int count = nums.size();
+        int result = 0;
+        vector<int> dp(count, 1);
+        for (int i = 0; i < count; ++i)
+        {
+            int temp = 0;
+            for (int j = i - 1; j >= 0; --j)
+            {
+                if(nums[i] > nums[j] && dp[j] > temp)
+                    temp = dp[j];
+            }
+            dp[i] += temp;
+            if(dp[i] > result)
+                result = dp[i];
+        }
+        return result;
+    }
 };

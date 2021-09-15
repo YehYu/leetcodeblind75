@@ -304,8 +304,12 @@ int main()
     // //295. Find Median from Data Stream
     // Solution::FindMedianTest();
 
-    //297. Serialize and Deserialize Binary Tree
-    Solution::testTreeNodeCodec();
+    // //297. Serialize and Deserialize Binary Tree
+    // Solution::testTreeNodeCodec();
+
+    //300. Longest Increasing Subsequence
+    vector<int> nums={4,10,4,3,8,9};
+    cout<<FastSolution::lengthOfLIS(nums);
 
     return 0;
 }
