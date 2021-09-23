@@ -307,9 +307,13 @@ int main()
     // //297. Serialize and Deserialize Binary Tree
     // Solution::testTreeNodeCodec();
 
-    //300. Longest Increasing Subsequence
-    vector<int> nums={4,10,4,3,8,9};
-    cout<<FastSolution::lengthOfLIS(nums);
+    // //300. Longest Increasing Subsequence
+    // vector<int> nums={4,10,4,3,8,9};
+    // cout<<FastSolution::lengthOfLIS(nums);
+
+    //322. Coin Change
+    vector<int> nums={1,2,5};
+    cout<<FastSolution::coinChange(nums, 11);
 
     return 0;
 }

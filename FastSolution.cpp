@@ -1401,7 +1401,7 @@ public:
     static int BSLowBoundOfLIS(const vector<int> &dp, int target)
     {
         int l = -1, r = dp.size();
-        while (r-l > 1)
+        while (r - l > 1)
         {
             int m = (l + r) / 2;
             if (dp[m] == target)
@@ -1428,5 +1428,34 @@ public:
                 dp[BSLowBoundOfLIS(dp, nums[i])] = nums[i];
         }
         return dp.size();
+    }
+
+    //322. Coin Change
+    //DP top down (recursive )
+
+    static int coinChange(vector<int> &coins, int targetAmount, vector<int> &dp)
+    {
+        if (targetAmount < 0)
+            return -1;
+        if (targetAmount == 0)
+            return 0;
+        if (dp[targetAmount] != 0)
+            return dp[targetAmount];
+        int min = -1;
+        for (const int &coin : coins)
+        {
+            int &&temp = coinChange(coins, targetAmount-coin, dp) + 1;
+            if (temp > 0 && ( min == -1 || min > temp))
+                min = temp;
+
+        }
+        dp[targetAmount] = min;
+        return dp[targetAmount];
+    }
+
+    static int coinChange(vector<int> &coins, int amount)
+    {
+        vector<int> dp(amount + 1, 0);
+        return coinChange(coins, amount, dp);
     }
 };

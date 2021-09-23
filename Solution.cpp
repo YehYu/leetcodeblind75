@@ -1466,13 +1466,34 @@ public:
             int temp = 0;
             for (int j = i - 1; j >= 0; --j)
             {
-                if(nums[i] > nums[j] && dp[j] > temp)
+                if (nums[i] > nums[j] && dp[j] > temp)
                     temp = dp[j];
             }
             dp[i] += temp;
-            if(dp[i] > result)
+            if (dp[i] > result)
                 result = dp[i];
         }
         return result;
+    }
+
+    //322. Coin Change
+    //DP Bottom up
+    static int coinChange(vector<int> &coins, int amount)
+    {
+        vector<int> dp(amount + 1, -1);
+        dp[0] = 0;
+        for (int i = 1; i <= amount; i++)
+        {
+            for (const int &coin : coins)
+            {
+                int &&temp = i - coin;
+                if (temp < 0 || dp[temp] == -1)
+                    continue;
+
+                if (dp[i] == -1 || dp[i] > dp[temp] + 1)
+                    dp[i] = dp[temp] + 1;
+            }
+        }
+        return dp[amount];
     }
 };
