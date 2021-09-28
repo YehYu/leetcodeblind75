@@ -1444,10 +1444,9 @@ public:
         int min = -1;
         for (const int &coin : coins)
         {
-            int &&temp = coinChange(coins, targetAmount-coin, dp) + 1;
-            if (temp > 0 && ( min == -1 || min > temp))
+            int &&temp = coinChange(coins, targetAmount - coin, dp) + 1;
+            if (temp > 0 && (min == -1 || min > temp))
                 min = temp;
-
         }
         dp[targetAmount] = min;
         return dp[targetAmount];
@@ -1457,5 +1456,56 @@ public:
     {
         vector<int> dp(amount + 1, 0);
         return coinChange(coins, amount, dp);
+    }
+
+    //323. Number of Connected Components in an Undirected Graph
+    //BFS
+    static int countComponents(int n, vector<pair<int, int>> &edges)
+    {
+        vector<bool> checked(n, false);
+        vector<vector<int>> graph(n, vector<int>());
+        int result = 0;
+        for (const pair<int, int> &edge : edges)
+        {
+            graph[edge.first].push_back(edge.second);
+            graph[edge.second].push_back(edge.first);
+        }
+        for (int i = 0; i < n; i++)
+        {
+            if (!checked[i])
+            {
+                queue<int> checkedQueue;
+                checkedQueue.push(i);
+                ++result;
+                while (!checkedQueue.empty())
+                {
+                    int cur = checkedQueue.front();
+                    checkedQueue.pop();
+                    checked[cur] = true;
+                    for (const int &node : graph[cur])
+                    {
+                        if (!checked[node])
+                            checkedQueue.push(node);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    //Union Find
+    static int countComponents_Union_Find(int n, vector<pair<int, int>> &edges)
+    {
+        vector<int> roots(n, -1);
+        for (const pair<int, int> &edge : edges)
+        {
+            int root1 = findRoot(roots, edge.first), root2 = findRoot(roots, edge.second);
+            if (root1 != root2)
+            {
+                roots[root1] = root2;
+                n--;
+            }
+        }
+        return n;
     }
 };

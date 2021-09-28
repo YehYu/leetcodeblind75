@@ -311,9 +311,13 @@ int main()
     // vector<int> nums={4,10,4,3,8,9};
     // cout<<FastSolution::lengthOfLIS(nums);
 
-    //322. Coin Change
-    vector<int> nums={1,2,5};
-    cout<<FastSolution::coinChange(nums, 11);
+    // //322. Coin Change
+    // vector<int> nums={1,2,5};
+    // cout<<FastSolution::coinChange(nums, 11);
 
+    //323. Number of Connected Components in an Undirected Graph
+    int n = 5;
+    vector<pair<int, int>> edges = {{0, 1}, {2, 1}, {3, 2},{3, 4}};
+    cout << FastSolution::countComponents_Union_Find(n, edges);
     return 0;
 }

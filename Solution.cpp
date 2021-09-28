@@ -1496,4 +1496,38 @@ public:
         }
         return dp[amount];
     }
+
+    //323. Number of Connected Components in an Undirected Graph
+    //DFS
+    static void connectComponents(int cur, vector<vector<int>> &graph, vector<bool> &checked)
+    {
+        if (checked[cur])
+            return;
+        checked[cur] = true;
+        for (const int &node : graph[cur])
+        {
+            connectComponents(node, graph, checked);
+        }
+    }
+
+    static int countComponents(int n, vector<pair<int, int>> &edges)
+    {
+        vector<bool> checked(n, false);
+        vector<vector<int>> graph(n, vector<int>());
+        int result = 0;
+        for (const pair<int, int> &edge : edges)
+        {
+            graph[edge.first].push_back(edge.second);
+            graph[edge.second].push_back(edge.first);
+        }
+        for (int i = 0; i < n; i++)
+        {
+            if (!checked[i])
+            {
+                ++result;
+                connectComponents(i, graph, checked);
+            }
+        }
+        return result;
+    }
 };
