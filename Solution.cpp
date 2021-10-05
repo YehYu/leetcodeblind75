@@ -1530,4 +1530,22 @@ public:
         }
         return result;
     }
+
+    //338. Counting Bits
+    ////O<NlogN>
+    static vector<int> countBits(int n)
+    {
+        vector<int> result(n+1, 0);
+        for (int i = 1; i <= n; i++)
+        {
+            int x = i;
+            while (x)
+            {
+                x &= (x-1);
+                result[i]++;
+            }
+            
+        }
+        return result;
+    }
 };

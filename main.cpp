@@ -315,9 +315,14 @@ int main()
     // vector<int> nums={1,2,5};
     // cout<<FastSolution::coinChange(nums, 11);
 
-    //323. Number of Connected Components in an Undirected Graph
+    // //323. Number of Connected Components in an Undirected Graph
+    // int n = 5;
+    // vector<pair<int, int>> edges = {{0, 1}, {2, 1}, {3, 2},{3, 4}};
+    // cout << FastSolution::countComponents_Union_Find(n, edges);
+
+    //338. Counting Bits
     int n = 5;
-    vector<pair<int, int>> edges = {{0, 1}, {2, 1}, {3, 2},{3, 4}};
-    cout << FastSolution::countComponents_Union_Find(n, edges);
+    for( int countBit : FastSolution::countBits(n))
+        cout<<countBit<<endl;
     return 0;
 }
