@@ -17,6 +17,7 @@ using namespace std;
 class Solution
 {
 public:
+    //1. two sum
     static vector<int> twoSum(vector<int> &nums, int target)
     {
         map<int, int> tempMap;
@@ -29,6 +30,7 @@ public:
         return vector<int>();
     }
 
+    //3. Longest Substring Without Repeating Characters
     static int lengthOfLongestSubstring(string s)
     {
         int r = 0;

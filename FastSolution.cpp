@@ -15,6 +15,26 @@ using namespace std;
 class FastSolution
 {
 public:
+
+    //3. Longest Substring Without Repeating Characters
+    static int lengthOfLongestSubstring(string s)
+    {
+        unordered_map<char, int> numIndexMap;
+        int start = 0, end = 0;
+        int longestSize = 0;
+        while(end < s.size()){
+            if(numIndexMap.find(s[end]) != numIndexMap.end() && numIndexMap[s[end]]>=start){
+                int temp = end - start;
+                longestSize = temp>longestSize? temp: longestSize;
+                start = numIndexMap[s[end]] + 1;
+            }
+            numIndexMap[s[end]] = end;
+            end++;
+        }
+        int temp = end - start;
+        return temp>longestSize? temp: longestSize;
+    }
+
     static string longestPalindrome(string s)
     {
         int max = 0;
