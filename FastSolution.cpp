@@ -15,24 +15,25 @@ using namespace std;
 class FastSolution
 {
 public:
-
     //3. Longest Substring Without Repeating Characters
     static int lengthOfLongestSubstring(string s)
     {
         unordered_map<char, int> numIndexMap;
         int start = 0, end = 0;
         int longestSize = 0;
-        while(end < s.size()){
-            if(numIndexMap.find(s[end]) != numIndexMap.end() && numIndexMap[s[end]]>=start){
+        while (end < s.size())
+        {
+            if (numIndexMap.find(s[end]) != numIndexMap.end() && numIndexMap[s[end]] >= start)
+            {
                 int temp = end - start;
-                longestSize = temp>longestSize? temp: longestSize;
+                longestSize = temp > longestSize ? temp : longestSize;
                 start = numIndexMap[s[end]] + 1;
             }
             numIndexMap[s[end]] = end;
             end++;
         }
         int temp = end - start;
-        return temp>longestSize? temp: longestSize;
+        return temp > longestSize ? temp : longestSize;
     }
 
     static string longestPalindrome(string s)
@@ -1529,15 +1530,105 @@ public:
         return n;
     }
 
-    
     //338. Counting Bits
     //O<N> dp
     static vector<int> countBits(int n)
     {
-        vector<int> result(n+1, 0);
+        vector<int> result(n + 1, 0);
         for (int i = 1; i <= n; i++)
-            result[i] =  result[i>>1] + (i&1);
-            
+            result[i] = result[i >> 1] + (i & 1);
+
         return result;
+    }
+
+    //347. Top K Frequent Elements
+    ////Quick selection algorithm (Hoare's selection algorithm)
+    static void quickSelect(const int &start, const int &end, const int &target, unordered_map<int, int> &numSizeMap, vector<int> &uniqueNums)
+    {
+        int selectIndex = start;
+        for (int i = start; i < end; i++)
+        {
+            if (numSizeMap[uniqueNums[i]] < numSizeMap[uniqueNums[end]])
+            {
+                if (i != selectIndex)
+                {
+                    uniqueNums[i] ^= uniqueNums[selectIndex];
+                    uniqueNums[selectIndex] ^= uniqueNums[i];
+                    uniqueNums[i] ^= uniqueNums[selectIndex];
+                }
+                selectIndex++;
+            }
+        }
+        if (end != selectIndex)
+        {
+            uniqueNums[end] ^= uniqueNums[selectIndex];
+            uniqueNums[selectIndex] ^= uniqueNums[end];
+            uniqueNums[end] ^= uniqueNums[selectIndex];
+        }
+        if (selectIndex == target)
+            return;
+        else if (selectIndex > target)
+            quickSelect(start, selectIndex - 1, target, numSizeMap, uniqueNums);
+        else
+            quickSelect(selectIndex + 1, end, target, numSizeMap, uniqueNums);
+    }
+
+    static vector<int> topKFrequent(vector<int> &nums, int k)
+    {
+        //All unique
+        if (nums.size() == k)
+            return nums;
+
+        //create hash table
+        unordered_map<int, int> numSizeMap;
+        for (int num : nums)
+        {
+            numSizeMap[num]++;
+        }
+
+        //unsorted nums
+        vector<int> uniqueNums;
+        for (auto iter = numSizeMap.begin(); iter != numSizeMap.end(); iter++)
+        {
+            uniqueNums.push_back(iter->first);
+        }
+        int target = uniqueNums.size() - k;
+        quickSelect(0, uniqueNums.size() - 1, target, numSizeMap, uniqueNums);
+        return vector<int>(uniqueNums.begin() + target, uniqueNums.end());
+    }
+
+    ////bucket sort
+    static vector<int> topKFrequentBucketSort(vector<int> &nums, int k)
+    {
+        //All unique
+        if (nums.size() == k)
+            return nums;
+
+        //create hash table
+        unordered_map<int, int> numSizeMap;
+        for (int num : nums)
+        {
+            numSizeMap[num]++;
+        }
+
+        //add to bucket
+        vector<vector<int>> bucket(nums.size() + 1, vector<int>());
+        for (auto iter = numSizeMap.begin(); iter != numSizeMap.end(); iter++)
+        {
+            bucket[iter->second].push_back(iter->first);
+        }
+
+        vector<int> res;
+        for (int i = nums.size(); i >= 0; i--)
+        {
+            if (!bucket[i].empty())
+            {
+                res.insert(res.end(), bucket[i].begin(), bucket[i].end());
+                k -= bucket[i].size();
+                if (k == 0)
+                    break;
+            }
+        }
+        return res;
     }
 };

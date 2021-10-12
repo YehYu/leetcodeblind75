@@ -320,9 +320,16 @@ int main()
     // vector<pair<int, int>> edges = {{0, 1}, {2, 1}, {3, 2},{3, 4}};
     // cout << FastSolution::countComponents_Union_Find(n, edges);
 
-    //338. Counting Bits
-    int n = 5;
-    for( int countBit : FastSolution::countBits(n))
-        cout<<countBit<<endl;
+    // //338. Counting Bits
+    // int n = 5;
+    // for( int countBit : FastSolution::countBits(n))
+    //     cout<<countBit<<endl;
+
+    //347. Top K Frequent Elements
+    vector<int> nums = {1,1,1,2,2,3};
+    int k = 2;
+    for( int countBit : FastSolution::topKFrequent(nums, k))
+         cout<<countBit<<endl;
+
     return 0;
 }

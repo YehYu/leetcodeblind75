@@ -1537,17 +1537,49 @@ public:
     ////O<NlogN>
     static vector<int> countBits(int n)
     {
-        vector<int> result(n+1, 0);
+        vector<int> result(n + 1, 0);
         for (int i = 1; i <= n; i++)
         {
             int x = i;
             while (x)
             {
-                x &= (x-1);
+                x &= (x - 1);
                 result[i]++;
             }
-            
         }
         return result;
+    }
+
+    //347. Top K Frequent Elements
+    //Priority queue
+    static vector<int> topKFrequent(vector<int> &nums, int k)
+    {
+        //All unique
+        if (nums.size() == k)
+            return nums;
+
+        //create hash table
+        unordered_map<int, int> numSizeMap;
+        for (int num : nums)
+        {
+            numSizeMap[num]++;
+        }
+
+        //add to heap
+        priority_queue<pair<int, int>> checkQueue;
+        for (auto iter = numSizeMap.begin(); iter != numSizeMap.end(); iter++)
+        {
+            checkQueue.push(pair<int, int>{iter->second, iter->first});
+ 
+        }
+
+        vector<int> res;
+        while (res.size() < k)
+        {
+            res.push_back(checkQueue.top().second);
+            checkQueue.pop();
+        }
+
+        return res;
     }
 };
