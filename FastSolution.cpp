@@ -36,34 +36,49 @@ public:
         return temp > longestSize ? temp : longestSize;
     }
 
+    //5. Longest Palindromic Substring
+    //Manacher's Algorithm
     static string longestPalindrome(string s)
     {
-        int max = 0;
-        string res = "";
-        int curr = 0;
-
-        while (curr < s.size())
+          // build dp and test str
+                vector<int> dpR(s.size()*2 + 1, 0);
+        vector<char> str(s.size()*2 + 1, '#');
+        for(int i = 0; i < s.size(); i++)
+            str[i*2 + 1] = s[i];
+            
+        
+        int center = 0, maxR = 0;
+        int i = 0;
+        while(i < str.size())
         {
-            int start = curr;
-            int end = curr;
-
-            while (end < s.size() && s[end] == s[end + 1])
-                end++;
-            curr = end + 1;
-
-            while (start > 0 && end < s.size() && s[start - 1] == s[end + 1])
-            {
-                start--;
-                end++;
+						//calculate r in i
+            int r = dpR[i];
+            while(i - r -1 >=0 && i + r + 1 < str.size() && str[i - r -1 ] == str[i + r + 1])
+                ++r;
+            
+            dpR[i] = r;
+            if(maxR < r){
+                maxR = r;
+                center = i;
             }
-
-            if (end - start + 1 > max)
+                
+            int rightBound = i + r;
+            int n = 1;
+            while(i + n <= rightBound)
             {
-                max = end - start + 1;
-                res = s.substr(start, max);
+                if(dpR[i-n] + n < r)
+                    dpR[i + n] = dpR[i - n];
+                else if(dpR[i-n] + n > r)
+                    dpR[i + n] = r - n;
+                else{
+                    dpR[i + n] = dpR[i - n];
+                    break;
+                }
+                n++;
             }
+            i+=n;
         }
-        return res;
+        return s.substr((center - maxR)/2, maxR); 
     }
 
     static int maxArea(vector<int> &height)

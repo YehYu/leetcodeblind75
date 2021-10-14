@@ -46,35 +46,30 @@ public:
         return r;
     }
 
+    //5. Longest Palindromic Substring
+    //Expand Around Center
     static string longestPalindrome(string s)
     {
-        int front = 0;
-        int length = 0;
-        for (int i = 0; i < s.length(); i++)
+        int start = 0, longLen = 0;
+        for(int i = 0; i < s.size(); i++)
         {
-            int f;
-            for (f = i - 1; f >= 0; f--)
-                if (s.at(f) != s.at(i))
-                    break;
-            int b;
-            for (b = i + 1; b < s.length(); b++)
-                if (s.at(b) != s.at(i))
-                    break;
-            while (f >= 0 && b < s.length())
+            int left = i, right=i;
+            while(right < s.size() && s[right] == s[right+1])
+                i = ++right;
+            while(left > 0 && right < s.size())
             {
-                if (s.at(f) != s.at(b))
+                if(s[left-1] != s[right + 1])
                     break;
-                f--;
-                b++;
+                left--;
+                right++;                
             }
-            int tempLength = b - f - 1;
-            if (tempLength > length)
-            {
-                front = f + 1;
-                length = tempLength;
+            int tempL = right - left + 1;
+            if(tempL > longLen){
+                longLen = tempL;
+                start = left;
             }
         }
-        return s.substr(front, length);
+        return s.substr(start, longLen);
     }
 
     static int maxArea(vector<int> &height)
