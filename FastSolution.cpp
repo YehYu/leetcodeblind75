@@ -15,7 +15,7 @@ using namespace std;
 class FastSolution
 {
 public:
-    //3. Longest Substring Without Repeating Characters
+    // 3. Longest Substring Without Repeating Characters
     static int lengthOfLongestSubstring(string s)
     {
         unordered_map<char, int> numIndexMap;
@@ -36,49 +36,50 @@ public:
         return temp > longestSize ? temp : longestSize;
     }
 
-    //5. Longest Palindromic Substring
-    //Manacher's Algorithm
+    // 5. Longest Palindromic Substring
+    // Manacher's Algorithm
     static string longestPalindrome(string s)
     {
-          // build dp and test str
-                vector<int> dpR(s.size()*2 + 1, 0);
-        vector<char> str(s.size()*2 + 1, '#');
-        for(int i = 0; i < s.size(); i++)
-            str[i*2 + 1] = s[i];
-            
-        
+        // build dp and test str
+        vector<int> dpR(s.size() * 2 + 1, 0);
+        vector<char> str(s.size() * 2 + 1, '#');
+        for (int i = 0; i < s.size(); i++)
+            str[i * 2 + 1] = s[i];
+
         int center = 0, maxR = 0;
         int i = 0;
-        while(i < str.size())
+        while (i < str.size())
         {
-						//calculate r in i
+            // calculate r in i
             int r = dpR[i];
-            while(i - r -1 >=0 && i + r + 1 < str.size() && str[i - r -1 ] == str[i + r + 1])
+            while (i - r - 1 >= 0 && i + r + 1 < str.size() && str[i - r - 1] == str[i + r + 1])
                 ++r;
-            
+
             dpR[i] = r;
-            if(maxR < r){
+            if (maxR < r)
+            {
                 maxR = r;
                 center = i;
             }
-                
+
             int rightBound = i + r;
             int n = 1;
-            while(i + n <= rightBound)
+            while (i + n <= rightBound)
             {
-                if(dpR[i-n] + n < r)
+                if (dpR[i - n] + n < r)
                     dpR[i + n] = dpR[i - n];
-                else if(dpR[i-n] + n > r)
+                else if (dpR[i - n] + n > r)
                     dpR[i + n] = r - n;
-                else{
+                else
+                {
                     dpR[i + n] = dpR[i - n];
                     break;
                 }
                 n++;
             }
-            i+=n;
+            i += n;
         }
-        return s.substr((center - maxR)/2, maxR); 
+        return s.substr((center - maxR) / 2, maxR);
     }
 
     static int maxArea(vector<int> &height)
@@ -161,7 +162,7 @@ public:
         return v;
     }
 
-    //19. Remove Nth Node From End of List
+    // 19. Remove Nth Node From End of List
     static ListNode *removeNthFromEnd(ListNode *head, int n)
     {
         ListNode *prev = new ListNode(0);
@@ -181,7 +182,7 @@ public:
         return k->next;
     }
 
-    //20. Valid Parentheses
+    // 20. Valid Parentheses
     static bool isValid(string s)
     {
         int indexOfLastOpen = -1;
@@ -261,7 +262,7 @@ public:
         return indexOfLastOpen >= 0 ? false : true;
     }
 
-    //21. Merge Two Sorted Lists
+    // 21. Merge Two Sorted Lists
     static ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
     {
         // most Discuss "recursion"
@@ -281,7 +282,7 @@ public:
         }
     }
 
-    //23. Merge k Sorted Lists
+    // 23. Merge k Sorted Lists
     static ListNode *mergeKLists(vector<ListNode *> &lists)
     {
         if (lists.empty())
@@ -335,7 +336,7 @@ public:
         return -1;
     }
 
-    //combinationSum
+    // combinationSum
     static vector<vector<int>> combinationSum(vector<int> &candidates, int target)
     {
         vector<int> cur;
@@ -391,7 +392,7 @@ public:
         return result;
     }
 
-    //Using Divide and Conquer method
+    // Using Divide and Conquer method
     static int maxSubArrayUsingDivideAndConquer(vector<int> &nums)
     {
         return maxSubArrayHelperFunction(nums, 0, nums.size() - 1);
@@ -450,7 +451,7 @@ public:
         return ans;
     }
 
-    //55. Jump Game
+    // 55. Jump Game
     static bool canJump(vector<int> &nums)
     {
         if (nums.size() == 1)
@@ -466,7 +467,7 @@ public:
         return false;
     }
 
-    //56. Merge Intervals
+    // 56. Merge Intervals
     static vector<vector<int>> merge(vector<vector<int>> &intervals)
     {
         vector<vector<int>> res;
@@ -488,7 +489,7 @@ public:
         return res;
     };
 
-    //57. Insert Interval
+    // 57. Insert Interval
     static vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval)
     {
         if (intervals.empty())
@@ -515,7 +516,7 @@ public:
         return result;
     }
 
-    //62. Unique Paths
+    // 62. Unique Paths
     static int uniquePaths(int m, int n)
     {
         vector<vector<int>> dp(m, vector<int>(n, 0));
@@ -526,7 +527,7 @@ public:
         return dp[m - 1][n - 1];
     }
 
-    //70. Climbing Stairs
+    // 70. Climbing Stairs
     static int climbStairs(int n)
     {
         if (n == 1)
@@ -543,7 +544,7 @@ public:
         return second;
     }
 
-    //73. Set Matrix Zeroes
+    // 73. Set Matrix Zeroes
     static void setZeroes(vector<vector<int>> &matrix)
     {
         bool col0HasZero = false;
@@ -571,7 +572,7 @@ public:
         }
     }
 
-    //76. Minimum Window Substring
+    // 76. Minimum Window Substring
     static string minWindow(string s, string t)
     {
         vector<int> map(128, 0);
@@ -581,19 +582,19 @@ public:
         while (end < s.size())
         {
             if (map[s[end++]]-- > 0)
-                counter--; //in t
+                counter--; // in t
             while (counter == 0)
-            { //valid
+            { // valid
                 if (end - begin < d)
                     d = end - (head = begin);
                 if (map[s[begin++]]++ == 0)
-                    counter++; //make it invalid
+                    counter++; // make it invalid
             }
         }
         return d == INT_MAX ? "" : s.substr(head, d);
     }
 
-    //79. Word Search
+    // 79. Word Search
     static bool search(vector<vector<char>> &board, const string &word, int d, int i, int j)
     {
         int h = board.size();
@@ -622,7 +623,7 @@ public:
         return false;
     }
 
-    //91. Decode Ways
+    // 91. Decode Ways
     static int numDecodings(string s)
     {
         if (s[0] == '0')
@@ -645,10 +646,10 @@ public:
         return n1;
     }
 
-    //98. Validate Binary Search Tree
+    // 98. Validate Binary Search Tree
     static bool isValidBST(TreeNode *root)
     {
-        //Do an in-order traversal
+        // Do an in-order traversal
         if (!root)
             return true;
         vector<TreeNode *> temp;
@@ -671,7 +672,7 @@ public:
         return true;
     }
 
-    //100. Same Tree
+    // 100. Same Tree
     static bool isSameTree(TreeNode *p, TreeNode *q)
     {
         if (!p && !q)
@@ -684,7 +685,7 @@ public:
         return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 
-    //102. Binary Tree Level Order Traversal
+    // 102. Binary Tree Level Order Traversal
     static void recursive(TreeNode *root, vector<vector<int>> *levels, int level)
     {
         if (root == nullptr)
@@ -705,7 +706,7 @@ public:
         return levels;
     }
 
-    //104. Maximum Depth of Binary Tree
+    // 104. Maximum Depth of Binary Tree
     static int maxDepth(TreeNode *root)
     {
         if (!root)
@@ -716,7 +717,7 @@ public:
         return max(leftd, rightd) + 1;
     }
 
-    //105. Construct Binary Tree from Preorder and Inorder Traversal
+    // 105. Construct Binary Tree from Preorder and Inorder Traversal
     static TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder)
     {
         map<int, int> inorderValMapIndex;
@@ -742,7 +743,7 @@ public:
         return root;
     }
 
-    //121. Best Time to Buy and Sell Stock
+    // 121. Best Time to Buy and Sell Stock
     static int maxProfit(vector<int> &prices)
     {
         int maxProfit = 0;
@@ -756,7 +757,7 @@ public:
         return maxProfit;
     }
 
-    //124. Binary Tree Maximum Path Sum
+    // 124. Binary Tree Maximum Path Sum
     static int getRootPathMaxSum(TreeNode *root, int &maxSum)
     {
         if (!root)
@@ -778,7 +779,7 @@ public:
         return max;
     }
 
-    //125. Valid Palindrome
+    // 125. Valid Palindrome
     static bool isPalindrome(string s)
     {
         for (int start = 0, end = s.size() - 1; start < end;)
@@ -793,7 +794,7 @@ public:
         return true;
     }
 
-    //128. Longest Consecutive Sequence
+    // 128. Longest Consecutive Sequence
     static int longestConsecutive(vector<int> &nums)
     {
         if (nums.empty())
@@ -814,8 +815,8 @@ public:
         return longestCount;
     }
 
-    //133. Clone Graph
-    // Definition for a Node.
+    // 133. Clone Graph
+    //  Definition for a Node.
     class Node
     {
     public:
@@ -858,7 +859,7 @@ public:
         return cloneSubGraph(node, nodeMap);
     }
 
-    //139. Word Break
+    // 139. Word Break
     static bool wordBreak(string s, vector<string> &wordDict)
     {
         vector<int> dp(s.size() + 1, false);
@@ -879,7 +880,7 @@ public:
         return dp.back();
     }
 
-    //141. Linked List Cycle
+    // 141. Linked List Cycle
     static bool hasCycle(ListNode *head)
     {
         ListNode *slowNode = head;
@@ -894,14 +895,14 @@ public:
         return false;
     }
 
-    //143. Reorder List
+    // 143. Reorder List
     static void reorderList(ListNode *head)
     {
-        //need reorder only if has three more nodes
+        // need reorder only if has three more nodes
         if (head == nullptr || head->next == nullptr)
             return;
 
-        //Find the middle node of the list
+        // Find the middle node of the list
         ListNode *oneStep = head;
         ListNode *twoStep = head;
         while (twoStep->next && twoStep->next->next)
@@ -910,7 +911,7 @@ public:
             twoStep = twoStep->next->next;
         }
 
-        //Reverse the half after middle  1->2->3->4->5->6 to 1->2->3->6->5->4
+        // Reverse the half after middle  1->2->3->4->5->6 to 1->2->3->6->5->4
         ListNode *midNode = oneStep;
         ListNode *newLastNode = oneStep->next;
         ListNode *reverseNode;
@@ -922,7 +923,7 @@ public:
             midNode->next = reverseNode;
         }
 
-        //Start reorder one by one  1->2->3->6->5->4 to 1->6->2->5->3->4
+        // Start reorder one by one  1->2->3->6->5->4 to 1->6->2->5->3->4
         ListNode *forwardNode = head;
         ListNode *reorderNode;
         while (forwardNode != midNode)
@@ -935,7 +936,7 @@ public:
         }
     }
 
-    //152. Maximum Product Subarray
+    // 152. Maximum Product Subarray
     static int maxProduct(vector<int> &nums)
     {
         int n = nums.size(), res = nums[0], l = 0, r = 0;
@@ -948,7 +949,7 @@ public:
         return res;
     }
 
-    //153. Find Minimum in Rotated Sorted Array
+    // 153. Find Minimum in Rotated Sorted Array
     static int findMin(vector<int> &nums)
     {
         int right = nums.size() - 1;
@@ -961,7 +962,7 @@ public:
         return nums[left];
     }
 
-    //190. Reverse Bits
+    // 190. Reverse Bits
     //僅適用 32 位元無號整數
     static uint32_t reverseBits(uint32_t n)
     {
@@ -973,7 +974,7 @@ public:
         return n;
     }
 
-    //191. Number of 1 Bits
+    // 191. Number of 1 Bits
     //僅適用 32 位元無號整數
     static int hammingWeight(uint32_t n)
     {
@@ -985,7 +986,7 @@ public:
         return n;
     }
 
-    //198. House Robber
+    // 198. House Robber
     static int rob(vector<int> &nums)
     {
         for (int i = 1; i < nums.size(); i++)
@@ -996,7 +997,7 @@ public:
         return nums.back();
     }
 
-    //200. Number of Islands
+    // 200. Number of Islands
     static int numIslands(vector<vector<char>> &grid)
     {
         int r = 0;
@@ -1032,8 +1033,8 @@ public:
         return r;
     }
 
-    //206. Reverse Linked List
-    //Recursive
+    // 206. Reverse Linked List
+    // Recursive
     static ListNode *reverseList(ListNode *head)
     {
         if (!head || !head->next)
@@ -1045,8 +1046,8 @@ public:
         return r;
     }
 
-    //207. Course Schedule
-    //BFS
+    // 207. Course Schedule
+    // BFS
     static bool canFinish(int numCourses, vector<vector<int>> &prerequisites)
     {
         if (prerequisites.empty() || numCourses < 2)
@@ -1081,7 +1082,7 @@ public:
         return numCourses == 0;
     }
 
-    //208. Implement Trie (Prefix Tree)
+    // 208. Implement Trie (Prefix Tree)
     static void testTrie()
     {
         Trie trie;
@@ -1093,7 +1094,7 @@ public:
         cout << trie.search("app"); // return True
     }
 
-    //211. Design Add and Search Words Data Structure
+    // 211. Design Add and Search Words Data Structure
     static void testWordDictionary()
     {
         WordDictionary *wordDictionary = new WordDictionary();
@@ -1107,8 +1108,8 @@ public:
         delete wordDictionary;
     }
 
-    //212. Word Search II
-    //DFS + backtracking + 79. Word Search
+    // 212. Word Search II
+    // DFS + backtracking + 79. Word Search
     static vector<string> findWords(vector<vector<char>> &board, vector<string> &words)
     {
         vector<string> result;
@@ -1132,8 +1133,8 @@ public:
         return result;
     }
 
-    //213. House Robber II
-    //modify 198. House Robber
+    // 213. House Robber II
+    // modify 198. House Robber
     static int robBySEPos(vector<int> &nums, int start, int end)
     {
         int pre2 = 0, pre1 = 0;
@@ -1156,7 +1157,7 @@ public:
         return r2 > r1 ? r2 : r1;
     }
 
-    //217. Contains Duplicate
+    // 217. Contains Duplicate
     static bool containsDuplicate(vector<int> &nums)
     {
         unordered_set<int> numSet;
@@ -1169,8 +1170,8 @@ public:
         return false;
     }
 
-    //226. Invert Binary Tree
-    //DFS  recursive.
+    // 226. Invert Binary Tree
+    // DFS  recursive.
     static TreeNode *invertTree(TreeNode *root)
     {
         if (!root)
@@ -1184,8 +1185,8 @@ public:
         return root;
     }
 
-    //230. Kth Smallest Element in a BST
-    //Solution2:Recursive
+    // 230. Kth Smallest Element in a BST
+    // Solution2:Recursive
     static int kthSmallest(TreeNode *root, int k)
     {
         return findKthSmallest(root, k);
@@ -1220,8 +1221,8 @@ public:
         return root;
     }
 
-    //238. Product of Array Except Self
-    //space O(1), time O(n)
+    // 238. Product of Array Except Self
+    // space O(1), time O(n)
     static vector<int> productExceptSelf(vector<int> &nums)
     {
         int n = nums.size();
@@ -1237,8 +1238,8 @@ public:
         return r;
     }
 
-    //242. Valid Anagram
-    //hash map
+    // 242. Valid Anagram
+    // hash map
     static bool isAnagram(string s, string t)
     {
         if (s.size() != t.size())
@@ -1255,7 +1256,7 @@ public:
         return true;
     }
 
-    //252. Meeting Rooms
+    // 252. Meeting Rooms
     static bool canAttendMeetings(vector<vector<int>> &intervals)
     {
         sort(intervals.begin(), intervals.end(), [](const vector<int> &a, const vector<int> &b) -> bool
@@ -1266,7 +1267,7 @@ public:
         return true;
     }
 
-    //253. Meeting Rooms II
+    // 253. Meeting Rooms II
     static int minMeetingRooms(vector<vector<int>> &intervals)
     {
         map<int, int> temp;
@@ -1284,8 +1285,8 @@ public:
         return result;
     }
 
-    //261. Graph Valid Tree
-    //Union Find
+    // 261. Graph Valid Tree
+    // Union Find
     static int findRoot(vector<int> &roots, int i)
     {
         while (roots[i] != -1)
@@ -1310,8 +1311,8 @@ public:
         return true;
     }
 
-    //268. Missing Number
-    // Bit Manipulation
+    // 268. Missing Number
+    //  Bit Manipulation
     static int missingNumber(vector<int> &nums)
     {
         int n = nums.size();
@@ -1321,8 +1322,8 @@ public:
         return n;
     }
 
-    //269. Alien Dictionary
-    //DFS
+    // 269. Alien Dictionary
+    // DFS
     static bool checkAlienOrderWrong(unordered_map<char, unordered_set<char>> &graph, map<char, int> &checked, const char &c, string &r)
     {
         if (checked[c] == 1)
@@ -1349,7 +1350,7 @@ public:
         map<char, int> checked;
         for (string word : words)
             for (char c : word)
-                checked[c] = 0; //0:unvisted  1: visting -1:visted
+                checked[c] = 0; // 0:unvisted  1: visting -1:visted
         // create graph
         for (int i = 1; i < words.size(); i++)
         {
@@ -1378,7 +1379,7 @@ public:
         return r;
     }
 
-    //271. Encode and Decode Strings
+    // 271. Encode and Decode Strings
     static string encode(vector<string> &strs)
     {
         if (strs.empty())
@@ -1431,9 +1432,9 @@ public:
         return strs;
     }
 
-    //300. Longest Increasing Subsequence
+    // 300. Longest Increasing Subsequence
 
-    //Binary Search low bound position
+    // Binary Search low bound position
     static int BSLowBoundOfLIS(const vector<int> &dp, int target)
     {
         int l = -1, r = dp.size();
@@ -1466,8 +1467,8 @@ public:
         return dp.size();
     }
 
-    //322. Coin Change
-    //DP top down (recursive )
+    // 322. Coin Change
+    // DP top down (recursive )
 
     static int coinChange(vector<int> &coins, int targetAmount, vector<int> &dp)
     {
@@ -1494,8 +1495,8 @@ public:
         return coinChange(coins, amount, dp);
     }
 
-    //323. Number of Connected Components in an Undirected Graph
-    //BFS
+    // 323. Number of Connected Components in an Undirected Graph
+    // BFS
     static int countComponents(int n, vector<pair<int, int>> &edges)
     {
         vector<bool> checked(n, false);
@@ -1529,7 +1530,7 @@ public:
         return result;
     }
 
-    //Union Find
+    // Union Find
     static int countComponents_Union_Find(int n, vector<pair<int, int>> &edges)
     {
         vector<int> roots(n, -1);
@@ -1545,8 +1546,8 @@ public:
         return n;
     }
 
-    //338. Counting Bits
-    //O<N> dp
+    // 338. Counting Bits
+    // O<N> dp
     static vector<int> countBits(int n)
     {
         vector<int> result(n + 1, 0);
@@ -1556,7 +1557,7 @@ public:
         return result;
     }
 
-    //347. Top K Frequent Elements
+    // 347. Top K Frequent Elements
     ////Quick selection algorithm (Hoare's selection algorithm)
     static void quickSelect(const int &start, const int &end, const int &target, unordered_map<int, int> &numSizeMap, vector<int> &uniqueNums)
     {
@@ -1590,18 +1591,18 @@ public:
 
     static vector<int> topKFrequent(vector<int> &nums, int k)
     {
-        //All unique
+        // All unique
         if (nums.size() == k)
             return nums;
 
-        //create hash table
+        // create hash table
         unordered_map<int, int> numSizeMap;
         for (int num : nums)
         {
             numSizeMap[num]++;
         }
 
-        //unsorted nums
+        // unsorted nums
         vector<int> uniqueNums;
         for (auto iter = numSizeMap.begin(); iter != numSizeMap.end(); iter++)
         {
@@ -1615,18 +1616,18 @@ public:
     ////bucket sort
     static vector<int> topKFrequentBucketSort(vector<int> &nums, int k)
     {
-        //All unique
+        // All unique
         if (nums.size() == k)
             return nums;
 
-        //create hash table
+        // create hash table
         unordered_map<int, int> numSizeMap;
         for (int num : nums)
         {
             numSizeMap[num]++;
         }
 
-        //add to bucket
+        // add to bucket
         vector<vector<int>> bucket(nums.size() + 1, vector<int>());
         for (auto iter = numSizeMap.begin(); iter != numSizeMap.end(); iter++)
         {
@@ -1645,5 +1646,11 @@ public:
             }
         }
         return res;
+    }
+
+    // 371. Sum of Two Integers
+    static int getSum(int a, int b)
+    {
+        return b ? getSum(a ^ b, (a & b) << 1) : a;
     }
 };
