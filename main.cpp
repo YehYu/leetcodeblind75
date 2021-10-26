@@ -21,8 +21,8 @@ int main()
         A = A->next;
     }
     */
-    //vector<int> v = {4, 5, 6, 7, 0, 1, 2};
-    //cout << Solution::search(v, 0) << endl;
+    // vector<int> v = {4, 5, 6, 7, 0, 1, 2};
+    // cout << Solution::search(v, 0) << endl;
     /*
     vector<int> v = {2, 3, 5};
     for (vector<int> a : Solution::combinationSum(v, 8))
@@ -32,7 +32,7 @@ int main()
             cout << i << endl;
     }
 */
-    /*  
+    /*
   vector<vector<int>> v = {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
      Solution::rotate(v);
     for (vector<int> a : v)
@@ -66,64 +66,64 @@ int main()
     // for (vector<int> interval: FastSolution::merge(intervals))
     //     cout << interval[0]<<", "<<interval[1]<<endl;
 
-    //57. Insert Interval
-    // vector<vector<int>> intervals  = {{1,5}};
-    // vector<int> newInterval = {2, 7};
-    // for (vector<int> interval: Solution::insert(intervals, newInterval))
-    //     cout << interval[0]<<", "<<interval[1]<<endl;
+    // 57. Insert Interval
+    //  vector<vector<int>> intervals  = {{1,5}};
+    //  vector<int> newInterval = {2, 7};
+    //  for (vector<int> interval: Solution::insert(intervals, newInterval))
+    //      cout << interval[0]<<", "<<interval[1]<<endl;
 
-    //62. Unique
-    //cout << FastSolution::uniquePaths(3,7);
+    // 62. Unique
+    // cout << FastSolution::uniquePaths(3,7);
 
-    //70. Climbing Stairs
-    //cout << FastSolution::climbStairs(7);
+    // 70. Climbing Stairs
+    // cout << FastSolution::climbStairs(7);
 
-    //73. Set Matrix Zeroes
-    // vector<vector<int>> matrix = {{1,2,3,4},{5,0,7,8},{0,10,11,12},{13,14,15,0}};
-    // Solution::setZeroes(matrix);
-    // for (vector<int> m : matrix)
-    // {
-    //     for (int i : m)
-    //     {
-    //         cout << i << " ";
-    //     }
-    //     cout << endl;
-    // }
+    // 73. Set Matrix Zeroes
+    //  vector<vector<int>> matrix = {{1,2,3,4},{5,0,7,8},{0,10,11,12},{13,14,15,0}};
+    //  Solution::setZeroes(matrix);
+    //  for (vector<int> m : matrix)
+    //  {
+    //      for (int i : m)
+    //      {
+    //          cout << i << " ";
+    //      }
+    //      cout << endl;
+    //  }
 
     // //76. Minimum Window Substring
     // string s = "ADOBECODEBANC",t = "ABC"
     // cout << Solution::minWindow(s, t);
 
-    //79. Word Search
-    // vector<vector<char>> board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
-    // string word = "ABCCED";
+    // 79. Word Search
+    //  vector<vector<char>> board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+    //  string word = "ABCCED";
 
-    //91. Decode Ways
-    // string s = "1123";
-    // cout << FastSolution::numDecodings(s);
+    // 91. Decode Ways
+    //  string s = "1123";
+    //  cout << FastSolution::numDecodings(s);
 
-    //98. Validate Binary Search Tree
-    // TreeNode *root = new TreeNode(3, new TreeNode(1, new TreeNode(0), new TreeNode(2)), new TreeNode(5, new TreeNode(4), new TreeNode(6)));
-    // cout << Solution::isValidBST(root);
+    // 98. Validate Binary Search Tree
+    //  TreeNode *root = new TreeNode(3, new TreeNode(1, new TreeNode(0), new TreeNode(2)), new TreeNode(5, new TreeNode(4), new TreeNode(6)));
+    //  cout << Solution::isValidBST(root);
 
-    //100. Same Tree
-    // TreeNode *q = new TreeNode(1, new TreeNode(2), nullptr);
-    // TreeNode *p = new TreeNode(1, nullptr, new TreeNode(2));
-    // cout << Solution::isSameTree(q, p);
+    // 100. Same Tree
+    //  TreeNode *q = new TreeNode(1, new TreeNode(2), nullptr);
+    //  TreeNode *p = new TreeNode(1, nullptr, new TreeNode(2));
+    //  cout << Solution::isSameTree(q, p);
 
-    //102. Binary Tree Level Order Traversal
-    // TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
-    // for (vector<int> m : Solution::levelOrder(root))
-    // {
-    //     for (int i : m)
-    //         cout << i << " ";
+    // 102. Binary Tree Level Order Traversal
+    //  TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
+    //  for (vector<int> m : Solution::levelOrder(root))
+    //  {
+    //      for (int i : m)
+    //          cout << i << " ";
 
     //     cout << endl;
     // }
 
-    //104. Maximum Depth of Binary Tree
-    // TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
-    // cout <<Solution::maxDepth(root);
+    // 104. Maximum Depth of Binary Tree
+    //  TreeNode *root = new TreeNode(1, new TreeNode(2, new TreeNode(3, new TreeNode(4, new TreeNode(5), nullptr), nullptr), nullptr),nullptr);
+    //  cout <<Solution::maxDepth(root);
 
     ////105. Construct Binary Tree from Preorder and Inorder Traversal
     ////Input: preorder = [ 3, 9, 20, 15, 7 ], inorder = [ 9, 3, 15, 20, 7 ] Output : [ 3, 9, 20, null, null, 15, 7 ]
@@ -336,8 +336,12 @@ int main()
     // string a = "aaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyyzzzzzzzzzzyyyyyyyyyyxxxxxxxxxxwwwwwwwwwwvvvvvvvvvvuuuuuuuuuuttttttttttssssssssssrrrrrrrrrrqqqqqqqqqqppppppppppoooooooooonnnnnnnnnnmmmmmmmmmmllllllllllkkkkkkkkkkjjjjjjjjjjiiiiiiiiiihhhhhhhhhhggggggggggffffffffffeeeeeeeeeeddddddddddccccccccccbbbbbbbbbbaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyyzzzzzzzzzzyyyyyyyyyyxxxxxxxxxxwwwwwwwwwwvvvvvvvvvvuuuuuuuuuuttttttttttssssssssssrrrrrrrrrrqqqqqqqqqqppppppppppoooooooooonnnnnnnnnnmmmmmmmmmmllllllllllkkkkkkkkkkjjjjjjjjjjiiiiiiiiiihhhhhhhhhhggggggggggffffffffffeeeeeeeeeeddddddddddccccccccccbbbbbbbbbbaaaa";
     // cout<<FastSolution::longestPalindrome(a);
 
-    // 371. Sum of Two Integers
-     cout<<Solution::getSum(-1, 1);
+    // // 371. Sum of Two Integers
+    //  cout<<Solution::getSum(-1, 1);
 
+    // 417. Pacific Atlantic Water Flow
+    vector<vector<int>> heights = {{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}};
+    for (vector<int> result : Solution::pacificAtlantic(heights))
+        cout << result[0] << ", " << result[1] << endl;
     return 0;
 }

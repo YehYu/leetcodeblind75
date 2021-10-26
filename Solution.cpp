@@ -1581,13 +1581,57 @@ public:
     // 371. Sum of Two Integers
     static int getSum(int a, int b)
     {
-         while (b != 0)
-         {
-            unsigned int carry = (a & b) ; /// a+b carry value
-            a = a ^ b; // a+b except carry
-            b = carry << 1;//carry value move to next bit
-         }
-            
+        while (b != 0)
+        {
+            unsigned int carry = (a & b); /// a+b carry value
+            a = a ^ b;                    // a+b except carry
+            b = carry << 1;               // carry value move to next bit
+        }
+
         return a;
+    }
+
+    // 417. Pacific Atlantic Water Flow
+    static void pacificAtlanticDFS(vector<vector<int>> &heights, vector<vector<bool>> &ocean, const int &preHeight, int r, int c)
+    {
+        if (r < 0 || r >= heights.size() || c < 0 || c >= heights[0].size() || ocean[r][c] || preHeight > heights[r][c])
+            return;
+        ocean[r][c] = true;
+        pacificAtlanticDFS(heights, ocean, heights[r][c], r - 1, c);
+        pacificAtlanticDFS(heights, ocean, heights[r][c], r + 1, c);
+        pacificAtlanticDFS(heights, ocean, heights[r][c], r, c - 1);
+        pacificAtlanticDFS(heights, ocean, heights[r][c], r, c + 1);
+    }
+
+    static vector<vector<int>> pacificAtlantic(vector<vector<int>> &heights)
+    {
+        vector<vector<int>> result;
+        int m = heights.size(), n = heights[0].size();
+        vector<vector<bool>> pacific(m, vector<bool>(n, false));
+        vector<vector<bool>> Atlantic(m, vector<bool>(n, false));
+        // left and right bounary
+        for (int r = 0; r < m; r++)
+        {
+            pacificAtlanticDFS(heights, pacific, -1, r, 0);
+            pacificAtlanticDFS(heights, Atlantic, -1, r, n - 1);
+        }
+
+        // top and bottom bounary
+        for (int c = 0; c < n; c++)
+        {
+            pacificAtlanticDFS(heights, pacific, -1, 0, c);
+            pacificAtlanticDFS(heights, Atlantic, -1, m - 1, c);
+        }
+        
+        for (int r = 0; r < m; r++)
+        {
+            for (int c = 0; c < n; c++)
+            {
+                if (pacific[r][c] && Atlantic[r][c])
+                    result.push_back(vector<int>{r, c});
+            }
+        }
+
+        return result;
     }
 };
