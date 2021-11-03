@@ -339,9 +339,14 @@ int main()
     // // 371. Sum of Two Integers
     //  cout<<Solution::getSum(-1, 1);
 
-    // 417. Pacific Atlantic Water Flow
-    vector<vector<int>> heights = {{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}};
-    for (vector<int> result : Solution::pacificAtlantic(heights))
-        cout << result[0] << ", " << result[1] << endl;
+    // // 417. Pacific Atlantic Water Flow
+    // vector<vector<int>> heights = {{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}};
+    // for (vector<int> result : Solution::pacificAtlantic(heights))
+    //     cout << result[0] << ", " << result[1] << endl;
+
+    // 424. Longest Repeating Character Replacement
+    string s = "BRJRRKNRBFOOKDEEGODTGMHNABMTHFNPTFRHRSEKKTFEQIKSIAJJMSDSLNSCNRNJFNFSIQDNMHDRIJIACLCJKATTFHDASGLRQSFN";
+    int k = 10;
+    cout<<Solution::characterReplacement(s, k);
     return 0;
 }

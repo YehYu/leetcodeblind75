@@ -73,6 +73,7 @@ public:
         return s.substr(start, longLen);
     }
 
+    // 11. Container With Most Water
     static int maxArea(vector<int> &height)
     {
         int length = height.size();
@@ -105,6 +106,7 @@ public:
         return r;
     }
 
+    // 15. 3Sum
     static vector<vector<int>> threeSum(vector<int> &nums)
     {
         vector<vector<int>> r;
@@ -1622,7 +1624,7 @@ public:
             pacificAtlanticDFS(heights, pacific, -1, 0, c);
             pacificAtlanticDFS(heights, Atlantic, -1, m - 1, c);
         }
-        
+
         for (int r = 0; r < m; r++)
         {
             for (int c = 0; c < n; c++)
@@ -1633,5 +1635,23 @@ public:
         }
 
         return result;
+    }
+
+    // 424. Longest Repeating Character Replacement
+    static int characterReplacement(string s, int k)
+    {
+        unordered_map<char, int> recordMap; // char, char count
+        int res = 0, start = 0, end = 0, maxCount = 0;
+        while (end < s.size())
+        {
+            recordMap[s[end]]++;
+            maxCount = (maxCount < recordMap[s[end]]) ? recordMap[s[end]] : maxCount;
+            if (end - start + 1 - maxCount > k)
+                recordMap[s[start++]]--;
+
+            res = max(res, (end - start + 1));
+            end++;
+        }
+        return res;
     }
 };
