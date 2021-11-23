@@ -1654,4 +1654,17 @@ public:
         }
         return res;
     }
+
+    // 435. Non-overlapping Intervals
+    static int eraseOverlapIntervals(vector<vector<int>> &intervals)
+    {
+        sort(intervals.begin(), intervals.end(), [](const vector<int> &i1, const vector<int> &i2)
+             { return i1[1] < i2[1]; });
+        int cur = 0, res = 0;
+        for (int i = 1; i < intervals.size(); i++)
+        {
+            (intervals[i][0] < intervals[cur][1]) ? res++ : cur = i;
+        }
+        return res;
+    }
 };
