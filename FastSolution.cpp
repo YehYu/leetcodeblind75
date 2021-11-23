@@ -1655,4 +1655,16 @@ public:
     {
         return b ? getSum(a ^ b, (a & b) << 1) : a;
     }
+
+    // 572. Subtree of Another Tree
+    static bool isSubtree(TreeNode *root, TreeNode *subRoot)
+    {
+        if (!root || !subRoot)
+            return !root && !subRoot;
+
+        if(isSameTree(root, subRoot))
+            return true;
+
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+    }
 };

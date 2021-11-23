@@ -1667,4 +1667,26 @@ public:
         }
         return res;
     }
+
+    // 572. Subtree of Another Tree
+    static bool isSubtree(TreeNode *root, TreeNode *subRoot)
+    {
+        if (!root || !subRoot)
+            return !root && !subRoot;
+
+        queue<TreeNode *> nodeQuene;
+        nodeQuene.push(root);
+        while (!nodeQuene.empty())
+        {
+            TreeNode *cur = nodeQuene.front();
+            if (cur->val == subRoot->val && isSameTree(cur, subRoot))
+                return true;
+            nodeQuene.pop();
+            if (cur->left)
+                nodeQuene.push(cur->left);
+            if (cur->right)
+                nodeQuene.push(cur->right);
+        }
+        return false;
+    }
 };
